@@ -86,15 +86,21 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'root',
         'PASSWORD': 'root',
-
     }
 }
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+ACCOUNT_ACTIVATION_DAYS = 3
+
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='django.reggi@gmail.com'
+EMAIL_HOST_PASSWORD='15051996e'
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'django.reggi@gmail.com'
-EMAIL_HOST_PASSWORD = '15051996e'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'django.reggi@gmail.com'
+# EMAIL_HOST_PASSWORD = '15051996e'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
