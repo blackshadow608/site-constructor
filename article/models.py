@@ -1,6 +1,11 @@
+import datetime
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+
+
+
 class Article(models.Model):
     class Meta():
         db_table = "article"

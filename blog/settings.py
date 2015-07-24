@@ -41,6 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'article',
+    'registration'
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,7 +89,12 @@ DATABASES = {
 
     }
 }
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'django.reggi@gmail.com'
+EMAIL_HOST_PASSWORD = '15051996e'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
