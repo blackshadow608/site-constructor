@@ -1,8 +1,15 @@
+{% extends 'base.html' %}
 {% block content %}
-<form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" />
+    <div class="col-md-2">
+    <form method="post" action="">
+        {% csrf_token %}
 
-</form>
+     {% include "user_auth.html" %}
+        <input name="submitter" class="btn btn-primary" type="submit" value="Зарегистрироваться"/>
+    </form>
+    </div>
+
+
+
+
 {% endblock %}

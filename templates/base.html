@@ -1,7 +1,27 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href={% static "bootstrap/dist/css/bootstrap.css"%}>
+
+</head>
+<body >
+<div class="col-md-1"></div>
+<div class="col-md-10 center form-group">
 {% block content %}
-<form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" />
-</form>
 {% endblock %}
+</div>
+</body>
+<style>
+    .center {
+        background-color: aquamarine;
+        height: 100vh;
+        bottom: 10px;
+        top: 0;
+        right: 0;
+        left: 0;
+    }
+</style>
+</html>

@@ -76,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
@@ -119,7 +118,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    "/home/evgen/PycharmProjects/blog/static",
+)
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
