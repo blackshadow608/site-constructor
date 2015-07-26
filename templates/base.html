@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href={% static "bootstrap/dist/css/bootstrap.css"%}>
+    <link rel="stylesheet" href={% static "css/mystyles.css"%}>
     <script src={% static "js/jquery-2.1.4.js"%}></script>
     <script src={% static "js/jquery-ui-1.11.4/jquery-ui.min.js" %}></script>
     <script src={% static "js/dragndrop.js" %}></script>
@@ -22,6 +23,13 @@
           {% endif %}
       </li>
   </ul>
+  <ul class="nav navbar-right">
+  {% if user.is_staff %}
+      <li>
+         <a href="/admin/" class="link-type">Administration</a>
+      </li>
+      {% endif %}
+  </ul>
 </nav>
 {% block login %}
 {% endblock %}
@@ -29,26 +37,8 @@
 {% block content %}
 {% endblock %}
 {% endif %}
+{% block anather_user %}
+{% endblock %}
 </div>
 </body>
-<style>
-    /*.center {
-        background-color: #FFFFFF;
-        height: 100vh;
-        bottom: 10px;
-        top: 0;
-        right: 0;
-        left: 0;
-    }*/
-    .mynavbar{
-        background-color: #007095;
-    }
-    .link-type {
-        color: #FFFFFF;
-    }
-    .link-type:hover{
-        color: #FFFFFF;
-        background-color: #245269;
-    }
-</style>
 </html>

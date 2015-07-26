@@ -1,0 +1,19 @@
+.mynavbar{
+        background-color: #007095;
+    }
+.link-type {
+    color: #FFFFFF;
+}
+.link-type:hover{
+    color: #FFFFFF;
+    background-color: #245269;
+}
+.for-padding{
+        padding-top: 0px;
+        padding: 0px;
+    }
+ul{
+    margin-left: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
