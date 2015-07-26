@@ -23,9 +23,12 @@
       </li>
   </ul>
 </nav>
-
+{% block login %}
+{% endblock %}
+{% if user.username %}
 {% block content %}
 {% endblock %}
+{% endif %}
 </div>
 </body>
 <style>
