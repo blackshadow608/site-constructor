@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    "/home/evgen/PycharmProjects/blog/static",
+   os.path.join(BASE_DIR, 'static'),
 )
 
 TEMPLATE_DIRS = (
