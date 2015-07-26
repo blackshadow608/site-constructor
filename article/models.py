@@ -21,3 +21,15 @@ class Comments(models.Model):
 
     comment_text = models.TextField()
     comment_article = models.ForeignKey(Article)
+
+class Project(models.Model):
+
+    project_user = models.ForeignKey(User)
+    project_name = models.CharField(max_length=100)
+
+
+class PageProject(models.Model):
+
+    project = models.ForeignKey(Project)
+    page_name = models.CharField(max_length = 100)
+    text = models.TextField()

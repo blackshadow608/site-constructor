@@ -31,3 +31,7 @@ class LoginFormView(FormView):
 
 class EditView(TemplateView):
     template_name = "editor.html"
+
+# class Forma():
+#     user = auth.get_user(request).username
+
