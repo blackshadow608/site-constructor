@@ -18,10 +18,11 @@ from django.contrib import admin
 from article.views import *
 
 urlpatterns = [
-    #url(r'^$','blog.views.main'),
-     url(r'^admin/', include(admin.site.urls)),
-     url(r'^$',RegisterFormView.as_view()),
-     url(r'^login/$',LoginFormView.as_view()),
-     url(r'^accounts/', include('registration.backends.default.urls')),
+    # url(r'^$','blog.views.main'),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', RegisterFormView.as_view()),
+    url(r'^login/$', LoginFormView.as_view()),
+    url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^editor/', EditView.as_view())
 
 ]

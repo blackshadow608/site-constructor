@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-md-4"  >
+        <h1>Tools</h1>
+        <div class=" jumbotron" style="border: solid 1px black; height: auto">
+            <ul class="form-group">
+                <li class="btn-primary btn btn-block form-group draggable" >Text block</li>
+                <li class="btn-primary btn btn-block form-group draggable" >Video</li>
+                <li class="btn-primary btn btn-block form-group draggable" >Galery</li>
+                <li class="btn-primary btn btn-block form-group draggable" >Raiting</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-7 row">
+        <h1>Your site</h1>
+
+        <div  id="droppable" class="jumbotron for-padding "style="border: solid 1px black; height: auto; min-height: 500px ">
+            <div class="btn-group" aria-label="Large button group" role="group">
+                <button class="btn btn-default" type="button">
+                    Left
+                </button>
+                <button class="btn btn-default" type="button">
+                    Middle
+                </button>
+                <button class="btn btn-default" type="button">
+                    Right
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+    <style>
+    .for-padding{
+        padding-top: 0px;
+        padding: 0px;
+    }
+        ul{
+            margin-left: 0;
+            padding-left: 0;
+            list-style-type: none;
+        }
+    </style>
+{% endblock %}

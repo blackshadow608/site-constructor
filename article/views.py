@@ -20,3 +20,6 @@ class LoginFormView(FormView):
         self.user = form.get_user()
         login(self.request, self.user)
         return super(LoginFormView, self).form_valid(form)
+
+class EditView(TemplateView):
+    template_name = "editor.html"
