@@ -12,18 +12,40 @@
 <body>
 <div class="col-md-1"></div>
 <div class="col-md-10 center form-group">
+<nav class="navbar navbar-default mynavbar">
+  <ul class="nav navbar-right">
+      <li>
+          {% if username %}
+                <li><a href="/logout/" class="link-type"> Logout {{ username }} </a></li>
+          {% else %}
+                <li><a href="/login/" class="link-type"> Login </a></li>
+          {% endif %}
+      </li>
+  </ul>
+</nav>
+</div>
 {% block content %}
 {% endblock %}
-</div>
+
 </body>
 <style>
-    .center {
-        background-color: aquamarine;
+    /*.center {
+        background-color: #FFFFFF;
         height: 100vh;
         bottom: 10px;
         top: 0;
         right: 0;
         left: 0;
+    }*/
+    .mynavbar{
+        background-color: #007095;
+    }
+    .link-type {
+        color: #FFFFFF;
+    }
+    .link-type:hover{
+        color: #FFFFFF;
+        background-color: #245269;
     }
 </style>
 </html>
