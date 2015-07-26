@@ -15,18 +15,18 @@
 <nav class="navbar navbar-default mynavbar">
   <ul class="nav navbar-right">
       <li>
-          {% if username %}
-                <li><a href="/logout/" class="link-type"> Logout {{ username }} </a></li>
+          {% if user %}
+                <li><a href="/logout/" class="link-type"> Logout {{ user}} </a></li>
           {% else %}
                 <li><a href="/login/" class="link-type"> Login </a></li>
           {% endif %}
       </li>
   </ul>
 </nav>
-</div>
+
 {% block content %}
 {% endblock %}
-
+</div>
 </body>
 <style>
     /*.center {
