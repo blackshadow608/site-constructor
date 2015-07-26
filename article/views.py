@@ -22,7 +22,7 @@ class RegisterFormView(RegistrationView):
 class LoginFormView(FormView):
     form_class = AuthenticationForm
     template_name = "login.html"
-    success_url = "/"
+    success_url = "/editor/"
 
     def form_valid(self, form):
         self.user = form.get_user()
