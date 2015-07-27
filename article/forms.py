@@ -18,5 +18,11 @@
 #     class Meta:
 #         model = PageProject
 #         fields = ['username']
+from django.forms import ModelForm
+from article.models import Project
 
 
+class My_Model_Form(ModelForm):
+           class Meta:
+               model = Project
+               fields = ['project_user','project_name']

@@ -25,4 +25,5 @@ urlpatterns = [
      url(r'^register/$',RegisterFormView.as_view()),
      url(r'^editor/', EditView.as_view()),
      url(r'^accounts/', include('registration.backends.default.urls')),
+     url(r'^my_projects/', 'article.views.user_projects')
 ]

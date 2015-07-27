@@ -16,27 +16,50 @@
 <nav class="navbar navbar-default mynavbar">
   <ul class="nav navbar-right">
       <li>
-          {% if user.username %}
+          {% if user.is_authenticated %}
                 <li><a href="/logout/" class="link-type"> Logout {{ user.username}} </a></li>
           {% else %}
                 <li><a href="/login/" class="link-type"> Login </a></li>
           {% endif %}
       </li>
   </ul>
-  <ul class="nav navbar-right">
-  {% if user.is_staff %}
-      <li>
-         <a href="/admin/" class="link-type">Administration</a>
-      </li>
-      {% endif %}
-  </ul>
+    <ul class="nav navbar-right">
+        {% if user.is_staff %}
+            <li>
+                <a href="/admin/" class="link-type">Administration</a>
+            </li>
+        {% endif %}
+    </ul>
+    <ul class="nav navbar-right">
+        {% if user.username %}
+            <li>
+                <a href="/editor/" class="link-type">Editor</a>
+            </li>
+        {% endif %}
+    </ul>
+    <ul class="nav navbar-right">
+        {% if user.username %}
+            <li>
+                <a href="/my_projects/" class="link-type">My Projects</a>
+            </li>
+        {% endif %}
+    </ul>
+    <ul class="nav navbar-right">
+            <li>
+                <a href="/" class="link-type">Home</a>
+            </li>
+    </ul>
 </nav>
+{% for obj in output %}
+{{ obj.project_name}}
+    {{ obj.project_user}}
+{% endfor %}
 {% block login %}
 {% endblock %}
-{% if user.username %}
+
 {% block content %}
 {% endblock %}
-{% endif %}
+
 {% block anather_user %}
 {% endblock %}
 </div>
