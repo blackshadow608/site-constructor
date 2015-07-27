@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from article.views import *
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
      url(r'^$','article.views.main'),
@@ -23,7 +24,7 @@ urlpatterns = [
      url(r'^login/$',LoginFormView.as_view()),
      url(r'^logout/$','article.views.logout'),
      url(r'^register/$',RegisterFormView.as_view()),
-     url(r'^editor/', EditView.as_view()),
+     url(r'^editor/', login_required(EditView.as_view())),
      url(r'^accounts/', include('registration.backends.default.urls')),
-     url(r'^my_projects/', 'article.views.user_projects')
+     url(r'^my_projects/', login_required('article.views.user_projects'))
 ]

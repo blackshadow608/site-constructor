@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect
 
@@ -7,9 +8,7 @@ from django.views.generic import FormView, TemplateView
 from registration.backends.default.views import RegistrationView
 from django.shortcuts import render_to_response
 from django.contrib import auth
-from article.forms import My_Model_Form
 from article.models import Project
-
 
 def main(request):
     output = Project.objects.values('project_name', 'project_user')
