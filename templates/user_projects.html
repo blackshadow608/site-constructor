@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for obj in projects %}
-        {{ obj.project_name}}
-    {% endfor %}
+    <div class="col-md-9">
+        {% for obj in projects %}
+            {{ obj.project_name}}
+        {% endfor %}
+    </div>
+    <div class="col-md-3">
+        <h1>New project</h1>
+            <form action='' method='post' xmlns="http://www.w3.org/1999/html">
+                {% csrf_token %}
+                <label class="label label-info">Project name</label>
+                <input class='form-control'name="{{ form.project_name.name}}" />
+                <button type="submit" class="btn btn-primary">create</button>
+                <div style="visibility: hidden;">{{ form.project_user }}</div>
+            </form>
+    </div>
 {% endblock %}

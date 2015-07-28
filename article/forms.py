@@ -1,4 +1,4 @@
-# from django import forms
+from django import forms
 # from django.contrib.auth.models import User
 # from article.models import Project, PageProject
 #
@@ -23,6 +23,7 @@ from article.models import Project
 
 
 class My_Model_Form(ModelForm):
-           class Meta:
-               model = Project
-               fields = ['project_user','project_name']
+    class Meta:
+        model = Project
+        fields = ['project_user','project_name']
+
