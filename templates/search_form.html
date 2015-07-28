@@ -1,19 +1,57 @@
 {% extends "base.html" %}
 {% block search_form %}
+    <div class="col-md-5 col-md-offset-3">
     <form action="/search/" method="get">
-        <input type="text" name="q">
-        <input type="submit" value="Search">
+        <input class='form-control' type="text" name="q">
+        <input class="btn btn-default navbar-right" type="submit" value="Search">
     </form>
     <p>You searched for: <strong>{{ query }}</strong></p>
-
+    </div>
+    <div class="col-md-10 col-md-offset-1">
+    <ul class="list-inline">
+    {% if users %}
+        <p class="lead">Users:</p>
+        {% for user in users %}
+            <li>
+            <div class="btn btn-default btn-lg" style="height: 100px; width: 100px">
+                <a href="/" class="link-from-search">{{ user.username }}</a>
+            </div>
+            </li>
+        {% endfor %}
+    {% endif %}
     {% if projects %}
-        <p>Found {{ projects|length }} result{{ projects|pluralize }}.</p>
-        <ul>
-            {% for project in projects %}
-            <li>{{ project.username }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No result matched your search criteria.</p>
-{% endif %}
+        <p class="lead">Sites:</p>
+        {% for project in projects %}
+            <li>
+            <div class="btn btn-default btn-lg" style="height: 100px; width: 100px">
+                <a href="/" class="link-from-search">{{ project.project_name }}</a>
+            </div>
+            </li>
+        {% endfor %}
+    {% endif %}
+    {% if pagesProject %}
+        <p class="lead">Pages:</p>
+        {% for page in pagesProject %}
+            <li>
+            <div class="btn btn-default btn-lg">
+                <a href="/" class="link-from-search">{{ page.page_name }}</a>
+            </div>
+            </li>
+        {% endfor %}
+    {% endif %}
+    {% if textOfPages %}
+        <p class="lead">Text:</p>
+        {% for text in textOfPages %}
+            <li>
+            <div class="btn btn-default btn-lg">
+                <a href="/" class="link-from-search">{{ text.text }}</a>
+            </div>
+            </li>
+        {% endfor %}
+    {% endif %}
+    {% if not users and not projects and not pagesProject and not textOfPages %}
+       <p class="lead">No results</p>
+    {% endif %}
+    </ul>
+    </div>
 {% endblock %}
