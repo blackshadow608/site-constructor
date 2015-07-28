@@ -1,7 +1,9 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.contrib.auth.models import User
 
 # Create your views here.
 from django.views.generic import FormView, TemplateView
@@ -72,3 +74,15 @@ class EditView(TemplateView):
 
 # class Forma():
 #     user = auth.get_user(request).username
+
+def search_form(request):
+    return render_to_response('search_form.html',{'user':request.user})
+
+def search(request):
+    if 'q' in request.GET and request.GET['q']:
+        q = request.GET['q']
+        projects = User.objects.filter(username__icontains=q)
+        return render_to_response('search_form.html',
+            {'projects': projects, 'query': q,'user':request.user})
+    else:
+        return HttpResponse('Please submit a search term.')
