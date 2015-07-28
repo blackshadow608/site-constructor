@@ -56,7 +56,8 @@ class UsrCrateProj(FormView):
 
 class RegisterFormView(RegistrationView):
     template_name = "registration.html"
-
+    def get_context_data(self, **kwargs):
+        return
 
 class LoginFormView(FormView):
     form_class = AuthenticationForm
@@ -72,11 +73,15 @@ class LoginFormView(FormView):
 class EditView(TemplateView):
     template_name = "editor.html"
 
-# class Forma():
-#     user = auth.get_user(request).username
+    def get_context_data(self, **kwargs):
+        context = super(EditView, self).get_context_data(**kwargs)
+        context['proj_name'] = 'adasdas'
+        return context
+
 
 def search_form(request):
     return render_to_response('search_form.html',{'user':request.user})
+
 
 def search(request):
     if 'q' in request.GET and request.GET['q']:
