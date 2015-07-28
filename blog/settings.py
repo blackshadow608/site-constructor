@@ -41,8 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'article',
-    'registration'
-
+    'registration',
+    'haystack'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -131,3 +131,10 @@ TEMPLATE_DIRS = (
 
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr'
+    },
+}
