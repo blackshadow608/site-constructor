@@ -11,7 +11,7 @@ from registration.backends.default.views import RegistrationView
 from django.shortcuts import render_to_response
 from django.contrib import auth
 from article.forms import CreateProjectForm, DeleteProjectForm
-from article.models import Project
+from article.models import Project,PageProject
 from django.template import RequestContext
 
 
@@ -81,8 +81,12 @@ def search_form(request):
 def search(request):
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
-        projects = User.objects.filter(username__icontains=q)
+        users = User.objects.filter(username__icontains=q)
+        projects = Project.objects.filter(project_name__icontains=q)
+        pagesProject = PageProject.objects.filter(page_name__icontains=q)
+        textOfPages = PageProject.objects.filter(text__icontains=q)
         return render_to_response('search_form.html',
-            {'projects': projects, 'query': q,'user':request.user})
+            {'users': users, 'projects': projects, 'pagesProject': pagesProject,
+             'textOfPages': textOfPages, 'query': q, 'user': request.user})
     else:
-        return HttpResponse('Please submit a search term.')
+         return render_to_response('search_form.html',{'user': request.user})
