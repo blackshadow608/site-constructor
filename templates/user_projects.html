@@ -1,17 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="col-md-9">
-        {% for obj in projects %}
-            {{ obj.project_name}}
-        {% endfor %}
+    <table class="table table-bordered table-striped" style="margin-left: -10px">
+    {% for obj in projects %}
+        <tr>
+            <td>
+                {{ obj.project_name}}
+               <form action='' method='post'>
+                   {% csrf_token %}
+                   <input type="hidden" name='{{ delete_project.ids.name }}' value="{{ obj.id }}"/>
+                   <button class="glyphicon glyphicon-remove"  type="submit"></button>
+               </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+
     </div>
     <div class="col-md-3">
         <h1>New project</h1>
             <form action='' method='post' xmlns="http://www.w3.org/1999/html">
                 {% csrf_token %}
-                <label class="label label-info">Project name</label>
-                <input class='form-control'name="{{ form.project_name.name}}" />
-                <button type="submit" class="btn btn-primary">create</button>
+                <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">Project name</label>
+                <input class='form-control' style="margin-top: 4px" name="{{ form.project_name.name}}" />
+                <button type="submit" style="margin-top: 10px;" class="btn btn-primary navbar-right">create</button>
                 <div style="visibility: hidden;">{{ form.project_user }}</div>
             </form>
     </div>

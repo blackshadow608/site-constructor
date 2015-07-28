@@ -50,10 +50,20 @@
             </li>
     </ul>
 </nav>
-{% for obj in output %}
-{{ obj.project_name}}
-{#    {{ obj.project_user}}#}
-{% endfor %}
+
+
+<table class="table" style="margin-left: -10px">
+    {% for obj in output %}
+        <tr>
+            <td>
+                {{ obj.project_name}}
+            </td>
+        </tr>
+    {% endfor %}
+    {{ form.error }}
+</table>
+
+
 {% block login %}
 {% endblock %}
 
