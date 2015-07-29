@@ -12,8 +12,9 @@ from registration.backends.default.views import RegistrationView
 from django.shortcuts import render_to_response
 from django.contrib import auth
 from article.forms import CreateProjectForm, DeleteProjectForm
-from article.models import Project,PageProject
+from article.models import Project, PageProject
 from django.template import RequestContext
+
 
 def view_site(request):
     content = '''    <div id="droppable" class="jumbotron for-padding ui-sortable" style="border: solid 1px black; height: auto; min-height: 500px ">
@@ -27,6 +28,7 @@ def view_site(request):
 </div>'''
     return render_to_response('view_site_template.html', {"content": content})
 
+
 def main(request):
     output = Project.objects.values('project_name', 'project_user')
     return render_to_response('base.html', {'user': request.user, "output": output})
@@ -37,34 +39,28 @@ def logout(request):
     return redirect('/')
 
 
-def valid_form(form,request):
+def valid_form(form, request):
     if form.is_valid():
         Project.objects.create(project_name=form.cleaned_data['project_name'],
                                project_user=request.user)
     form = CreateProjectForm()
 
-def del_project(form):
-    if form.is_valid():
-        project = Project.objects.filter(id=form.cleaned_data['ids'])
-        project.delete()
 
 @login_required(login_url="/")
 def user_projects(request):
     if request.method == 'GET':
         idr = request.GET.get('proj_id')
         if idr:
-            p = Project.objects.filter(id= idr)
+            p = Project.objects.filter(id=idr)
             p.delete()
 
     form = CreateProjectForm(request.POST)
     dela = DeleteProjectForm(request.POST)
-    valid_form(form,request)
-    del_project(dela)
+    valid_form(form, request)
     projects = Project.objects.filter(project_user=request.user)
     return render_to_response("user_projects.html", {'user': request.user,
                                                      'projects': projects,
-                                                     'form': form,
-                                                     'delete_project': dela}, RequestContext(request))
+                                                     'form': form}, RequestContext(request))
 
 
 class UsrCrateProj(FormView):
@@ -88,17 +84,18 @@ class LoginFormView(FormView):
         return super(LoginFormView, self).form_valid(form)
 
 
-class EditView(TemplateView):
-    template_name = "editor.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(EditView, self).get_context_data(**kwargs)
-        context['proj_name'] = ''
-        return context
+def edit_view(request, ids):
+    if len(ids) < 1:
+        return redirect("/my_projects/")
+    project = Project.objects.get(id=ids)
+    if project.project_user != request.user:
+        return redirect("/my_projects")
+    return render_to_response('editor.html', {'user': request.user,
+                                              'project': project})
 
 
 def search_form(request):
-    return render_to_response('search_form.html',{'user':request.user})
+    return render_to_response('search_form.html', {'user': request.user})
 
 
 def search(request):
@@ -109,7 +106,7 @@ def search(request):
         pagesProject = PageProject.objects.filter(page_name__icontains=q)
         textOfPages = PageProject.objects.filter(text__icontains=q)
         return render_to_response('search_form.html',
-            {'users': users, 'projects': projects, 'pagesProject': pagesProject,
-             'textOfPages': textOfPages, 'query': q, 'user': request.user})
+                                  {'users': users, 'projects': projects, 'pagesProject': pagesProject,
+                                   'textOfPages': textOfPages, 'query': q, 'user': request.user})
     else:
-         return render_to_response('search_form.html',{'user': request.user})
+        return render_to_response('search_form.html', {'user': request.user})

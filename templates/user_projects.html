@@ -11,8 +11,8 @@
                         <td>
 {#                            <form action='' method='post'>#}
 {#                                {% csrf_token %}#}
-                                <input type="hidden" id="proj_id" name='{{ delete_project.ids.name }}' value="{{ obj.id }}"/>
-                                {{ obj.project_name}}
+                                <input type="hidden" class="proj_id" name='{{ delete_project.ids.name }}' value="{{ obj.id }}"/>
+                                <a href="/editor/{{ obj.id }}/" class="select_project">{{ obj.project_name}}</a>
                                 <span class="btn glyphicon glyphicon-remove navbar-right"></span>
 {#                            </form>#}
 

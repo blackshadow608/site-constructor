@@ -3,7 +3,7 @@
   $(function() {
     return $('.glyphicon').click(function() {
       var id, parent;
-      id = $(this).parent().children('#proj_id').val();
+      id = $(this).parent().children('.proj_id').val();
       parent = $(this).parent();
       return $.ajax({
         url: "/my_projects/",
@@ -13,6 +13,9 @@
         },
         success: function(data) {
           return parent.remove();
+        },
+        error: function() {
+          return alert('gyjudvasf');
         }
       });
     });
