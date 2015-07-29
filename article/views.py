@@ -1,3 +1,4 @@
+import json
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -14,6 +15,17 @@ from article.forms import CreateProjectForm, DeleteProjectForm
 from article.models import Project,PageProject
 from django.template import RequestContext
 
+def view_site(request):
+    content = '''    <div id="droppable" class="jumbotron for-padding ui-sortable" style="border: solid 1px black; height: auto; min-height: 500px ">
+        <div class="btn-group ui-sortable-handle" role="group" aria-label="Large button group"></div>
+        <li class="btn-primary btn btn-block form-group draggable ui-draggable ui-draggable-handle xyi" style="width: 100%; right: auto; height: 34px; bottom: auto;"></li>
+        <li class="btn-primary btn btn-block form-group draggable ui-draggable ui-draggable-handle xyi" style="width: 100%; right: auto; height: 34px; bottom: auto;"></li>
+        <li class="btn-primary btn btn-block form-group draggable ui-draggable ui-draggable-handle xyi" style="width: 100%; right: auto; height: 34px; bottom: auto;"></li>
+        <li class="btn-primary btn btn-block form-group draggable ui-draggable ui-draggable-handle xyi" style="width: 100%; right: auto; height: 34px; bottom: auto;"></li>
+    </div>
+
+</div>'''
+    return render_to_response('view_site_template.html', {"content": content})
 
 def main(request):
     output = Project.objects.values('project_name', 'project_user')
@@ -29,6 +41,7 @@ def valid_form(form,request):
     if form.is_valid():
         Project.objects.create(project_name=form.cleaned_data['project_name'],
                                project_user=request.user)
+    form = CreateProjectForm()
 
 def del_project(form):
     if form.is_valid():
@@ -37,6 +50,12 @@ def del_project(form):
 
 @login_required(login_url="/")
 def user_projects(request):
+    if request.method == 'GET':
+        idr = request.GET.get('proj_id')
+        if idr:
+            p = Project.objects.filter(id= idr)
+            p.delete()
+
     form = CreateProjectForm(request.POST)
     dela = DeleteProjectForm(request.POST)
     valid_form(form,request)
@@ -56,8 +75,7 @@ class UsrCrateProj(FormView):
 
 class RegisterFormView(RegistrationView):
     template_name = "registration.html"
-    def get_context_data(self, **kwargs):
-        return
+
 
 class LoginFormView(FormView):
     form_class = AuthenticationForm
@@ -75,7 +93,7 @@ class EditView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(EditView, self).get_context_data(**kwargs)
-        context['proj_name'] = 'adasdas'
+        context['proj_name'] = ''
         return context
 
 

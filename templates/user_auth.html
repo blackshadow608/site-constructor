@@ -2,7 +2,7 @@
     {% for s in form %}
         <tr>
             <td><input class='form-control'name="{{ s.name}}" placeholder="{{  s.label}}"
-            {% if s.name == 'password' %}type="password"{% endif %}  />
+            {% if 'password' in s.name %}type="password"{% endif %}  />
             </td>
         </tr>
     {% endfor %}

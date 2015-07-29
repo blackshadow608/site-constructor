@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <link rel="stylesheet" href={% static "bootstrap/dist/css/bootstrap.css"%}>
+    <link rel="stylesheet" href={% static "css/mystyles.css"%}>
+    <script src={% static "js/jquery-2.1.4.js"%}></script>
+    <script src={% static "js/jquery-ui-1.11.4/jquery-ui.min.js" %}></script>
+    <title></title>
+</head>
+<body>
+{{ content|safe }}
+</body>
+</html>

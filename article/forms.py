@@ -30,3 +30,9 @@ class CreateProjectForm(ModelForm):
 
 class DeleteProjectForm(forms.Form):
     ids = forms.IntegerField(label='id')
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        # exclude = ['author', 'updated', 'created', ]
+        fields = ['project_user', 'project_name']

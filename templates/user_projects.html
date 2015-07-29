@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
 {% block content %}
+
     <div class="col-md-9">
         <div class="col-md-5">
             <table class="table table-bordered table-striped" style="margin-left: -10px">
                 {% for obj in projects %}
                     <tr>
                         <td>
-                            <form action='' method='post'>
-                                {% csrf_token %}
-                                <input type="hidden" name='{{ delete_project.ids.name }}' value="{{ obj.id }}"/>
+{#                            <form action='' method='post'>#}
+{#                                {% csrf_token %}#}
+                                <input type="hidden" id="proj_id" name='{{ delete_project.ids.name }}' value="{{ obj.id }}"/>
                                 {{ obj.project_name}}
-                                <button class="btn glyphicon glyphicon-remove navbar-right"  type="submit"></button>
-                            </form>
+                                <span class="btn glyphicon glyphicon-remove navbar-right"></span>
+{#                            </form>#}
 
                         </td>
                     </tr>
@@ -29,4 +32,5 @@
             <div style="visibility: hidden;">{{ form.project_user }}</div>
         </form>
     </div>
+     <script src={% static "js/delete_proj.js"%}></script>
 {% endblock %}
