@@ -3,8 +3,11 @@
 {% block content %}
     <script src={% static "js/dragndrop.js" %}></script>
     <script src={% static "js/select_page.js" %}></script>
-    <h2>Site name: {{ project.project_name }}</h2>
-    <div class="col-md-4"  >
+    <div class="row">
+        <h2 class="col-md-12">Site name: {{ project.project_name }}</h2>
+    </div>
+    <div class="row">
+    <div class="col-md-4">
         <h1>Tools</h1>
         <div class=" jumbotron" style="border: solid 1px black; height: auto">
             <ul class="form-group">
@@ -15,26 +18,35 @@
             </ul>
         </div>
     </div>
-
-    <div class="col-md-7">
-        <h1 class="col-md-3">Your site</h1>
-        <form class="col-md-5 navbar-right" action="" method="post">
-            {% csrf_token %}
-            <div  style="visibility: hidden;width: 0px;height: 0px">{{ page_form.project }}</div>
-            <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">Page name</label>
-            <input class='form-control' style="margin-top: 4px" name="{{ page_form.page_name.name}}" />
-            <button type="submit" style="" class="btn btn-primary navbar-right">create</button>
-        </form>
-
-        <div class="btn-group" aria-label="Large button group" role="group">
+    <div class="col-md-8">
+        <div class="row">
+            <h1 class="col-md-6">Your site</h1>
+            <form class="col-md-6" action="" method="post">
+                {% csrf_token %}
+                <div  style="visibility: hidden;width: 0px;height: 0px">{{ page_form.project }}</div>
+                <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">Page name</label>
+                <div class="row">
+                <div class="col-md-10">
+                    <input class='form-control' style="margin-top: 1px" name="{{ page_form.page_name.name}}" />
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" style="" class="btn btn-primary navbar-right">create</button>
+                </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+        <div id="droppable"   class="col-md-10  jumbotron for-padding"style="border: solid 1px black; height: auto; min-height: 450px">
+        </div>
+        <div class="col-md-2 btn-group-vertical" role="group" style="overflow-y: auto; padding: 0px; border: solid 1px black; width: 105px; height: 450px">
             {% for page in pages%}
-                <button class="btn btn-default page-select" id_page="{{ page.id }}">
+                <button class="btn btn-default" id_page="{{ page.id }}">
                     {{ page.page_name }}
                 </button>
             {% endfor %}
         </div>
-        <div id="droppable"   class="col-md-12 jumbotron for-padding"style="border: solid 1px black; height: auto; min-height: 500px ">
-
         </div>
+    </div>
+
     </div>
 {% endblock %}
