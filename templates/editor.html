@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block content %}
     <script src={% static "js/dragndrop.js" %}></script>
+    <script src={% static "js/select_page.js" %}></script>
     <h2>Site name: {{ project.project_name }}</h2>
     <div class="col-md-4"  >
         <h1>Tools</h1>
@@ -15,25 +16,25 @@
         </div>
     </div>
 
-    <div class="col-md-7 row">
-        <form action="" method="post">
+    <div class="col-md-7">
+        <h1 class="col-md-3">Your site</h1>
+        <form class="col-md-5 navbar-right" action="" method="post">
             {% csrf_token %}
-            <div style="visibility: hidden;">{{ page_form.project }}</div>
-
-            {{ page_form.page_name }}
-            <button class="btn btn-primary s_page" type="submit">ok</button>
+            <div  style="visibility: hidden;width: 0px;height: 0px">{{ page_form.project }}</div>
+            <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">Page name</label>
+            <input class='form-control' style="margin-top: 4px" name="{{ page_form.page_name.name}}" />
+            <button type="submit" style="" class="btn btn-primary navbar-right">create</button>
         </form>
-        <h1>Your site</h1>
 
-        <div  id="droppable" class="jumbotron for-padding "style="border: solid 1px black; height: auto; min-height: 500px ">
-            <div class="btn-group" aria-label="Large button group" role="group">
-                {% for page in pages%}
-                    <button class="btn btn-default" type="button">
-                        {{ page.page_name }}
-                    </button>
-                {% endfor %}
-            </div>
+        <div class="btn-group" aria-label="Large button group" role="group">
+            {% for page in pages%}
+                <button class="btn btn-default page-select" id_page="{{ page.id }}">
+                    {{ page.page_name }}
+                </button>
+            {% endfor %}
+        </div>
+        <div id="droppable"   class="col-md-12 jumbotron for-padding"style="border: solid 1px black; height: auto; min-height: 500px ">
+
         </div>
     </div>
-    <button class="btn btn-primary s_page">save</button>
 {% endblock %}
