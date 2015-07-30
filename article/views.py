@@ -2,7 +2,7 @@ import json
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
@@ -84,6 +84,7 @@ class LoginFormView(FormView):
 
 
 def edit_view(request, ids):
+    global data
     if len(ids) < 1:
         return redirect("/my_projects/")
     current_project = Project.objects.get(id=ids)
@@ -91,26 +92,36 @@ def edit_view(request, ids):
         return redirect("/my_projects")
     page_form = CreatePageForm(request.POST)
     requests_editor(request, page_form, current_project)
+    save_pages(request)
     if request.method == 'GET':
-        id_page = request.GET.get('id_page')
-        print(id_page)
-        if id_page:
-            print(request.GET.get('content'))
-            p = PageProject.objects.get(id=id_page)
-            p.text = request.GET.get('content')
-            p.save()
+        data={'page':'error'}
+        id_p = request.GET.get('id_return_page')
+        if id_p:
+            a = False
+            p = PageProject.objects.get(id=id_p)
+            data['page']=p.text
+            return HttpResponse(json.dumps(data), content_type="application/json")
     pages = PageProject.objects.filter(project=current_project)
     return render_to_response('editor.html', {'user': request.user,
                                               'project': current_project,
                                               'pages': pages,
-                                              'page_form': page_form},RequestContext(request))
+                                              'page_form': page_form}, RequestContext(request))
+
+
+def save_pages(request):
+    if request.method == 'GET':
+        id_page = request.GET.get('id_page')
+        if id_page:
+            p = PageProject.objects.get(id=id_page)
+            p.text = request.GET.get('content')
+            p.save()
+
 
 
 def requests_editor(request, form, current_project):
     if form.is_valid():
         PageProject.objects.create(project=current_project, page_name=form.cleaned_data['page_name'])
     form = CreateProjectForm()
-
 
 
 def search_form(request):
