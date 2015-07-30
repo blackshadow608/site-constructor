@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^login/$',LoginFormView.as_view()),
     url(r'^logout/$','article.views.logout'),
     url(r'^register/$',RegisterFormView.as_view()),
-    url(r'^editor/(?P<ids>\w{0,50})', "article.views.edit_view"),
+    url(r'^editor/(?P<ids>\w{0,50})/', "article.views.edit_view"),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^my_projects/', 'article.views.user_projects'),
     url(r'^search-form/','article.views.search_form'),

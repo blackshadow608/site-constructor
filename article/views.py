@@ -91,6 +91,14 @@ def edit_view(request, ids):
         return redirect("/my_projects")
     page_form = CreatePageForm(request.POST)
     requests_editor(request, page_form, current_project)
+    if request.method == 'GET':
+        id_page = request.GET.get('id_page')
+        print(id_page)
+        if id_page:
+            print(request.GET.get('content'))
+            p = PageProject.objects.get(id=id_page)
+            p.text = request.GET.get('content')
+            p.save()
     pages = PageProject.objects.filter(project=current_project)
     return render_to_response('editor.html', {'user': request.user,
                                               'project': current_project,
@@ -102,6 +110,7 @@ def requests_editor(request, form, current_project):
     if form.is_valid():
         PageProject.objects.create(project=current_project, page_name=form.cleaned_data['page_name'])
     form = CreateProjectForm()
+
 
 
 def search_form(request):

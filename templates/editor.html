@@ -3,7 +3,7 @@
 {% block content %}
     <script src={% static "js/dragndrop.js" %}></script>
     <script src={% static "js/select_page.js" %}></script>
-    <h2>Site name: {{ project.project_name }}</h2>
+    <h2 id_project = '{{ project.id }}'>Site name: {{ project.project_name }}</h2>
     <div class="col-md-4"  >
         <h1>Tools</h1>
         <div class=" jumbotron" style="border: solid 1px black; height: auto">
