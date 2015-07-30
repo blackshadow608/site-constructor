@@ -14,25 +14,26 @@
             </ul>
         </div>
     </div>
-    <form action="" method="post">
+
     <div class="col-md-7 row">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div style="visibility: hidden;">{{ page_form.project }}</div>
+
+            {{ page_form.page_name }}
+            <button class="btn btn-primary s_page" type="submit">ok</button>
+        </form>
         <h1>Your site</h1>
 
         <div  id="droppable" class="jumbotron for-padding "style="border: solid 1px black; height: auto; min-height: 500px ">
             <div class="btn-group" aria-label="Large button group" role="group">
-                <button class="btn btn-default" type="button">
-                    Left
-                </button>
-                <button class="btn btn-default" type="button">
-                    Middle
-                </button>
-                <button class="btn btn-default" type="button">
-                    Right
-                </button>
+                {% for page in pages%}
+                    <button class="btn btn-default" type="button">
+                        {{ page.page_name }}
+                    </button>
+                {% endfor %}
             </div>
         </div>
     </div>
-    <button class="btn btn-primary" type="submit">save</button>
-    </form>
-
+    <button class="btn btn-primary s_page">save</button>
 {% endblock %}

@@ -11,7 +11,7 @@ from django.views.generic import FormView, TemplateView
 from registration.backends.default.views import RegistrationView
 from django.shortcuts import render_to_response
 from django.contrib import auth
-from article.forms import CreateProjectForm, DeleteProjectForm
+from article.forms import CreateProjectForm, CreatePageForm
 from article.models import Project, PageProject
 from django.template import RequestContext
 
@@ -55,7 +55,6 @@ def user_projects(request):
             p.delete()
 
     form = CreateProjectForm(request.POST)
-    dela = DeleteProjectForm(request.POST)
     valid_form(form, request)
     projects = Project.objects.filter(project_user=request.user)
     return render_to_response("user_projects.html", {'user': request.user,
@@ -87,11 +86,22 @@ class LoginFormView(FormView):
 def edit_view(request, ids):
     if len(ids) < 1:
         return redirect("/my_projects/")
-    project = Project.objects.get(id=ids)
-    if project.project_user != request.user:
+    current_project = Project.objects.get(id=ids)
+    if current_project.project_user != request.user:
         return redirect("/my_projects")
+    page_form = CreatePageForm(request.POST)
+    requests_editor(request, page_form, current_project)
+    pages = PageProject.objects.filter(project=current_project)
     return render_to_response('editor.html', {'user': request.user,
-                                              'project': project})
+                                              'project': current_project,
+                                              'pages': pages,
+                                              'page_form': page_form},RequestContext(request))
+
+
+def requests_editor(request, form, current_project):
+    if form.is_valid():
+        PageProject.objects.create(project=current_project, page_name=form.cleaned_data['page_name'])
+    form = CreateProjectForm()
 
 
 def search_form(request):

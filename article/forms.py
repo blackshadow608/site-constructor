@@ -19,7 +19,7 @@ from django import forms
 #         model = PageProject
 #         fields = ['username']
 from django.forms import ModelForm
-from article.models import Project
+from article.models import Project, PageProject
 
 
 class CreateProjectForm(ModelForm):
@@ -28,11 +28,7 @@ class CreateProjectForm(ModelForm):
         fields = ['project_user', 'project_name']
 
 
-class DeleteProjectForm(forms.Form):
-    ids = forms.IntegerField(label='id')
-
-class PostForm(forms.ModelForm):
+class CreatePageForm(ModelForm):
     class Meta:
-        model = Project
-        # exclude = ['author', 'updated', 'created', ]
-        fields = ['project_user', 'project_name']
+        model = PageProject
+        fields = ['project', 'page_name']
