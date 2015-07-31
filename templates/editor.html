@@ -4,7 +4,10 @@
     <script src={% static "js/dragndrop.js" %}></script>
     <script src={% static "js/select_page.js" %}></script>
     <div class="row">
-        <h2 class="col-md-12" id_project = '{{ project.id }}'>Site name: {{ project.project_name }}</h2>
+        <h2 class="col-md-6" id_project = '{{ project.id }}'>Site name: {{ project.project_name }}</h2>
+        <div class="col-md-6">
+            <a href="/view_mode/{{ project.id }}" type="submit" style="margin-top: 20px;" class="btn btn-primary navbar-right">view</a>
+        </div>
     </div>
     <div class="row">
     <div class="col-md-4">

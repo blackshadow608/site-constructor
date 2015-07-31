@@ -16,7 +16,7 @@ from article.models import Project, PageProject
 from django.template import RequestContext
 
 
-def view_site(request,id_project):
+def view_site(request, id_project):
     if request.method == 'GET':
         data={'page':'hui'}
         id_p = request.GET.get('id_return_page')
@@ -27,10 +27,10 @@ def view_site(request,id_project):
             return HttpResponse(json.dumps(data), content_type="application/json")
     if len(id_project) < 1:
         return redirect("/my_projects/")
-    load_project = Project.objects.get(id = id_project)
-    pages=PageProject.objects.filter(project = load_project)
-    return render_to_response('view_site_template.html', {"pages": pages})
-
+    pages = PageProject.objects.filter(project=Project.objects.get(id=id_project))
+    project = Project.objects.get(id=id_project)
+    return render_to_response('view_site_template.html',
+                              {'project': project, 'pages': pages, 'user': request.user})
 
 def main(request):
     output = Project.objects.values('project_name', 'project_user','id')
@@ -78,7 +78,7 @@ class RegisterFormView(RegistrationView):
 class LoginFormView(FormView):
     form_class = AuthenticationForm
     template_name = "login.html"
-    success_url = "/editor//"
+    success_url = "/my_projects/"
 
     def form_valid(self, form):
         self.user = form.get_user()
