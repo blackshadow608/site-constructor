@@ -16,24 +16,22 @@ from article.models import Project, PageProject
 from django.template import RequestContext
 
 
-def view_site(request,id_project):
+def view_site(request, id_project):
     if request.method == 'GET':
-        data={'page':'hui'}
+        data = {'page': 'hui'}
         id_p = request.GET.get('id_return_page')
         if id_p:
             p = PageProject.objects.get(id=id_p)
-            data['page']=p.text
-            print(data['page'])
+            data['page'] = p.text
             return HttpResponse(json.dumps(data), content_type="application/json")
     if len(id_project) < 1:
         return redirect("/my_projects/")
-    load_project = Project.objects.get(id = id_project)
-    pages=PageProject.objects.filter(project = load_project)
-    return render_to_response('view_site_template.html', {"pages": pages})
+    pages = PageProject.objects.filter(project=Project.objects.get(id=id_project))
+    return render_to_response('view_site_template.html', {"pages": pages, 'user': request.user})
 
 
 def main(request):
-    output = Project.objects.values('project_name', 'project_user','id')
+    output = Project.objects.values('project_name', 'project_user', 'id')
     return render_to_response('base.html', {'user': request.user, "output": output})
 
 
@@ -85,9 +83,9 @@ class LoginFormView(FormView):
         login(self.request, self.user)
         return super(LoginFormView, self).form_valid(form)
 
+
 @login_required(login_url='/')
 def edit_view(request, ids):
-
     if len(ids) < 1:
         return redirect("/my_projects/")
     current_project = Project.objects.get(id=ids)
@@ -97,12 +95,12 @@ def edit_view(request, ids):
     requests_editor(request, page_form, current_project)
     save_pages(request)
     if request.method == 'GET':
-        data={'page':'error'}
+        data = {'page': 'error'}
         id_p = request.GET.get('id_return_page')
         if id_p:
             a = False
             p = PageProject.objects.get(id=id_p)
-            data['page']=p.text
+            data['page'] = p.text
             return HttpResponse(json.dumps(data), content_type="application/json")
     pages = PageProject.objects.filter(project=current_project)
     return render_to_response('editor.html', {'user': request.user,
@@ -118,7 +116,6 @@ def save_pages(request):
             p = PageProject.objects.get(id=id_page)
             p.text = request.GET.get('content')
             p.save()
-
 
 
 def requests_editor(request, form, current_project):
