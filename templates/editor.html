@@ -10,9 +10,11 @@
         </div>
     </div>
     <div class="row">
+
     <div class="col-md-4">
         <h1>Tools</h1>
-        <div class=" jumbotron" style="border: solid 1px black; height: auto">
+        {% if pages %}
+        <div class="jumbotron" style="border: solid 1px black; height: auto">
             <ul class="form-group">
                 <li class="btn-primary btn btn-block form-group draggable" >Text block</li>
                 <li class="btn-primary btn btn-block form-group draggable" >Video</li>
@@ -20,6 +22,11 @@
                 <li class="btn-primary btn btn-block form-group draggable" >Raiting</li>
             </ul>
         </div>
+        {% else %}
+        <div style="border: solid 1px black; height: 300px">
+            <h1 style="opacity: 0.4; text-align: center;">Create page</h1>
+        </div>
+        {% endif %}
     </div>
     <div class="col-md-8">
         <div class="row">
@@ -39,9 +46,15 @@
             </form>
         </div>
         <div class="row">
+        {% if pages %}
         <div id="droppable"   class="col-md-10  jumbotron for-padding"style="border: solid 1px black; height: auto; min-height: 450px">
         </div>
-        <div class="col-md-2 btn-group-vertical" role="group" style="overflow-y: auto; padding: 0px; border: solid 1px black; width: 105px; height: 450px">
+        {% else %}
+            <div class="col-md-10 "style="background-color: #FAFAFA; border: solid 1px black; height: auto; min-height: 450px">
+            <h1 style="opacity: 0.4; text-align: center;">Create page</h1>
+        </div>
+        {% endif %}
+        <div id="page_group" class="col-md-2 btn-group-vertical" role="group" style="overflow-y: auto; padding: 0px; border: solid 1px black; width: 105px; height: 450px">
             {% for page in pages%}
                 <button class="btn btn-primary page-select" id_page="{{ page.id }}">
                     {{ page.page_name }}
@@ -50,6 +63,5 @@
         </div>
         </div>
     </div>
-
     </div>
 {% endblock %}

@@ -1,8 +1,11 @@
 $(document).ready ->
+  $("#page_group").live ->
+    alert "tree changed"
+
+window.onload = ->
   if $('.page-select').length
     $('.page-select:first').addClass('curr_page')
     load_page()
-
 $ ->
   $('.page-select').click ->
     id_curr_page = $('.curr_page').attr("id_page")

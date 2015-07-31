@@ -3,11 +3,17 @@
   var load_page;
 
   $(document).ready(function() {
+    return $("#page_group").live(function() {
+      return alert("tree changed");
+    });
+  });
+
+  window.onload = function() {
     if ($('.page-select').length) {
       $('.page-select:first').addClass('curr_page');
       return load_page();
     }
-  });
+  };
 
   $(function() {
     $('.page-select').click(function() {
