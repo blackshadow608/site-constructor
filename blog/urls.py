@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^search-form/','article.views.search_form'),
     url(r'^search/$', 'article.views.search'),
     url(r'^view_mode/$', 'article.views.view_site'),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 ]

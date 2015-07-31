@@ -1,7 +1,6 @@
 $ ->
   $('.page-select').click ->
     id_curr_page = $('.curr_page').attr("id_page")
-    alert id_curr_page
     content = ""
     $.each $('.for-padding').children(), (index, val) ->
       content += val.outerHTML

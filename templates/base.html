@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html lang="en">
+{% load i18n %}
+<html>
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -45,15 +46,27 @@
     </ul>
     <ul class="nav navbar-right">
             <li>
-                <a href="/" class="link-type">Home</a>
+                <a href="/" class="link-type">{% trans "Home" %}</a>
             </li>
     </ul>
     <ul class="nav navbar-right">
             <li>
-                <a href="/search-form/" class="link-type">Search</a>
+                <a href="/search-form/" class="link-type">{% trans "Search" %}</a>
             </li>
     </ul>
 </nav>
+
+{% for lang in LANGUAGES %}
+    <li>
+	  <form name="setLang{{ lang.1}}" action="/blog/i18n/setlang/" method="POST">
+	  {% csrf_token %}
+	    <input name="next" type="hidden" value="/">
+	    <input type="hidden" name="language" value="{{ lang.0 }}">
+	    <a href="#" onclick="document.setLang{{ lang.1 }}.submit();
+		    return false;">{{ lang.1 }}</a>
+	  </form>
+	</li>
+{% endfor %}
 
 <table class="table" style="margin-left: -10px">
     {% for obj in output %}
