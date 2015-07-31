@@ -29,5 +29,5 @@ urlpatterns = [
     url(r'^my_projects/', 'article.views.user_projects'),
     url(r'^search-form/','article.views.search_form'),
     url(r'^search/$', 'article.views.search'),
-    url(r'^view_mode/$', 'article.views.view_site'),
+    url(r'^view_mode/(?P<id_project>\w{0,50})/', 'article.views.view_site'),
 ]

@@ -16,21 +16,24 @@ from article.models import Project, PageProject
 from django.template import RequestContext
 
 
-def view_site(request):
-    content = '''    <div id="droppable" class="jumbotron for-padding ui-sortable" style="border: solid 1px black; height: auto; min-height: 500px ">
-        <div class="btn-group ui-sortable-handle" role="group" aria-label="Large button group"></div>
-        <li class="btn-primary btn btn-block form-group draggable ui-draggable ui-draggable-handle xyi" style="width: 100%; right: auto; height: 34px; bottom: auto;"></li>
-        <li class="btn-primary btn btn-block form-group draggable ui-draggable ui-draggable-handle xyi" style="width: 100%; right: auto; height: 34px; bottom: auto;"></li>
-        <li class="btn-primary btn btn-block form-group draggable ui-draggable ui-draggable-handle xyi" style="width: 100%; right: auto; height: 34px; bottom: auto;"></li>
-        <li class="btn-primary btn btn-block form-group draggable ui-draggable ui-draggable-handle xyi" style="width: 100%; right: auto; height: 34px; bottom: auto;"></li>
-    </div>
-
-</div>'''
-    return render_to_response('view_site_template.html', {"content": content})
+def view_site(request,id_project):
+    if request.method == 'GET':
+        data={'page':'hui'}
+        id_p = request.GET.get('id_return_page')
+        if id_p:
+            p = PageProject.objects.get(id=id_p)
+            data['page']=p.text
+            print(data['page'])
+            return HttpResponse(json.dumps(data), content_type="application/json")
+    if len(id_project) < 1:
+        return redirect("/my_projects/")
+    load_project = Project.objects.get(id = id_project)
+    pages=PageProject.objects.filter(project = load_project)
+    return render_to_response('view_site_template.html', {"pages": pages})
 
 
 def main(request):
-    output = Project.objects.values('project_name', 'project_user')
+    output = Project.objects.values('project_name', 'project_user','id')
     return render_to_response('base.html', {'user': request.user, "output": output})
 
 
@@ -82,9 +85,9 @@ class LoginFormView(FormView):
         login(self.request, self.user)
         return super(LoginFormView, self).form_valid(form)
 
-
+@login_required(login_url='/')
 def edit_view(request, ids):
-    global data
+
     if len(ids) < 1:
         return redirect("/my_projects/")
     current_project = Project.objects.get(id=ids)

@@ -3,13 +3,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-     <link rel="stylesheet" href={% static "bootstrap/dist/css/bootstrap.css"%}>
+    <link rel="stylesheet" href={% static "bootstrap/dist/css/bootstrap.css"%}>
     <link rel="stylesheet" href={% static "css/mystyles.css"%}>
-    <script src={% static "js/jquery-2.1.4.js"%}></script>
-    <script src={% static "js/jquery-ui-1.11.4/jquery-ui.min.js" %}></script>
+
     <title></title>
 </head>
 <body>
-{{ content|safe }}
+
+<div class="row">
+    <div class="col-md-2 btn-group-vertical" role="group" style="overflow-y: auto; padding: 0px; border: solid 1px black; width: 105px; height: 450px">
+            {% for page in pages%}
+                <button class="btn btn-default page-select" id_page="{{ page.id }}">
+                    {{ page.page_name }}
+                </button>
+            {% endfor %}
+        </div>
+    <div class="col-md-5 content" >
+
+    </div>
+</div>
 </body>
+ <script src={% static "js/jquery-2.1.4.js"%}></script>
+    <script src={% static "js/jquery-ui-1.11.4/jquery-ui.min.js" %}></script>
+    <script src={% static "js/view_mode.js" %}></script>
 </html>

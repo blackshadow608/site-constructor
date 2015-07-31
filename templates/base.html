@@ -32,7 +32,7 @@
     <ul class="nav navbar-right">
         {% if user.username %}
             <li>
-                <a href="/editor/" class="link-type">Editor</a>
+                <a href="/editor//" class="link-type">Editor</a>
             </li>
         {% endif %}
     </ul>
@@ -59,7 +59,7 @@
     {% for obj in output %}
         <tr>
             <td>
-                {{ obj.project_name}}
+                <a href="/view_mode/{{ obj.id }}"> {{ obj.project_name}}</a>
             </td>
         </tr>
     {% endfor %}
