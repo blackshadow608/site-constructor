@@ -3,6 +3,7 @@
 {% block content %}
     <script src={% static "js/dragndrop.js" %}></script>
     <script src={% static "js/select_page.js" %}></script>
+    <script src={% static "js/save-markdown.js" %}></script>
     <div class="row">
         <h2 class="col-md-6" id_project = '{{ project.id }}'>Site name: {{ project.project_name }}</h2>
         <div class="col-md-6">
@@ -16,7 +17,7 @@
         {% if pages %}
         <div class="jumbotron" style="border: solid 1px black; height: auto">
             <ul class="form-group">
-                <li class="btn-primary btn btn-block form-group draggable" >Text block</li>
+                <li class="btn-primary btn btn-block form-group draggable-text" >Text block</li>
                 <li class="btn-primary btn btn-block form-group draggable-video" >Video</li>
                 <li class="btn-primary btn btn-block form-group draggable" >Galery</li>
                 <li class="btn-primary btn btn-block form-group draggable" >Raiting</li>
@@ -64,4 +65,5 @@
         </div>
     </div>
     </div>
+
 {% endblock %}

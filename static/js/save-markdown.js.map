@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "save-markdown.js",
+  "sourceRoot": "",
+  "sources": [
+    "save-markdown.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,EAAA,CAAA,CAAE,SAAA,GAAA;WACA,CAAA,CAAE,YAAF,CAAe,CAAC,EAAhB,CAAmB,OAAnB,EAA2B,iBAA3B,EAA6C,SAAA,GAAA;aACzC,CAAA,CAAE,IAAF,CAAO,CAAC,IAAR,CAAa,CAAA,CAAE,IAAF,CAAO,CAAC,GAAR,CAAA,CAAb,EADyC;IAAA,CAA7C,EADA;EAAA,CAAF,CAAA,CAAA;AAAA"
+}

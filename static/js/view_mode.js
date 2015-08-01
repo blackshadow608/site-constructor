@@ -30,7 +30,13 @@
       },
       async: false,
       success: function(data) {
-        return $('.content').append(data.page);
+        $('.content').append(data.page);
+        return $.each($('.markdown-field'), function(index, val) {
+          var text;
+          text = val.innerHTML;
+          text = markdown.toHTML(text);
+          return $(val).replaceWith(text);
+        });
       }
     });
   };

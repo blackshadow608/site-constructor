@@ -4,8 +4,6 @@
             start: function (event, ui) {
                 var clone = $(ui.helper);
                 clone.addClass("xyi");
-
-
             },
             stop: function (event, ui) {
                 url=prompt('youtube.com link');
@@ -15,19 +13,32 @@
                     var match = url.match(regExp);
                     if (match && match[2].length == 11) {
                         url = match[2];
-                        $(ui.helper).empty()
-                        $(ui.helper).append('<iframe width="560" height="315"  src="https://www.youtube.com/embed/' + url + '" frameborder="0" allowfullscreen></iframe>')
-                        $(ui.helper).removeClass('btn-primary')
-                        $(ui.helper).css('height', 'auto')
-                        $(ui.helper).css('width', '100%')
+                        $(ui.helper).empty();
+                        $(ui.helper).append('<iframe width="560" height="315"  src="https://www.youtube.com/embed/' + url + '" frameborder="0" allowfullscreen></iframe>');
+                        $(ui.helper).removeClass('btn-primary');
+                        $(ui.helper).css('height', 'auto');
+                        $(ui.helper).css('width', '100%');
                     } else {
                         $(ui.helper).remove();
                     }
                 }else{
                     $(ui.helper).remove();
                 }
-
-
+            }
+        });
+        $(".draggable-text").draggable({
+            helper: "clone", connectToSortable: "#droppable",
+            start: function (event, ui) {
+                var clone = $(ui.helper);
+                clone.addClass("xyi");
+            },
+            stop: function (event, ui) {
+                $(ui.helper).empty();
+                $(ui.helper).removeClass('btn-primary');
+                $(ui.helper).removeClass('btn');
+                $(ui.helper).css('height', 'auto');
+                $(ui.helper).css('width', '100%');
+                $(ui.helper).append('<textarea style="resize:vertical; width:95%" class="form-control markdown-field"></textarea>');
             }
         });
         $("#droppable").sortable({

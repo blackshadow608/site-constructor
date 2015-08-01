@@ -18,8 +18,11 @@ load_page = ->
       data:
         'id_return_page':id
         'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
-
       async:false
       success:(data)->
         $('.content').append(data.page)
+        $.each $('.markdown-field'), (index, val) ->
+          text=val.innerHTML;
+          text=markdown.toHTML(text)
+          $(val).replaceWith(text)
 
