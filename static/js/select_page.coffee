@@ -1,7 +1,3 @@
-$(document).ready ->
-  $("#page_group").live ->
-    alert "tree changed"
-
 window.onload = ->
   if $('.page-select').length
     $('.page-select:first').addClass('curr_page')
@@ -30,7 +26,6 @@ $ ->
 
 load_page = ->
   id = $('.curr_page').attr("id_page")
-  console.log id
   $.ajax
     url:"/editor/"+$('h2').attr("id_project")+'/'
     type:"GET"
