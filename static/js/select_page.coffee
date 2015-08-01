@@ -10,8 +10,12 @@ $ ->
       content += val.outerHTML
     $.ajax
       url: "/editor/"+$('h2').attr("id_project")+'/'
-      type: "GET"
-      data: {'id_page':id_curr_page,'content': content}
+      type: "POST"
+      data:
+        'id_page':id_curr_page
+        'content': content
+        'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
+
       async:false
       success:->
       error: ->
@@ -28,8 +32,12 @@ load_page = ->
   id = $('.curr_page').attr("id_page")
   $.ajax
     url:"/editor/"+$('h2').attr("id_project")+'/'
-    type:"GET"
-    data:{'id_return_page':id}
+    type:"POST"
+    data:
+      'id_return_page':id
+      'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
     async:false
     success:(data)->
       $('.for-padding').append(data.page)
+
+

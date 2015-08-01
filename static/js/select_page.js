@@ -19,10 +19,11 @@
       });
       $.ajax({
         url: "/editor/" + $('h2').attr("id_project") + '/',
-        type: "GET",
+        type: "POST",
         data: {
           'id_page': id_curr_page,
-          'content': content
+          'content': content,
+          'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
         },
         async: false,
         success: function() {},
@@ -43,9 +44,10 @@
     id = $('.curr_page').attr("id_page");
     return $.ajax({
       url: "/editor/" + $('h2').attr("id_project") + '/',
-      type: "GET",
+      type: "POST",
       data: {
-        'id_return_page': id
+        'id_return_page': id,
+        'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
       },
       async: false,
       success: function(data) {

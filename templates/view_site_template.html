@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block content %}
 <div class="row">
+{% csrf_token %}
         <h1 class="col-md-4" >Site name: {{project.project_name}}</h1>
         <h2 class="col-md-4" >Author: {{project.project_user.username }}</h2>
         {% if user.is_authenticated %}

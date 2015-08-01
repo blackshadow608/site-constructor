@@ -14,7 +14,6 @@
       $('.page-select').removeClass('curr_page');
       $('.content').children().remove();
       $(this).addClass('curr_page');
-      console.log($('.page-select').length);
       return load_page();
     });
   });
@@ -24,9 +23,10 @@
     id = $('.curr_page').attr("id_page");
     return $.ajax({
       url: "/view_mode/" + 148 + '/',
-      type: "GET",
+      type: "POST",
       data: {
-        'id_return_page': id
+        'id_return_page': id,
+        'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
       },
       async: false,
       success: function(data) {
