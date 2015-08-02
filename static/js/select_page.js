@@ -10,6 +10,28 @@
   };
 
   $(function() {
+    $('.btn').mousedown(function() {
+      var conten, id_curr_pag;
+      id_curr_pag = $('.curr_page').attr("id_page");
+      conten = "";
+      $.each($('.for-padding').children(), function(index, val) {
+        return conten += val.outerHTML;
+      });
+      return $.ajax({
+        url: "/editor/" + $('h2').attr("id_project") + '/',
+        type: "POST",
+        data: {
+          'id_page': id_curr_pag,
+          'content': conten,
+          'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
+        },
+        async: false,
+        success: function() {},
+        error: function() {
+          return alert('gyjudvasf');
+        }
+      });
+    });
     $('.page-select').click(function() {
       var content, id_curr_page;
       id_curr_page = $('.curr_page').attr("id_page");
