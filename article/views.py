@@ -53,19 +53,18 @@ def rating(request):
 
 def likes(request):
     data = {'response': 'hui'}
-    if request.method == 'GET':
+    if request.method == 'GET' :
         id_rating = request.GET.get('id_rating')
-        if id_rating:
+        if id_rating and request.user.is_authenticated():
             like = Like.objects.filter(raiting=Raitng.objects.get(id=id_rating), user=request.user)
             if like:
                 like.delete()
             else:
                 Like.objects.create(raiting=Raitng.objects.get(id=id_rating), user=request.user)
             data['response'] = num_of_likes(id_rating)
-    if request.method == 'GET':
-        id_rating = request.GET.get('id_rating_get_likes')
-        if id_rating:
-            data['response'] = num_of_likes(id_rating)
+        id_rating_get_likes = request.GET.get('id_rating_get_likes')
+        if id_rating_get_likes:
+            data['response'] = num_of_likes(id_rating_get_likes)
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 def num_of_likes(id_rating):
