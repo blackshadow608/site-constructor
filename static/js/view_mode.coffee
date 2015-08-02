@@ -3,6 +3,7 @@ window.onload = ->
     $('.page-select:first').addClass('curr_page')
     load_page()
 
+
 $ ->
   $('.page-select').click ->
     $('.page-select').removeClass('curr_page')
@@ -25,4 +26,11 @@ load_page = ->
           text=val.innerHTML;
           text=markdown.toHTML(text)
           $(val).replaceWith(text)
-
+        $.each $('.glyphicon'), (index, val) ->
+          $.ajax
+            url:"/like/"
+            type:"GET"
+            data:
+              'id_rating_get_likes':$(val).parent().parent().attr('id_rating')
+            success: (data) ->
+              $(val).parent().children('text').text(data.response)

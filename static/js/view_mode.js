@@ -31,11 +31,23 @@
       async: false,
       success: function(data) {
         $('.content').append(data.page);
-        return $.each($('.markdown-field'), function(index, val) {
+        $.each($('.markdown-field'), function(index, val) {
           var text;
           text = val.innerHTML;
           text = markdown.toHTML(text);
           return $(val).replaceWith(text);
+        });
+        return $.each($('.glyphicon'), function(index, val) {
+          return $.ajax({
+            url: "/like/",
+            type: "GET",
+            data: {
+              'id_rating_get_likes': $(val).parent().parent().attr('id_rating')
+            },
+            success: function(data) {
+              return $(val).parent().children('text').text(data.response);
+            }
+          });
         });
       }
     });
