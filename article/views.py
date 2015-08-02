@@ -12,7 +12,7 @@ from registration.backends.default.views import RegistrationView
 from django.shortcuts import render_to_response
 from django.contrib import auth
 from article.forms import CreateProjectForm, CreatePageForm
-from article.models import Project, PageProject
+from article.models import Project, PageProject, Raitng
 from django.template import RequestContext
 
 
@@ -31,6 +31,23 @@ def view_site(request, id_project):
     return render_to_response('view_site_template.html',
                               {'project': project, 'pages': pages, 'user': request.user}, RequestContext(request))
 
+def rating(request):
+    if request.method == 'GET':
+        data = {'response': 'hui'}
+        id_rating = request.GET.get('id_delete_rating')
+        if id_rating:
+            rating=Raitng.objects.filter(id=id_rating)
+            rating.delete()
+            data['response'] = 'success'
+            return HttpResponse(json.dumps(data), content_type="application/json")
+    if request.method == 'GET':
+        data = {'response': 'hui'}
+        id_project = request.GET.get('id_project_create_rating')
+        if id_project:
+            p = Raitng.objects.create(raiting_project=Project.objects.get(id=id_project))
+            data['response'] = 'success'
+            data['id_rating']=p.id
+            return HttpResponse(json.dumps(data), content_type="application/json")
 
 def main(request):
     output = Project.objects.values('project_name', 'project_user', 'id')
@@ -88,11 +105,14 @@ class LoginFormView(FormView):
 
 @login_required(login_url='/')
 def edit_view(request, ids):
+
     if len(ids) < 1:
         return redirect("/my_projects/")
     current_project = Project.objects.get(id=ids)
     if current_project.project_user != request.user:
         return redirect("/my_projects")
+
+
     page_form = CreatePageForm(request.POST)
     requests_editor(request, page_form, current_project)
     save_pages(request)

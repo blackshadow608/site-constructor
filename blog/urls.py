@@ -20,6 +20,7 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^$','article.views.main'),
+    url(r'^rating/','article.views.rating'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$',LoginFormView.as_view()),
     url(r'^logout/$','article.views.logout'),
