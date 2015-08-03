@@ -21,6 +21,7 @@ from django.contrib.auth.decorators import login_required
 urlpatterns = [
     url(r'^$', 'article.views.main'),
     url(r'^rating/', 'article.views.rating'),
+    url(r'^theme/', 'article.views.theme'),
     url(r'^like/', 'article.views.likes'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', LoginFormView.as_view()),
