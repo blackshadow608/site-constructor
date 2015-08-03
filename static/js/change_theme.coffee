@@ -1,13 +1,26 @@
 
 $ ->
-  if $('.dark').attr('is_check')
-    alert 'asd'
+  if $('.dark').hasClass('is_check')
+    $('.for-padding').addClass('dark')
   $('input').click ->
-    $('input').removeAttr('is_check')
-    $(this).attr('is_check','')
+    $('input').removeClass('is_check')
+    $(this).addClass('is_check')
     site = $('.for-padding')
+    id= $('h2').attr("id_project")
     if $(this).hasClass('dark')
       site.addClass('dark')
-
+      request(id,'True')
     else
       site.removeClass('dark')
+      request(id,'False')
+
+request = (id, is_dark)->
+  $.ajax
+    url: "/theme/"
+    type: "GET"
+    data:
+      'proj_id': id
+      'is_dark': is_dark
+    success:(data) ->
+    error: ->
+      alert 'gyjudvasf'

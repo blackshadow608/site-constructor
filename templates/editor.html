@@ -11,8 +11,10 @@
     <div class="row">
         <h2 class="col-md-6" id_project = '{{ project.id }}'>Site name: {{ project.project_name }}</h2>
 <p>
-        <input type="radio" class="dark" name="theme" {% if project.project_is_dark %}checked is_check{% endif %}/><label>dark</label>
-        <input type="radio" name="theme" {% if not project.project_is_dark %}checked is_check{% endif %}/><label>white</label>
+        <input type="radio" class="dark {% if project.project_is_dark %}is_check{% endif %}" name="theme"
+               {% if project.project_is_dark %}checked{% endif %}/><label>dark</label>
+        <input type="radio" class="{% if project.project_is_dark %}is_check{% endif %}" name="theme"
+               {% if not project.project_is_dark %}checked{% endif %}/><label>white</label>
     </p>
         <div class="col-md-6">
             <a href="/view_mode/{{ project.id }}" type="submit" style="margin-top: 20px;" class="btn btn-primary navbar-right">view</a>

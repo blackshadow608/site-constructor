@@ -182,3 +182,17 @@ def search(request):
                                    'textOfPages': textOfPages, 'query': q, 'user': request.user})
     else:
         return render_to_response('search_form.html', {'user': request.user})
+
+def theme(request):
+    if request.method == 'GET':
+        data = {'page': 'hui'}
+        id_p = request.GET.get('proj_id')
+        value = request.GET.get('is_dark')
+        if id_p:
+            p = Project.objects.get(id=id_p)
+            if value == 'True':
+                print(value)
+                p.project_is_dark = True
+            else:p.project_is_dark = False
+            p.save()
+            return HttpResponse(json.dumps(data), content_type="application/json")
