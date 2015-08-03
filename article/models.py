@@ -6,6 +6,8 @@ from django.db import models
 class Project(models.Model):
     project_user = models.ForeignKey(User, default='')
     project_name = models.CharField(max_length=100, blank=False)
+    project_is_dark = models.BooleanField(default=False)
+    project_menu_is_horizontal = models.BooleanField(default=False)
 
 
 class PageProject(models.Model):

@@ -67,7 +67,7 @@ $(function() {
             $(ui.helper).removeClass('btn');
             $(ui.helper).css('height', '45px');
             $(ui.helper).css('width', '100%');
-            $(ui.helper).append('    <div class="navbar-right  "><span class="btn glyphicon glyphicon-thumbs-up">'+
+            $(ui.helper).append('    <div class="navbar-right" style="font-size: 17px;"><span class="btn glyphicon glyphicon-thumbs-up"style="font-size: 20px;">'+
                 '</span><text>0</text></div>');
             $.ajax({
                 url: "/rating/",
