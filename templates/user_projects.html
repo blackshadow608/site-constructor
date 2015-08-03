@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
+{% load i18n %}
+{% load l10n %}
 {% block content %}
 
     <div class="col-md-9">
@@ -15,7 +16,6 @@
                                 <a href="/editor/{{ obj.id }}/" class="select_project">{{ obj.project_name}}</a>
                                 <span class="btn glyphicon glyphicon-remove navbar-right"></span>
 {#                            </form>#}
-
                         </td>
                     </tr>
                 {% endfor %}
@@ -23,12 +23,12 @@
         </div>
     </div>
     <div class="col-md-3">
-        <h1>New project</h1>
+        <h1>{% trans "New project"%}</h1>
         <form action='' method='post' xmlns="http://www.w3.org/1999/html">
             {% csrf_token %}
-            <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">Project name</label>
+            <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">{% trans "Project name"%}</label>
             <input class='form-control' style="margin-top: 4px" name="{{ form.project_name.name}}" />
-            <button type="submit" style="margin-top: 10px;" class="btn btn-primary navbar-right">create</button>
+            <button type="submit" style="margin-top: 10px;" class="btn btn-primary navbar-right">{% trans "create"%}</button>
             <div style="visibility: hidden;">{{ form.project_user }}</div>
         </form>
     </div>

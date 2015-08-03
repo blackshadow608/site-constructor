@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 {% load i18n %}
+{% load l10n %}
 <html>
 <head>
     <meta charset="UTF-8">
@@ -17,58 +18,39 @@
   <ul class="nav navbar-right">
       <li>
           {% if user.is_authenticated %}
-                <li><a href="/logout/" class="link-type"> Logout {{ user.username}} </a></li>
+                <li><a href="/logout/" class="link-type"> {% trans "Logout"%} </a></li>
           {% else %}
-                <li><a href="/login/" class="link-type"> Login </a></li>
+                <li><a href="/login/" class="link-type"> {% trans "Login" %} </a></li>
           {% endif %}
       </li>
   </ul>
     <ul class="nav navbar-right">
         {% if user.is_staff %}
             <li>
-                <a href="/admin/" class="link-type">Administration</a>
+                <a href="/admin/" class="link-type">{%trans "Administration"%}</a>
             </li>
         {% endif %}
     </ul>
-    <!--<ul class="nav navbar-right">
-        {% if user.username %}
-            <li>
-                <a href="/editor//" class="link-type">Editor</a>
-            </li>
-        {% endif %}
-    </ul>-->
     <ul class="nav navbar-right">
         {% if user.username %}
             <li>
-                <a href="/my_projects/" class="link-type">My Projects</a>
+                <a href="/my_projects/" class="link-type">{% trans "My Projects"%}</a>
             </li>
         {% endif %}
     </ul>
     <ul class="nav navbar-right">
             <li>
-                <a href="/" class="link-type">{% trans "Home" %}</a>
+                <a href="/" class="link-type">{%trans "Home"%}</a>
             </li>
     </ul>
     <ul class="nav navbar-right">
             <li>
-                <a href="/search-form/" class="link-type">{% trans "Search" %}</a>
+                <a href="/search-form/" class="link-type">{%trans "Search"%}</a>
             </li>
     </ul>
 </nav>
 
-{% for lang in LANGUAGES %}
-    <li>
-	  <form name="setLang{{ lang.1}}" action="/blog/i18n/setlang/" method="POST">
-	  {% csrf_token %}
-	    <input name="next" type="hidden" value="/">
-	    <input type="hidden" name="language" value="{{ lang.0 }}">
-	    <a href="#" onclick="document.setLang{{ lang.1 }}.submit();
-		    return false;">{{ lang.1 }}</a>
-	  </form>
-	</li>
-{% endfor %}
-
-<table class="table" style="margin-left: -10px">
+<table class="table">
     {% for obj in output %}
         <tr>
             <td>
@@ -79,6 +61,18 @@
     {{ form.error }}
 </table>
 
+{% get_available_languages as LANGUAGES %}
+{% trans 'Change your locale' %}:
+<form action="/i18n/setlang/" method="POST">
+  {% csrf_token %}
+
+  <select name="language">
+    {% for lang in LANGUAGES %}
+      <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+    {% endfor %}
+  </select><br/>
+  <input type="submit" value="{% trans 'change' %}" />
+</form>
 
 {% block login %}
 {% endblock %}

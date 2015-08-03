@@ -74,7 +74,7 @@ def num_of_likes(id_rating):
 
 def main(request):
     output = Project.objects.values('project_name', 'project_user', 'id')
-    return render_to_response('base.html', {'user': request.user, "output": output})
+    return render_to_response('base.html', {'user': request.user, "output": output}, RequestContext(request))
 
 
 def logout(request):

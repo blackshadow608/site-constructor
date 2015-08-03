@@ -1,14 +1,8 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-30 20:01+0300\n"
+"POT-Creation-Date: 2015-08-03 16:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +13,114 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: templates/base.html:49
+#: blog/settings.py:110
+msgid "English"
+msgstr "Английский"
+
+#: blog/settings.py:111
+msgid "Russian"
+msgstr "Русский"
+
+#: templates/base.html:21
+msgid "Logout"
+msgstr "Выйти"
+
+#: templates/base.html:23
+msgid "Login"
+msgstr "Войти"
+
+#: templates/base.html:30
+msgid "Administration"
+msgstr "Администрация"
+
+#: templates/base.html:37
+msgid "My Projects"
+msgstr "Мои проекты"
+
+#: templates/base.html:43
 msgid "Home"
 msgstr "Домашняя страница"
 
-#: templates/base.html:54
+#: templates/base.html:48
 msgid "Search"
 msgstr "Поиск"
+
+#: templates/base.html:65
+msgid "Change your locale"
+msgstr "Сменить язык"
+
+#: templates/base.html:74
+msgid "change"
+msgstr "сменить"
+
+#: templates/editor.html:8 templates/view_site_template.html:8
+msgid "Site name:"
+msgstr "Название сайта:"
+
+#: templates/editor.html:10
+msgid "dark"
+msgstr "темный"
+
+#: templates/editor.html:11
+msgid "white"
+msgstr "белый"
+
+#: templates/editor.html:14
+msgid "view"
+msgstr "просмотр"
+
+#: templates/editor.html:20
+msgid "Tools"
+msgstr "Инструменты"
+
+#: templates/editor.html:24
+msgid "Text block"
+msgstr "Текст"
+
+#: templates/editor.html:25
+msgid "Video"
+msgstr "Видео"
+
+#: templates/editor.html:26
+msgid "Galery"
+msgstr "Галерея"
+
+#: templates/editor.html:27
+msgid "Raiting"
+msgstr "Рейтинг"
+
+#: templates/editor.html:32 templates/editor.html.py:59
+msgid "Create page"
+msgstr "Создать страницу"
+
+#: templates/editor.html:38
+msgid "Your site"
+msgstr "Ваш сайт"
+
+#: templates/editor.html:42
+msgid "Page name"
+msgstr "Название страницы"
+
+#: templates/editor.html:48 templates/user_projects.html:31
+msgid "create"
+msgstr "создать"
+
+#: templates/login.html:10
+msgid "Registration"
+msgstr "Регистрация"
+
+#: templates/user_projects.html:26
+msgid "New project"
+msgstr "Новый проект"
+
+#: templates/user_projects.html:29
+msgid "Project name"
+msgstr "Название проекта"
+
+#: templates/view_site_template.html:9
+msgid "Author:"
+msgstr "Автор:"
+
+#: templates/view_site_template.html:12
+msgid "editor"
+msgstr "редактор"

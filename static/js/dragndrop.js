@@ -21,7 +21,7 @@ $(function() {
                             if (match && match[2].length == 11) {
                                 url = match[2];
                                 $(ui.helper).empty();
-                                $(ui.helper).append('<iframe width="560" height="315"  src="https://www.youtube.com/embed/' + url + '" frameborder="0" allowfullscreen></iframe>');
+                                $(ui.helper).append('<iframe width="auto" height="auto"  src="https://www.youtube.com/embed/' + url + '" frameborder="0" allowfullscreen></iframe>');
                                 $(ui.helper).removeClass('btn-primary');
                                 $(ui.helper).css('height', 'auto');
                                 $(ui.helper).css('width', '100%');
