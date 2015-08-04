@@ -64,6 +64,15 @@
         </div>
         </div>
         <div class="row work_space" style="padding-top: 17px;">
+        {%if project.project_menu_is_horizontal %}
+            <div id="page_group" class="btn-group page_group_horizontal" role="group">
+                {% for page in pages%}
+                <button class="btn btn-primary page-select" id_page="{{ page.id }}">
+                    {{ page.page_name }}
+                </button>
+            {% endfor %}
+            </div>
+        {% endif %}
             {% if pages %}
         <div id="droppable"   class="col-md-10  jumbotron for-padding" style="border: solid 1px black; height: auto; min-height: 450px">
         </div>
@@ -72,6 +81,7 @@
             <h1 style="opacity: 0.4; text-align: center;">{% trans "Create page"%}</h1>
         </div>
         {% endif %}
+        {% if not project.project_menu_is_horizontal %}
         <div id="page_group" class="col-md-2 btn-group-vertical page_group_vertical" role="group">
             {% for page in pages%}
                 <button class="btn btn-primary page-select" id_page="{{ page.id }}">
@@ -79,6 +89,7 @@
                 </button>
             {% endfor %}
         </div>
+        {% endif %}
         </div>
     </div>
     </div>
