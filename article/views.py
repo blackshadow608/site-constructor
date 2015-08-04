@@ -208,5 +208,14 @@ def change_menu(request):
             else:
                 p.project_menu_is_horizontal = False
             p.save()
-            print(p.project_menu_is_horizontal)
             return HttpResponse(json.dumps(data), content_type="application/json")
+
+def get_all_pages(request):
+    if request.method == 'GET':
+        id_p = request.GET.get('proj_id')
+        if id_p:
+            pages = PageProject.objects.filter(project=Project.objects.get(id=id_p))
+            all_page = []
+            for page in pages:
+                all_page.append({'pageID': page.id, 'pageName': page.page_name})
+            return HttpResponse(json.dumps({'pages': all_page}), content_type="application/json")

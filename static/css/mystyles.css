@@ -30,3 +30,12 @@ ul{
 .curr_page{
     background-color: #337ab7;
 }
+
+.page_group_horizontal{
+    width: 630px;
+}
+
+.page_group_vertical{
+    padding: 0px;
+    width: 105px;
+}

@@ -63,7 +63,7 @@
             <a href="/view_mode/{{ project.id }}" type="submit" style="margin-top: 20px; margin-right: 10px;" class="btn btn-primary navbar-right">{% trans "view" %}</a>
         </div>
         </div>
-        <div class="row" style="padding-top: 17px;">
+        <div class="row work_space" style="padding-top: 17px;">
             {% if pages %}
         <div id="droppable"   class="col-md-10  jumbotron for-padding" style="border: solid 1px black; height: auto; min-height: 450px">
         </div>
@@ -72,7 +72,7 @@
             <h1 style="opacity: 0.4; text-align: center;">{% trans "Create page"%}</h1>
         </div>
         {% endif %}
-        <div id="page_group" class="col-md-2 btn-group-vertical" role="group" style="overflow-y: auto; padding: 0px; border: solid 1px black; width: 105px; height: 450px">
+        <div id="page_group" class="col-md-2 btn-group-vertical page_group_vertical" role="group">
             {% for page in pages%}
                 <button class="btn btn-primary page-select" id_page="{{ page.id }}">
                     {{ page.page_name }}
