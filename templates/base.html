@@ -10,7 +10,7 @@
     <link rel="stylesheet" href={% static "css/mystyles.css"%}>
     <script src={% static "js/jquery-2.1.4.js"%}></script>
     <script src={% static "js/jquery-ui-1.11.4/jquery-ui.min.js" %}></script>
-
+    <script src={% static "bootstrap/js/dropdown.js" %}></script>
 </head>
 <body>
 <div class="col-md-10 center form-group col-md-offset-1">
@@ -48,6 +48,20 @@
                 <a href="/search-form/" class="link-type">{%trans "Search"%}</a>
             </li>
     </ul>
+    <ul>
+        {% get_available_languages as LANGUAGES %}
+            <form action="/i18n/setlang/" method="POST">
+            {% csrf_token %}
+            <select name="language">
+            {% for lang in LANGUAGES %}
+                <li>
+                <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+                </li>
+            {% endfor %}
+            </select>
+            <input class="" type="submit" value="{% trans 'change' %}" />
+            </form>
+    </ul>
 </nav>
 
 <table class="table">
@@ -60,19 +74,6 @@
     {% endfor %}
     {{ form.error }}
 </table>
-
-{% get_available_languages as LANGUAGES %}
-{% trans 'Change your locale' %}:
-<form action="/i18n/setlang/" method="POST">
-  {% csrf_token %}
-
-  <select name="language">
-    {% for lang in LANGUAGES %}
-      <option value="{{ lang.0 }}">{{ lang.1 }}</option>
-    {% endfor %}
-  </select><br/>
-  <input type="submit" value="{% trans 'change' %}" />
-</form>
 
 {% block login %}
 {% endblock %}

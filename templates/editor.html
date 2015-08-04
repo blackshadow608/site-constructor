@@ -5,16 +5,20 @@
 {% block content %}
     <link rel="stylesheet" href={% static "css/jquery-impromptu.css"%}>
     <div class="row">
-        <h2 class="col-md-6" id_project = '{{ project.id }}'>{% trans "Site name:"%} {{ project.project_name }}</h2>
-<p>
-        <input type="radio" class="dark {% if project.project_is_dark %}is_check{% endif %}" name="theme"
-               {% if project.project_is_dark %}checked{% endif %}/><label>{% trans "dark" %} </label>
-        <input type="radio" class="{% if project.project_is_dark %}is_check{% endif %}" name="theme"
-               {% if not project.project_is_dark %}checked{% endif %}/><label>{% trans "light" %}</label>
-    </p>
-        <div class="col-md-5">
-            <a href="/view_mode/{{ project.id }}" type="submit" style="margin-top: 20px;" class="btn btn-primary navbar-right">{% trans "view" %}</a>
-        </div>
+        <h2 class="col-md-7" id_project = '{{ project.id }}'>{% trans "Site name:"%} {{ project.project_name }}</h2>
+        <form class="col-md-5" action="" method="post">
+                {% csrf_token %}
+                <div  style="visibility: hidden;width: 0px;height: 0px">{{ page_form.project }}</div>
+                <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">{% trans "Page name" %}</label>
+                <div class="row">
+                <div class="col-md-9">
+                    <input class='form-control' style="margin-top: 1px" name="{{ page_form.page_name.name}}" />
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" style="margin-right: 10px; margin-top: 1px;" class="btn btn-primary navbar-right">{% trans "create" %}</button>
+                </div>
+                </div>
+            </form>
     </div>
     <div class="row">
 
@@ -37,24 +41,31 @@
     </div>
     <div class="col-md-8">
         <div class="row">
-            <h1 class="col-md-6">{% trans "Your site"%}</h1>
-            <form class="col-md-6" action="" method="post">
-                {% csrf_token %}
-                <div  style="visibility: hidden;width: 0px;height: 0px">{{ page_form.project }}</div>
-                <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">{% trans "Page name" %}</label>
-                <div class="row">
-                <div class="col-md-9">
-                    <input class='form-control' style="margin-top: 1px" name="{{ page_form.page_name.name}}" />
-                </div>
-                <div class="col-md-3">
-                    <button type="submit" style="margin-right: 10px; margin-top: 1px;" class="btn btn-primary navbar-right">{% trans "create" %}</button>
-                </div>
-                </div>
-            </form>
+            <div class="col-md-4 col-md-offset-5">
+            <div>
+            <input type="radio" class="dark {% if project.project_is_dark %}is_check{% endif %} view_theme" name="theme"
+               {% if project.project_is_dark %}checked{% endif %}/>
+                <label>{% trans "dark" %} </label>
+            <input type="radio" class="{% if project.project_is_dark %}is_check{% endif %} view_theme" name="theme"
+               {% if not project.project_is_dark %}checked{% endif %}/>
+                <label>{% trans "light" %}</label>
+            </div>
+            <div>
+            <input type="radio" class="view_menu horizontal" name="menu"
+                   {% if project.project_menu_is_horizontal %}checked{% endif %}/>
+                <label>{% trans "horizontal" %} </label>
+            <input type="radio" class="view_menu" name="menu"
+                   {% if not project.project_menu_is_horizontal %}checked{% endif %}/>
+                <label>{% trans "vertical" %}</label>
+            </div>
+            </div>
+            <div class="col-md-3">
+            <a href="/view_mode/{{ project.id }}" type="submit" style="margin-top: 20px; margin-right: 10px;" class="btn btn-primary navbar-right">{% trans "view" %}</a>
         </div>
-        <div class="row">
-        {% if pages %}
-        <div id="droppable"   class="col-md-10  jumbotron for-padding"style="border: solid 1px black; height: auto; min-height: 450px">
+        </div>
+        <div class="row" style="padding-top: 17px;">
+            {% if pages %}
+        <div id="droppable"   class="col-md-10  jumbotron for-padding" style="border: solid 1px black; height: auto; min-height: 450px">
         </div>
         {% else %}
             <div class="col-md-10 "style="background-color: #FAFAFA; border: solid 1px black; height: auto; min-height: 450px">
@@ -77,4 +88,5 @@
 <script src={% static "js/jquery.autogrowtextarea.js" %}></script>
 <script src={% static "js/jquery-impromptu.js" %}></script>
 <script src={% static "js/change_theme.js" %}></script>
+<script src={% static "js/change_menu.js" %}></script>
 {% endblock %}
