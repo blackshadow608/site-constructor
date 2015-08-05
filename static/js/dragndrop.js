@@ -96,13 +96,37 @@ $(function() {
             $(ui.helper).css('height', '45px');
             $(ui.helper).css('width', '100%');
             $(ui.helper).append('<div id="liquid1" class="liquid" >'+
-                '<span class="previous" style="font-size: 25px; padding-top: 10%"></span><div class="wrapper"><ul>'+
+                '<span class="previous" style="font-size: 25px; padding-top: 10%"></span><div class="wrapper"><ul sortable-img>'+
                 '</ul></div><span class="next " style="font-size: 25px; padding-top: 10%"></span> </div>');
             $(ui.helper).liquidcarousel({height:129, duration:100, hidearrows:false});
 
         }
     });
 
+    $(".draggable-img").draggable({
+        helper: "clone", connectToSortable: ".sortable-img",
+        start: function (event, ui) {
+            var clone = $(ui.helper);
+        },
+        stop: function (event, ui) {
+            //$(ui.helper).empty();
+
+
+        }
+    });
+
+    $(".sortable-img").sortable({
+        over: function () {
+            removeIntent = false
+        },
+        out: function () {
+            removeIntent = true
+        },
+        beforeStop: function (event, ui) {
+              ui.item.remove()
+        }
+    }
+    );
     $("#droppable").sortable({
         over: function () {
             removeIntent = false
