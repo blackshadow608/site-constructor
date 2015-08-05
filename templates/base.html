@@ -2,86 +2,123 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load l10n %}
+{% load cloudinary %}
 <html>
 <head>
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href={% static "bootstrap/dist/css/bootstrap.css"%}>
     <link rel="stylesheet" href={% static "css/mystyles.css"%}>
+    <link rel="stylesheet"media="all" type="text/css" href={% static "css/style-demo.css"%}>
+    <link rel="stylesheet" href={% static "css/jquery-impromptu.css"%}>
     <script src={% static "js/jquery-2.1.4.js"%}></script>
     <script src={% static "js/jquery-ui-1.11.4/jquery-ui.min.js" %}></script>
+    <script src={% static "js/script/jquery.easing-1.3.js" %}></script>
+    <script src={% static "js/script/jquery.mousewheel-3.1.12.js" %}></script>
+    <script src={% static "js/script/jquery.jcarousellite.js" %}></script>
+    <script src={% static "js/click_img.js" %}></script>
+    <script src={% static "js/jquery-impromptu.js" %}></script>
+
+
+    <script type="text/javascript" src={% static 'js/jquery.liquidcarousel.js'%}></script>
 
 </head>
 <body>
 <div class="col-md-10 center form-group col-md-offset-1">
-<nav class="navbar navbar-default mynavbar">
-  <ul class="nav navbar-right">
-      <li>
-          {% if user.is_authenticated %}
-                <li><a href="/logout/" class="link-type"> {% trans "Logout"%} </a></li>
-          {% else %}
-                <li><a href="/login/" class="link-type"> {% trans "Login" %} </a></li>
-          {% endif %}
-      </li>
-  </ul>
-    <ul class="nav navbar-right">
-        {% if user.is_staff %}
+    <nav class="navbar navbar-default mynavbar">
+        <ul class="nav navbar-right">
             <li>
-                <a href="/admin/" class="link-type">{%trans "Administration"%}</a>
+                {% if user.is_authenticated %}
+                    <li><a href="/logout/" class="link-type"> {% trans "Logout"%} </a></li>
+                {% else %}
+                    <li><a href="/login/" class="link-type"> {% trans "Login" %} </a></li>
+                {% endif %}
             </li>
-        {% endif %}
-    </ul>
-    <ul class="nav navbar-right">
-        {% if user.username %}
-            <li>
-                <a href="/my_projects/" class="link-type">{% trans "My Projects"%}</a>
-            </li>
-        {% endif %}
-    </ul>
-    <ul class="nav navbar-right">
+        </ul>
+        <ul class="nav navbar-right">
+            {% if user.is_staff %}
+                <li>
+                    <a href="/admin/" class="link-type">{%trans "Administration"%}</a>
+                </li>
+            {% endif %}
+        </ul>
+        <ul class="nav navbar-right">
+            {% if user.username %}
+                <li>
+                    <a href="/my_projects/" class="link-type">{% trans "My Projects"%}</a>
+                </li>
+            {% endif %}
+        </ul>
+        <ul class="nav navbar-right">
             <li>
                 <a href="/" class="link-type">{%trans "Home"%}</a>
             </li>
-    </ul>
-    <ul class="nav navbar-right">
+        </ul>
+        <ul class="nav navbar-right">
             <li>
                 <a href="/search-form/" class="link-type">{%trans "Search"%}</a>
             </li>
-    </ul>
-</nav>
+        </ul>
+    </nav>
 
-<table class="table">
-    {% for obj in output %}
-        <tr>
-            <td>
-                <a href="/view_mode/{{ obj.id }}"> {{ obj.project_name}}</a>
-            </td>
-        </tr>
-    {% endfor %}
-    {{ form.error }}
-</table>
+    <table class="table">
+        {% for obj in output %}
+            <tr>
+                <td>
+                    <a href="/view_mode/{{ obj.id }}"> {{ obj.project_name}}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        {{ form.error }}
+    </table>
+    {{ url }}
 
-{% get_available_languages as LANGUAGES %}
-{% trans 'Change your locale' %}:
-<form action="/i18n/setlang/" method="POST">
-  {% csrf_token %}
+    {% get_available_languages as LANGUAGES %}
+    {% trans 'Change your locale' %}:
+    <form action="/i18n/setlang/" method="POST">
+        {% csrf_token %}
 
-  <select name="language">
-    {% for lang in LANGUAGES %}
-      <option value="{{ lang.0 }}">{{ lang.1 }}</option>
-    {% endfor %}
-  </select><br/>
-  <input type="submit" value="{% trans 'change' %}" />
-</form>
+        <select name="language">
+            {% for lang in LANGUAGES %}
+                <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+            {% endfor %}
+        </select><br/>
+        <input type="submit" value="{% trans 'change' %}" />
+    </form>
 
-{% block login %}
-{% endblock %}
+    {% block login %}
+    {% endblock %}
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-{% block search_form %}
-{% endblock %}
+    {% block search_form %}
+    {% endblock %}
+{#    <form action="" method="post" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{#        {{ form_img }}#}
+{#        <input name = '{{ form_img.image.name }}' type="url">#}
+{#        <button type="submit" value="Upload">add img</button>#}
+{#    </form>#}
+{#    {% for image in images %}#}
+{##}
+{#        {% cloudinary image.image.build_url width=200 height=150 crop="fill" %}#}
+{#    {% endfor %}#}
+{#    <script type="text/javascript">#}
+{##}
+{#        $(document).ready(function() {#}
+{#            $.each($('.liquid'),function(index, val) {#}
+{#        $(val).liquidcarousel({height:129, duration:100, hidearrows:false});#}
+{#      });#}
+{##}
+{#        });#}
+{#    </script>#}
+
+
+
+
 </div>
+
+
 </body>
 </html>

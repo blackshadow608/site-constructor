@@ -1,0 +1,107 @@
+.carousel {
+    border: 1px solid #bababa;
+    border-radius: 10px;
+    background-color: ghostwhite;
+    float: left;
+    padding-left: 10px;
+
+    /* Needed for rendering without flicker */
+    position: relative;
+    visibility: hidden;
+    left: -5000px;
+}
+
+    /* Styling for image based carousel content. Only width and height are mandatory */
+   .carousel>ul>li>img {
+        width: 150px;
+        height: 118px;
+        vertical-align:middle;
+
+        /* optional */
+        margin: 10px 10px 10px 0;
+        border-radius: 5px;
+    }
+
+    /* Styling for text based carousel content. Only width and height are mandatory */
+  .carousel>ul>li>p {
+        width: 130px;
+        height: 98px;
+
+        margin: 10px 10px 10px 0;
+        border: 1px solid #808080;
+        border-radius: 5px;
+        line-height: normal;
+        background-color: #fff;
+        padding: 10px;
+    }
+
+/* Styles for PREV and NEXT anchor buttons */
+ a.prev, a.next,  a.go {
+    display: block;
+    width: 26px;
+    height: 30px;
+    line-height: 1;
+
+    background-color: #333333;
+    color: ghostwhite;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+
+    border-radius: 8px;
+    float: left;
+}
+    a.prev.disabled, a.next.disabled,
+    a.prev.disabled:hover, a.next.disabled:hover {
+        background-color: #8d8d8d;
+        cursor: default;
+    }
+    a.go.highlight {
+        background-color: #dedede;
+        color: #000;
+    }
+    a.prev {
+        margin: 50px -5px 0 0;
+        text-indent: 7px;
+    }
+    a.next {
+        margin: 50px 0 0 -5px;
+        text-indent: 10px;
+    }
+        a.prev:hover, a.next:hover, a.go:hover {
+            background-color: #666666;
+        }
+
+/* Additional carousel styles for external controls, slider, widget, mid etc. */
+ .externalControl button, .imageSliderExt button {
+    margin: 5px 5px 0 0;
+} .externalControl a.next, .externalControl a.prev, .externalControl a.go, .imageSliderExt a.next, .imageSliderExt a.prev, .imageSliderExt a.go
+{
+    margin: 0 5px 0 0;
+    padding: 7px 5px 0 5px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 3px;
+}
+ .widget img {
+    cursor: pointer;
+} .mid {
+    margin-left: 50px;
+    width: 400px;
+    height: 300px;
+} .vertical {
+    margin-left: 170px;
+}
+ .imageSlider .carousel>ul>li>img, .imageSliderExt .carousel>ul>li>img {
+    width: 400px;
+    height: 300px;
+} .imageSlider .carousel>ul>li>p, .imageSliderExt .carousel>ul>li>p {
+    width: 380px;
+    height: 280px;
+}
+
+/* Other common styles */
+
+.clear {
+    clear: both;
+}

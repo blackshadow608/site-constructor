@@ -6,75 +6,100 @@
     <link rel="stylesheet" href={% static "css/jquery-impromptu.css"%}>
     <div class="row">
         <h2 class="col-md-6" id_project = '{{ project.id }}'>{% trans "Site name:"%} {{ project.project_name }}</h2>
-<p>
-        <input type="radio" class="dark {% if project.project_is_dark %}is_check{% endif %}" name="theme"
-               {% if project.project_is_dark %}checked{% endif %}/><label>{% trans "dark" %} </label>
-        <input type="radio" class="{% if project.project_is_dark %}is_check{% endif %}" name="theme"
-               {% if not project.project_is_dark %}checked{% endif %}/><label>{% trans "light" %}</label>
-    </p>
+        <p>
+            <input type="radio" class="dark {% if project.project_is_dark %}is_check{% endif %}" name="theme"
+                   {% if project.project_is_dark %}checked{% endif %}/><label>{% trans "dark" %} </label>
+            <input type="radio" class="{% if project.project_is_dark %}is_check{% endif %}" name="theme"
+                   {% if not project.project_is_dark %}checked{% endif %}/><label>{% trans "light" %}</label>
+        </p>
         <div class="col-md-5">
             <a href="/view_mode/{{ project.id }}" type="submit" style="margin-top: 20px;" class="btn btn-primary navbar-right">{% trans "view" %}</a>
         </div>
     </div>
     <div class="row">
 
-    <div class="col-md-4">
-        <h1>{% trans "Tools" %}</h1>
-        {% if pages %}
-        <div class="jumbotron" style="border: solid 1px black; height: auto">
-            <ul class="form-group">
-                <li class="btn-primary btn btn-block form-group draggable-text" >{% trans "Text block"%}</li>
-                <li class="btn-primary btn btn-block form-group draggable-video" >{% trans "Video" %}</li>
-                <li class="btn-primary btn btn-block form-group draggable" >{% trans "Galery" %}</li>
-                <li class="btn-primary btn btn-block form-group draggable-raiting" >{% trans "Raiting" %}</li>
-            </ul>
-        </div>
-        {% else %}
-        <div style="border: solid 1px black; height: 300px">
-            <h1 style="opacity: 0.4; text-align: center;">{%trans "Create page"%}</h1>
-        </div>
-        {% endif %}
-    </div>
-    <div class="col-md-8">
-        <div class="row">
-            <h1 class="col-md-6">{% trans "Your site"%}</h1>
-            <form class="col-md-6" action="" method="post">
-                {% csrf_token %}
-                <div  style="visibility: hidden;width: 0px;height: 0px">{{ page_form.project }}</div>
-                <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">{% trans "Page name" %}</label>
-                <div class="row">
-                <div class="col-md-9">
-                    <input class='form-control' style="margin-top: 1px" name="{{ page_form.page_name.name}}" />
+        <div class="col-md-4">
+            <h1>{% trans "Tools" %}</h1>
+            {% if pages %}
+                <div class="jumbotron" style="border: solid 1px black; height: auto">
+                    <ul class="form-group">
+                        <li class="btn-primary btn btn-block form-group draggable-text" >{% trans "Text block"%}</li>
+                        <li class="btn-primary btn btn-block form-group draggable-video" >{% trans "Video" %}</li>
+                        <li class="btn-primary btn btn-block form-group draggable-gallery" >{% trans "Galery" %}</li>
+                        <li class="btn-primary btn btn-block form-group draggable-raiting" >{% trans "Raiting" %}</li>
+                    </ul>
                 </div>
-                <div class="col-md-3">
-                    <button type="submit" style="margin-right: 10px; margin-top: 1px;" class="btn btn-primary navbar-right">{% trans "create" %}</button>
+            {% else %}
+                <div style="border: solid 1px black; height: 300px">
+                    <h1 style="opacity: 0.4; text-align: center;">{%trans "Create page"%}</h1>
                 </div>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <h1 class="col-md-6">{% trans "Your site"%}</h1>
+                <form class="col-md-6" action="" method="post">
+                    {% csrf_token %}
+                    <div  style="visibility: hidden;width: 0px;height: 0px">{{ page_form.project }}</div>
+                    <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">{% trans "Page name" %}</label>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <input class='form-control' style="margin-top: 1px" name="{{ page_form.page_name.name}}" />
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" style="margin-right: 10px; margin-top: 1px;" class="btn btn-primary navbar-right">{% trans "create" %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                {% if pages %}
+                    <div id="droppable"   class="col-md-10  jumbotron for-padding"style="border: solid 1px black; height: auto; min-height: 450px">
+                    </div>
+                {% else %}
+                    <div class="col-md-10 "style="background-color: #FAFAFA; border: solid 1px black; height: auto; min-height: 450px">
+                        <h1 style="opacity: 0.4; text-align: center;">{% trans "Create page"%}</h1>
+                    </div>
+                {% endif %}
+                <div id="page_group" class="col-md-2 btn-group-vertical" role="group" style="overflow-y: auto; padding: 0px; border: solid 1px black; width: 105px; height: 450px">
+                    {% for page in pages%}
+                        <button class="btn btn-primary page-select" id_page="{{ page.id }}">
+                            {{ page.page_name }}
+                        </button>
+                    {% endfor %}
                 </div>
-            </form>
-        </div>
-        <div class="row">
-        {% if pages %}
-        <div id="droppable"   class="col-md-10  jumbotron for-padding"style="border: solid 1px black; height: auto; min-height: 450px">
-        </div>
-        {% else %}
-            <div class="col-md-10 "style="background-color: #FAFAFA; border: solid 1px black; height: auto; min-height: 450px">
-            <h1 style="opacity: 0.4; text-align: center;">{% trans "Create page"%}</h1>
-        </div>
-        {% endif %}
-        <div id="page_group" class="col-md-2 btn-group-vertical" role="group" style="overflow-y: auto; padding: 0px; border: solid 1px black; width: 105px; height: 450px">
-            {% for page in pages%}
-                <button class="btn btn-primary page-select" id_page="{{ page.id }}">
-                    {{ page.page_name }}
-                </button>
-            {% endfor %}
-        </div>
+            </div>
         </div>
     </div>
+     <div id="jcl-demo" style="width: 200px">
+        <div class="custom-container mouseWheelButtons">
+            <a href="#" class="prev">&lsaquo;</a>
+            <div class="carousel">
+                <ul>
+                    {% for image in images %}
+                        <li><img src="{{ image.image.build_url }}" width=200 height=150></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <a href="#" class="next">&rsaquo;</a>
+            <div class="clear"></div>
+        </div>
     </div>
-<script src={% static "js/dragndrop.js" %}></script>
-<script src={% static "js/select_page.js" %}></script>
-<script src={% static "js/save-markdown.js" %}></script>
-<script src={% static "js/jquery.autogrowtextarea.js" %}></script>
-<script src={% static "js/jquery-impromptu.js" %}></script>
-<script src={% static "js/change_theme.js" %}></script>
+
+<script type="text/javascript">
+    $(".mouseWheelButtons .carousel").jCarouselLite({
+        btnNext: ".mouseWheelButtons .next",
+        btnPrev: ".mouseWheelButtons .prev",
+        mouseWheel: true,
+        visible: 5
+    });
+</script>
+    <script src={% static "js/dragndrop.js" %}></script>
+    <script src={% static "js/select_page.js" %}></script>
+    <script src={% static "js/save-markdown.js" %}></script>
+    <script src={% static "js/jquery.autogrowtextarea.js" %}></script>
+    <script src={% static "js/jquery-impromptu.js" %}></script>
+    <script src={% static "js/change_theme.js" %}></script>
+    <script type="text/javascript" src={% static 'js/jquery.liquidcarousel.js'%}></script>
+
 {% endblock %}

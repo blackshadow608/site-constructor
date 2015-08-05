@@ -75,11 +75,31 @@ $(function() {
                 data:{"id_project_create_rating":$('h2').attr("id_project")},
                 success:function(data){
                     if(data.response=='success'){
-                         $(ui.helper).attr('id_rating', data.id_rating)
+                        $(ui.helper).attr('id_rating', data.id_rating)
                     }
                 }
 
             })
+        }
+    });
+
+    $(".draggable-gallery").draggable({
+        helper: "clone", connectToSortable: "#droppable",
+        start: function (event, ui) {
+            var clone = $(ui.helper);
+            clone.addClass("xyi");
+        },
+        stop: function (event, ui) {
+            $(ui.helper).empty();
+            $(ui.helper).removeClass('btn-primary');
+            $(ui.helper).removeClass('btn');
+            $(ui.helper).css('height', '45px');
+            $(ui.helper).css('width', '100%');
+            $(ui.helper).append('<div id="liquid1" class="liquid" >'+
+                '<span class="previous" style="font-size: 25px; padding-top: 10%"></span><div class="wrapper"><ul>'+
+                '</ul></div><span class="next " style="font-size: 25px; padding-top: 10%"></span> </div>');
+            $(ui.helper).liquidcarousel({height:129, duration:100, hidearrows:false});
+
         }
     });
 

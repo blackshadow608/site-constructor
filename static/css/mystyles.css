@@ -30,3 +30,23 @@ ul{
 .curr_page{
     background-color: #337ab7;
 }
+
+.liquid .next {
+    display: block;
+    height: 126px;
+    width: 64px;
+    background-image: url('../next.png');
+    float: right;
+    margin: 0px;
+    padding: 0px;
+}
+
+.liquid .previous {
+    display: block;
+    height: 126px;
+    width: 64px;
+    background-image: url('../previous.png');
+    float: left;
+    margin: 0px;
+    padding: 0px;
+}

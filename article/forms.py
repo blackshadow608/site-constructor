@@ -1,7 +1,8 @@
+from cloudinary.forms import CloudinaryFileField, CloudinaryJsFileField
 from django import forms
 
 from django.forms import ModelForm
-from article.models import Project, PageProject
+from article.models import Project, PageProject, Gallery
 
 
 class CreateProjectForm(ModelForm):
@@ -14,3 +15,11 @@ class CreatePageForm(ModelForm):
     class Meta:
         model = PageProject
         fields = ['project', 'page_name']
+
+
+class GalleryImageForm(ModelForm):
+    class Meta:
+        model = Gallery
+        fields = ['user']
+
+    image = CloudinaryJsFileField(attrs={'multiple': 1})

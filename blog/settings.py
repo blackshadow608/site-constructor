@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import cloudinary
 import pymysql
 
 pymysql.install_as_MySQLdb()
@@ -30,7 +31,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+cloudinary.config(
+    cloud_name="dowzzsdtc",
+    api_key="588197345913843",
+    api_secret='MQgCAff-steIYQ3cKyb8L3m7_mM'
+)
 # Application definition
 
 INSTALLED_APPS = (
@@ -42,7 +47,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'article',
     'registration',
+    'cloudinary',
 )
+#
+
+
+CLOUDINARY = {
+    'max_length': 200,
+}
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -89,10 +102,10 @@ DATABASES = {
 }
 ACCOUNT_ACTIVATION_DAYS = 3
 
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_PORT=587
-EMAIL_HOST_USER='django.reggi@gmail.com'
-EMAIL_HOST_PASSWORD='15051996e'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'django.reggi@gmail.com'
+EMAIL_HOST_PASSWORD = '15051996e'
 EMAIL_USE_TLS = True
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_USE_TLS = True
@@ -131,7 +144,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-   os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 TEMPLATE_DIRS = (
