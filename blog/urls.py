@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^$', 'article.views.main'),
     url(r'^rating/', 'article.views.rating'),
     url(r'^theme/', 'article.views.theme'),
+    url(r'^menu/', 'article.views.change_menu'),
+    url(r'^get_all_pages/', 'article.views.get_all_pages'),
     url(r'^like/', 'article.views.likes'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', LoginFormView.as_view()),

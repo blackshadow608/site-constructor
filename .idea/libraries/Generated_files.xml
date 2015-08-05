@@ -2,11 +2,23 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+<<<<<<< HEAD
         <item url="file://$PROJECT_DIR$/static/js/click_img.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/static/js/click_img.js" />
+=======
+        <item url="file://$PROJECT_DIR$/static/js/select_page.js" />
+        <item url="file://$PROJECT_DIR$/static/js/change_menu.js" />
+        <item url="file://$PROJECT_DIR$/static/js/change_theme.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/static/js/select_page.js" />
+      <root url="file://$PROJECT_DIR$/static/js/change_menu.js" />
+      <root url="file://$PROJECT_DIR$/static/js/change_theme.js" />
+>>>>>>> 5ad7360b1911d85598f0785b177ea7e086901ea2
     </CLASSES>
     <SOURCES />
   </library>

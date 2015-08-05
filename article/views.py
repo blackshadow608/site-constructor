@@ -208,9 +208,34 @@ def theme(request):
         if id_p:
             p = Project.objects.get(id=id_p)
             if value == 'True':
-                print(value)
                 p.project_is_dark = True
             else:
                 p.project_is_dark = False
             p.save()
             return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+def change_menu(request):
+    if request.method == 'GET':
+        data = {'page': 'hui'}
+        id_p = request.GET.get('proj_id')
+        value = request.GET.get('is_horizontal')
+        if id_p:
+            p = Project.objects.get(id=id_p)
+            if value == 'True':
+                p.project_menu_is_horizontal = True
+            else:
+                p.project_menu_is_horizontal = False
+            p.save()
+            return HttpResponse(json.dumps(data), content_type="application/json")
+
+def get_all_pages(request):
+    if request.method == 'GET':
+        id_p = request.GET.get('proj_id')
+        if id_p:
+            pages = PageProject.objects.filter(project=Project.objects.get(id=id_p))
+            all_page = []
+            for page in pages:
+                all_page.append({'pageID': page.id, 'pageName': page.page_name})
+            return HttpResponse(json.dumps({'pages': all_page}), content_type="application/json")
+

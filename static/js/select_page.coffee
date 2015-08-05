@@ -19,7 +19,7 @@ $ ->
       success:->
       error: ->
         alert 'gyjudvasf'
-  $('.page-select').click ->
+  $('body').on 'click', '.page-select', ->
     id_curr_page = $('.curr_page').attr("id_page")
     content = ""
     $.each $('.for-padding').children(), (index, val) ->

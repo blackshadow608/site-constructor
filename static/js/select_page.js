@@ -32,7 +32,7 @@
         }
       });
     });
-    $('.page-select').click(function() {
+    $('body').on('click', '.page-select', function() {
       var content, id_curr_page;
       id_curr_page = $('.curr_page').attr("id_page");
       content = "";

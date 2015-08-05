@@ -1,4 +1,4 @@
-.carousel {
+#jcl-demo .carousel {
     border: 1px solid #bababa;
     border-radius: 10px;
     background-color: ghostwhite;
@@ -12,7 +12,7 @@
 }
 
     /* Styling for image based carousel content. Only width and height are mandatory */
-   .carousel>ul>li>img {
+    #jcl-demo .carousel>ul>li>img {
         width: 150px;
         height: 118px;
         vertical-align:middle;
@@ -23,7 +23,7 @@
     }
 
     /* Styling for text based carousel content. Only width and height are mandatory */
-  .carousel>ul>li>p {
+    #jcl-demo .carousel>ul>li>p {
         width: 130px;
         height: 98px;
 
@@ -36,7 +36,7 @@
     }
 
 /* Styles for PREV and NEXT anchor buttons */
- a.prev, a.next,  a.go {
+#jcl-demo a.prev, #jcl-demo a.next, #jcl-demo a.go {
     display: block;
     width: 26px;
     height: 30px;
@@ -51,31 +51,35 @@
     border-radius: 8px;
     float: left;
 }
-    a.prev.disabled, a.next.disabled,
-    a.prev.disabled:hover, a.next.disabled:hover {
+    #jcl-demo a.prev.disabled, #jcl-demo a.next.disabled,
+    #jcl-demo a.prev.disabled:hover, #jcl-demo a.next.disabled:hover {
         background-color: #8d8d8d;
         cursor: default;
     }
-    a.go.highlight {
+    #jcl-demo a.go.highlight {
         background-color: #dedede;
         color: #000;
     }
-    a.prev {
+    #jcl-demo a.prev {
         margin: 50px -5px 0 0;
         text-indent: 7px;
     }
-    a.next {
+    #jcl-demo a.next {
         margin: 50px 0 0 -5px;
         text-indent: 10px;
     }
-        a.prev:hover, a.next:hover, a.go:hover {
+        #jcl-demo a.prev:hover, #jcl-demo a.next:hover, #jcl-demo a.go:hover {
             background-color: #666666;
         }
 
 /* Additional carousel styles for external controls, slider, widget, mid etc. */
- .externalControl button, .imageSliderExt button {
+
+#jcl-demo .externalControl button,
+#jcl-demo .imageSliderExt button {
     margin: 5px 5px 0 0;
-} .externalControl a.next, .externalControl a.prev, .externalControl a.go, .imageSliderExt a.next, .imageSliderExt a.prev, .imageSliderExt a.go
+}
+#jcl-demo .externalControl a.next, #jcl-demo .externalControl a.prev, #jcl-demo .externalControl a.go,
+#jcl-demo .imageSliderExt a.next, #jcl-demo .imageSliderExt a.prev, #jcl-demo .imageSliderExt a.go
 {
     margin: 0 5px 0 0;
     padding: 7px 5px 0 5px;
@@ -83,19 +87,26 @@
     text-align: center;
     border-radius: 3px;
 }
- .widget img {
+
+#jcl-demo .widget img {
     cursor: pointer;
-} .mid {
+}
+#jcl-demo .mid {
     margin-left: 50px;
     width: 400px;
     height: 300px;
-} .vertical {
+}
+#jcl-demo .vertical {
     margin-left: 170px;
 }
- .imageSlider .carousel>ul>li>img, .imageSliderExt .carousel>ul>li>img {
+
+#jcl-demo .imageSlider .carousel>ul>li>img,
+#jcl-demo .imageSliderExt .carousel>ul>li>img {
     width: 400px;
     height: 300px;
-} .imageSlider .carousel>ul>li>p, .imageSliderExt .carousel>ul>li>p {
+}
+#jcl-demo .imageSlider .carousel>ul>li>p,
+#jcl-demo .imageSliderExt .carousel>ul>li>p {
     width: 380px;
     height: 280px;
 }
