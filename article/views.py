@@ -219,3 +219,13 @@ def get_all_pages(request):
             for page in pages:
                 all_page.append({'pageID': page.id, 'pageName': page.page_name})
             return HttpResponse(json.dumps({'pages': all_page}), content_type="application/json")
+
+def change_site_name(request):
+    if request.method == 'GET':
+        id_p = request.GET.get('proj_id')
+        new_site_name = request.GET.get('new_site_name')
+        if id_p:
+            p = Project.objects.get(id=id_p)
+            p.project_name = new_site_name
+            p.save()
+            return HttpResponse(json.dumps({'newName': new_site_name}), content_type="application/json")

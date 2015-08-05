@@ -5,7 +5,19 @@
 {% block content %}
     <link rel="stylesheet" href={% static "css/jquery-impromptu.css"%}>
     <div class="row">
-        <h2 class="col-md-7" id_project = '{{ project.id }}'>{% trans "Site name:"%} {{ project.project_name }}</h2>
+        <div class="col-md-7">
+            <h2 id_project = '{{ project.id }}'>
+                {% trans "Site name:"%}
+                <span id="change_site_name_block">
+                    <span id="name_not_edit_span" name_project = '{{ project.project_name }}'>
+                        {{ project.project_name }}
+                        <button type="button" class="btn btn-link" id="edit_site_name_button">
+                            {% trans "edit" %}
+                        </button>
+                    </span>
+                </span>
+            </h2>
+        </div>
         <form class="col-md-5" action="" method="post">
                 {% csrf_token %}
                 <div  style="visibility: hidden;width: 0px;height: 0px">{{ page_form.project }}</div>
@@ -100,4 +112,5 @@
 <script src={% static "js/jquery-impromptu.js" %}></script>
 <script src={% static "js/change_theme.js" %}></script>
 <script src={% static "js/change_menu.js" %}></script>
+<script src={% static "js/change_site_name.js" %}></script>
 {% endblock %}
