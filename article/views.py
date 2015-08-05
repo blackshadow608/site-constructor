@@ -1,4 +1,7 @@
 import json
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -11,9 +14,15 @@ from django.views.generic import FormView, TemplateView
 from registration.backends.default.views import RegistrationView
 from django.shortcuts import render_to_response
 from django.contrib import auth
-from article.forms import CreateProjectForm, CreatePageForm
-from article.models import Project, PageProject, Raitng, Like
+from article.forms import CreateProjectForm, CreatePageForm, GalleryImageForm
+from article.models import Project, PageProject, Raitng, Like, Gallery
 from django.template import RequestContext
+
+cloudinary.config(
+    cloud_name="dowzzsdtc",
+    api_key="588197345913843",
+    api_secret='MQgCAff-steIYQ3cKyb8L3m7_mM'
+)
 
 
 def view_site(request, id_project):
@@ -53,7 +62,7 @@ def rating(request):
 
 def likes(request):
     data = {'response': 'hui'}
-    if request.method == 'GET' :
+    if request.method == 'GET':
         id_rating = request.GET.get('id_rating')
         if id_rating and request.user.is_authenticated():
             like = Like.objects.filter(raiting=Raitng.objects.get(id=id_rating), user=request.user)
@@ -67,6 +76,7 @@ def likes(request):
             data['response'] = num_of_likes(id_rating_get_likes)
     return HttpResponse(json.dumps(data), content_type="application/json")
 
+
 def num_of_likes(id_rating):
     likes = Like.objects.filter(raiting=Raitng.objects.get(id=id_rating))
     return len(likes)
@@ -74,7 +84,12 @@ def num_of_likes(id_rating):
 
 def main(request):
     output = Project.objects.values('project_name', 'project_user', 'id')
-    return render_to_response('base.html', {'user': request.user, "output": output}, RequestContext(request))
+    form = GalleryImageForm(request.POST, request.FILES)
+    if form.is_valid():
+        form.save()
+    return render_to_response('base.html', {'images': Gallery.objects.filter(user=request.user), 'form_img': form,
+                                            'user': request.user, "output": output, },
+                              RequestContext(request))
 
 
 def logout(request):
@@ -148,7 +163,8 @@ def edit_view(request, ids):
     return render_to_response('editor.html', {'user': request.user,
                                               'project': current_project,
                                               'pages': pages,
-                                              'page_form': page_form}, RequestContext(request))
+                                              'page_form': page_form,
+                                              'images': Gallery.objects.filter(user=request.user)}, RequestContext(request))
 
 
 def save_pages(request):
@@ -183,6 +199,7 @@ def search(request):
     else:
         return render_to_response('search_form.html', {'user': request.user})
 
+
 def theme(request):
     if request.method == 'GET':
         data = {'page': 'hui'}
@@ -192,9 +209,11 @@ def theme(request):
             p = Project.objects.get(id=id_p)
             if value == 'True':
                 p.project_is_dark = True
-            else: p.project_is_dark = False
+            else:
+                p.project_is_dark = False
             p.save()
             return HttpResponse(json.dumps(data), content_type="application/json")
+
 
 def change_menu(request):
     if request.method == 'GET':
