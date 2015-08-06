@@ -2,28 +2,17 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-<<<<<<< HEAD
-        <item url="file://$PROJECT_DIR$/static/js/change_site_name.js" />
-=======
-<<<<<<< HEAD
-        <item url="file://$PROJECT_DIR$/static/js/click_img.js" />
-      </sourceFilesUrls>
-    </properties>
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/static/js/click_img.js" />
-=======
->>>>>>> b95c41336a350b7b30bbe3888fb20b844ee8a1e4
-        <item url="file://$PROJECT_DIR$/static/js/select_page.js" />
+        <item url="file://$PROJECT_DIR$/static/js/remove_page.js" />
         <item url="file://$PROJECT_DIR$/static/js/change_menu.js" />
-        <item url="file://$PROJECT_DIR$/static/js/change_theme.js" />
+        <item url="file://$PROJECT_DIR$/static/js/delete_proj.js" />
+        <item url="file://$PROJECT_DIR$/static/js/change_language.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/static/js/change_site_name.js" />
-      <root url="file://$PROJECT_DIR$/static/js/select_page.js" />
+      <root url="file://$PROJECT_DIR$/static/js/remove_page.js" />
       <root url="file://$PROJECT_DIR$/static/js/change_menu.js" />
-      <root url="file://$PROJECT_DIR$/static/js/change_theme.js" />
->>>>>>> 5ad7360b1911d85598f0785b177ea7e086901ea2
+      <root url="file://$PROJECT_DIR$/static/js/delete_proj.js" />
+      <root url="file://$PROJECT_DIR$/static/js/change_language.js" />
     </CLASSES>
     <SOURCES />
   </library>

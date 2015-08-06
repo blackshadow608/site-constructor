@@ -9,4 +9,4 @@ $ ->
       success:(data) ->
         parent.remove()
       error: ->
-        alert 'gyjudvasf'
+        alert 'in delete_proj'

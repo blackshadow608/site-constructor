@@ -2,11 +2,13 @@ $ ->
   $('input.view_menu[type=radio]').click ->
     id= $('h2').attr("id_project")
     if $(this).hasClass('horizontal')
-      setHorizontalMenu(id)
-      request(id,'True')
+      if not $('div').is('.page_group_horizontal')
+        setHorizontalMenu(id)
+        request(id,'True')
     else
-      setVerticalMenu(id)
-      request(id,'False')
+      if not $('div').is('.page_group_vertical')
+        setVerticalMenu(id)
+        request(id,'False')
 
 request = (id, is_horizontal)->
   $.ajax
@@ -19,24 +21,20 @@ request = (id, is_horizontal)->
     error: ->
       alert 'gyjudvasf'
 
-currentPage = "-1"
+currentPage = ""
 
 setHorizontalMenu = (id)->
-  local_curr_page = currentPage
   currentPage = $('.curr_page').attr('id_page')
   $('.page_group_vertical').remove()
   $('.work_space').prepend('<div id="page_group" class="btn-group page_group_horizontal" role="group"></div>')
-  if local_curr_page.toString() == "-1"
-    local_curr_page = currentPage
-  setAllPages(id, '.page_group_horizontal', local_curr_page)
+  setAllPages(id, '.page_group_horizontal', currentPage)
 
 setVerticalMenu = (id)->
-  local_curr_page = currentPage
   currentPage = $('.curr_page').attr('id_page')
   $('.page_group_horizontal').remove()
   $('.work_space').append('<div id="page_group" class="col-md-2 btn-group-vertical page_group_vertical" role="group">
         </div>')
-  setAllPages(id, '.page_group_vertical', local_curr_page)
+  setAllPages(id, '.page_group_vertical', currentPage)
 
 setAllPages = (id, oriented, local_page) ->
   $.ajax
@@ -46,7 +44,7 @@ setAllPages = (id, oriented, local_page) ->
       'proj_id': id
     success:(data) ->
       for page in data.pages
-        $(oriented).append('<button class="btn btn-primary page-select" id_page=""></button>')
+        $(oriented).append('<button class="btn btn-primary page-select" id_page=""><span class="btn btn-xs glyphicon glyphicon-remove navbar-right"></span></button>')
         if page.pageID.toString() == local_page.toString()
           $('[id_page = ""]').addClass('curr_page')
         $('[id_page = ""]').append page.pageName

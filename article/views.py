@@ -248,3 +248,11 @@ def change_site_name(request):
             p.project_name = new_site_name
             p.save()
             return HttpResponse(json.dumps({'newName': new_site_name}), content_type="application/json")
+
+def remove_page(request):
+    if request.method == 'GET':
+        idr = request.GET.get('page_id')
+        if idr:
+            p = PageProject.objects.get(id=idr)
+            p.delete()
+            return HttpResponse(json.dumps({}), content_type="application/json")
