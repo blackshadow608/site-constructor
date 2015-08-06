@@ -51,6 +51,19 @@
                     <h1 style="opacity: 0.4; text-align: center;">{%trans "Create page"%}</h1>
                 </div>
             {% endif %}
+        <div style="text-align: center" class="img-click"></div>
+        <div id="" >
+                <div class="custom-container mouseWheelButtons">
+                    <div class="carousel">
+                        <ul>
+                            {% for image in images %}
+                                <li ><img class="draggable-img" src="{{ image.image.build_url }}" width=100 height=100 ></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
         </div>
         <div class="col-md-8">
             <div class="row">
@@ -108,38 +121,6 @@
             </div>
         </div>
     </div>
-    <div id="jcl-demo" >
-        <div class="custom-container mouseWheelButtons">
-            <a href="#" class="prev">&lsaquo;</a>
-            <div class="carousel">
-                <ul>
-                    {% for image in images %}
-                        <li class="draggable-img"><img src="{{ image.image.build_url }}" width=300 height=300 ></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <a href="#" class="next">&rsaquo;</a>
-            <div class="clear"></div>
-        </div>
-    </div>
-
-    {% for image in images %}
-        <img src="{{ image.image.build_url }}" class="draggable-img" width=200 height=150 >
-    {% endfor %}
-
-
-{#    <div id="liquid1" class="liquid" style="width:500px;">#}
-{#	<span class="previous"></span>#}
-{#	<div class="wrapper">#}
-{#		<ul>#}
-{#            {% for image in images %}#}
-{#			<li><img src="{{ image.image.build_url }}" width="100" height="100" alt="image 01" border="2" /></li>#}
-{#            {% endfor %}#}
-{##}
-{#		</ul>#}
-{#	</div>#}
-{#	<span class="next"></span>#}
-{#</div>#}
 <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
     <script src={% static "js/sort.js" %}></script>
@@ -148,6 +129,8 @@
     <script src={% static "js/jquery.autogrowtextarea.js" %}></script>
     <script src={% static "js/jquery-impromptu.js" %}></script>
     <script src={% static "js/change_theme.js" %}></script>
+    <script src={% static "js/img-click.js" %}></script>
+
 
     <script src={% static "js/change_menu.js" %}></script>
     <script src={% static "js/change_site_name.js" %}></script>
@@ -164,7 +147,7 @@
             btnNext: ".mouseWheelButtons .next",
             btnPrev: ".mouseWheelButtons .prev",
             mouseWheel: true,
-            visible: 5
+            visible: 4
         });
     </script>
     <script type="text/javascript">
@@ -175,13 +158,6 @@
         }, 100);
         });
     </script>
-    <script type="text/javascript" src={% static 'js/jquery.liquidcarousel.js'%}></script>
-    <script type="text/javascript">
-		$(document).ready(function() {
-			$('#liquid1').liquidcarousel({height:129, duration:100, hidearrows:false});
-		});
-	</script>
 
-    <script type="text/javascript" src={% static 'js/jquery.liquidcarousel.js'%}></script>
 {% endblock %}
 
