@@ -84,10 +84,7 @@ def num_of_likes(id_rating):
 
 def main(request):
     output = Project.objects.values('project_name', 'project_user', 'id')
-    form = GalleryImageForm(request.POST, request.FILES)
-    if form.is_valid():
-        form.save()
-    return render_to_response('base.html', {'images': Gallery.objects.filter(user=request.user), 'form_img': form,
+    return render_to_response('base.html', {'images': Gallery.objects.filter(user=request.user),
                                             'user': request.user, "output": output, },
                               RequestContext(request))
 
@@ -104,6 +101,11 @@ def valid_form(form, request):
     form = CreateProjectForm()
 
 
+def add_images(request, form):
+    if form.is_valid():
+        Gallery.objects.create(user=request.user, image=form.cleaned_data['image'])
+
+
 @login_required(login_url="/")
 def user_projects(request):
     if request.method == 'GET':
@@ -111,12 +113,15 @@ def user_projects(request):
         if idr:
             p = Project.objects.filter(id=idr)
             p.delete()
-
     form = CreateProjectForm(request.POST)
+    form_image = GalleryImageForm(request.POST, request.FILES)
+    add_images(request, form_image)
     valid_form(form, request)
     projects = Project.objects.filter(project_user=request.user)
     return render_to_response("user_projects.html", {'user': request.user,
                                                      'projects': projects,
+                                                     'images': Gallery.objects.filter(user=request.user),
+                                                     'img_form': form_image,
                                                      'form': form}, RequestContext(request))
 
 
@@ -164,7 +169,8 @@ def edit_view(request, ids):
                                               'project': current_project,
                                               'pages': pages,
                                               'page_form': page_form,
-                                              'images': Gallery.objects.filter(user=request.user)}, RequestContext(request))
+                                              'images': Gallery.objects.filter(user=request.user)},
+                              RequestContext(request))
 
 
 def save_pages(request):
@@ -229,6 +235,7 @@ def change_menu(request):
             p.save()
             return HttpResponse(json.dumps(data), content_type="application/json")
 
+
 def get_all_pages(request):
     if request.method == 'GET':
         id_p = request.GET.get('proj_id')
@@ -238,6 +245,7 @@ def get_all_pages(request):
             for page in pages:
                 all_page.append({'pageID': page.id, 'pageName': page.page_name})
             return HttpResponse(json.dumps({'pages': all_page}), content_type="application/json")
+
 
 def change_site_name(request):
     if request.method == 'GET':

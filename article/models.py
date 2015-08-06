@@ -28,5 +28,5 @@ class Like(models.Model):
 
 
 class Gallery(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,default='')
     image = CloudinaryField('image')
