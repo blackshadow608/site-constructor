@@ -68,16 +68,38 @@
     </ul>
 </nav>
 
-<table class="table">
-    {% for obj in output %}
-        <tr>
-            <td>
-                <a href="/view_mode/{{ obj.id }}"> {{ obj.project_name}}</a>
-            </td>
-        </tr>
-    {% endfor %}
-    {{ form.error }}
-</table>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            {% if last_sites %}
+                <h2> {% trans "5 last sites:" %}</h2>
+            {% endif %}
+            {% for site in last_sites %}
+            <tr>
+                <td>
+                    <a href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {{ form.error }}
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table col-md-6">
+            {% if last_sites %}
+                <h2> {% trans "top 5 sites:" %}</h2>
+            {% endif %}
+            {% for site in top_sites %}
+            <tr>
+                <td>
+                    <a href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {{ form.error }}
+        </table>
+    </div>
+</div>
 {% block login %}
 {% endblock %}
 

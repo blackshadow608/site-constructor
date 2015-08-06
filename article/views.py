@@ -83,9 +83,33 @@ def num_of_likes(id_rating):
 
 
 def main(request):
-    output = Project.objects.values('project_name', 'project_user', 'id')
-    return render_to_response('base.html', {'images': Gallery.objects.filter(user=request.user),
-                                            'user': request.user, "output": output, },
+    total = Project.objects.filter().count()
+    if total > 5:
+        last_sites = Project.objects.filter()[total-5:total]
+    else:
+        last_sites = Project.objects.filter()[0:5]
+
+    top_rating = []
+    all_ratings = Raitng.objects.filter()
+    while len(top_rating) < 5:
+        max = -1
+        candidate = None
+        for current_raiting in all_ratings:
+            num = num_of_likes(current_raiting.id)
+            if num >= max and not current_raiting in top_rating:
+                max = num
+                candidate = current_raiting
+            if candidate is None:
+                break
+        if candidate is None:
+            break
+        top_rating.append(candidate)
+    top_sites = []
+    for rait in top_rating:
+        top_sites.append(rait.raiting_project)
+
+    return render_to_response('base.html', {'user': request.user, 'last_sites': last_sites,
+                                            'top_sites': top_sites},
                               RequestContext(request))
 
 
