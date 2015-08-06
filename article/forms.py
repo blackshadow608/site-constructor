@@ -20,6 +20,6 @@ class CreatePageForm(ModelForm):
 class GalleryImageForm(ModelForm):
     class Meta:
         model = Gallery
-        fields = ['user']
+        fields = ['user','image']
 
-    image = CloudinaryJsFileField(attrs={'multiple': 1})
+    # image = CloudinaryJsFileField(attrs={'multiple': 1})

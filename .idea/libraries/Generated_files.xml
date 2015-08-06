@@ -2,49 +2,11 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-<<<<<<< HEAD
-        <item url="file://$PROJECT_DIR$/static/js/remove_page.js" />
-        <item url="file://$PROJECT_DIR$/static/js/change_menu.js" />
-        <item url="file://$PROJECT_DIR$/static/js/delete_proj.js" />
-        <item url="file://$PROJECT_DIR$/static/js/change_language.js" />
-      </sourceFilesUrls>
-    </properties>
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/static/js/remove_page.js" />
-      <root url="file://$PROJECT_DIR$/static/js/change_menu.js" />
-      <root url="file://$PROJECT_DIR$/static/js/delete_proj.js" />
-      <root url="file://$PROJECT_DIR$/static/js/change_language.js" />
-=======
-<<<<<<< HEAD
-        <item url="file://$PROJECT_DIR$/static/js/fotorama-gallery.js" />
         <item url="file://$PROJECT_DIR$/static/js/view_mode.js" />
-=======
-<<<<<<< HEAD
-        <item url="file://$PROJECT_DIR$/static/js/change_site_name.js" />
-=======
-<<<<<<< HEAD
-        <item url="file://$PROJECT_DIR$/static/js/click_img.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/static/js/click_img.js" />
-=======
->>>>>>> b95c41336a350b7b30bbe3888fb20b844ee8a1e4
->>>>>>> 46dae0ef8f059eed86c982070db820f4a2eb4184
-        <item url="file://$PROJECT_DIR$/static/js/select_page.js" />
-      </sourceFilesUrls>
-    </properties>
-    <CLASSES>
-<<<<<<< HEAD
-      <root url="file://$PROJECT_DIR$/static/js/click_img.js" />
-      <root url="file://$PROJECT_DIR$/static/js/click_img.js" />
-      <root url="file://$PROJECT_DIR$/static/js/fotorama-gallery.js" />
       <root url="file://$PROJECT_DIR$/static/js/view_mode.js" />
-=======
-      <root url="file://$PROJECT_DIR$/static/js/change_site_name.js" />
->>>>>>> 46dae0ef8f059eed86c982070db820f4a2eb4184
-      <root url="file://$PROJECT_DIR$/static/js/select_page.js" />
->>>>>>> b257f1371c0087a49a9c3d022addb2701d59e915
     </CLASSES>
     <SOURCES />
   </library>
