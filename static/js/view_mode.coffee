@@ -34,3 +34,16 @@ load_page = ->
               'id_rating_get_likes':$(val).parent().parent().attr('id_rating')
             success: (data) ->
               $(val).parent().children('text').text(data.response)
+        fotoramaGal()
+fotoramaGal = ->
+  $.each $('.sortable-img'), (index, val) ->
+    src_arr=[]
+    $.each $(this).children(), (num,valli) ->
+      src_arr.push($(valli).attr('src'))
+    $(val).replaceWith('<div class="fotorama" data-allowfullscreen="true"  data-width="700"  data-ratio="16/9">'+
+      fotorama_img(src_arr)+ '<div>')
+    $('.fotorama').fotorama()
+
+fotorama_img =(arr) ->
+  content = for item in arr
+    '<img src="'+item+'">'

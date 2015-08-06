@@ -73,7 +73,8 @@
       },
       async: false,
       success: function(data) {
-        return $('.for-padding').append(data.page);
+        $('.for-padding').append(data.page);
+        return sortab();
       }
     });
   };
