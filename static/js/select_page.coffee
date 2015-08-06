@@ -40,6 +40,7 @@ $ ->
     $(this).addClass('curr_page')
     load_page()
 
+
   $('#droppable').on('mousemove', ->
     )
 
@@ -54,5 +55,5 @@ load_page = ->
     async:false
     success:(data)->
       $('.for-padding').append(data.page)
-
+      sortab()
 
