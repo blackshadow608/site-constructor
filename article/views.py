@@ -175,7 +175,7 @@ def edit_view(request, ids):
     if len(ids) < 1:
         return redirect("/my_projects/")
     current_project = Project.objects.get(id=ids)
-    if current_project.project_user != request.user:
+    if current_project.project_user != request.user and not request.user.is_staff:
         return redirect("/my_projects")
 
     page_form = CreatePageForm(request.POST)
