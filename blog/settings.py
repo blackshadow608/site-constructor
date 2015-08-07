@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'article',
     'registration',
     'cloudinary',
+    'watson',
 )
 #
 

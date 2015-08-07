@@ -14,6 +14,8 @@ from django.views.generic import FormView, TemplateView
 from registration.backends.default.views import RegistrationView
 from django.shortcuts import render_to_response
 from django.contrib import auth
+import watson
+from watson.models import SearchEntry
 from article.forms import CreateProjectForm, CreatePageForm, GalleryImageForm
 from article.models import Project, PageProject, Raitng, Like, Gallery
 from django.template import RequestContext
@@ -83,6 +85,9 @@ def num_of_likes(id_rating):
 
 
 def main(request):
+    # search_results = watson.search("rq")
+    # for result in search_results:
+    #     print(result.object.page_name)
     total = Project.objects.filter().count()
     if total > 5:
         last_sites = Project.objects.filter()[total-5:total]

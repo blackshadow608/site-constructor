@@ -16,21 +16,21 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Gallery',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
-                ('image', cloudinary.models.CloudinaryField(max_length=255, verbose_name='image')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('image', cloudinary.models.CloudinaryField(verbose_name='image', max_length=255)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, default='')),
             ],
         ),
         migrations.CreateModel(
             name='Like',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
             ],
         ),
         migrations.CreateModel(
             name='PageProject',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
                 ('page_name', models.CharField(max_length=100)),
                 ('text', models.TextField(blank=True)),
             ],
@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Project',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
                 ('project_name', models.CharField(max_length=100)),
                 ('project_is_dark', models.BooleanField(default=False)),
                 ('project_menu_is_horizontal', models.BooleanField(default=False)),
@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Raitng',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
                 ('raiting_project', models.ForeignKey(to='article.Project')),
             ],
         ),
