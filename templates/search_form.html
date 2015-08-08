@@ -24,32 +24,32 @@
         {% for project in projects %}
             <li>
             <div class="btn btn-default btn-lg" style="height: 100px; width: 100px">
-                <a href="/" class="link-from-search">{{ project.project_name }}</a>
+                <a href="/view_mode/{{ project.id }}" class="link-from-search">{{ project.project_name }}</a>
             </div>
             </li>
         {% endfor %}
     {% endif %}
-    {% if pagesProject %}
-        <p class="lead">Pages:</p>
-        {% for page in pagesProject %}
-            <li>
-            <div class="btn btn-default btn-lg">
-                <a href="/" class="link-from-search">{{ page.page_name }}</a>
-            </div>
-            </li>
-        {% endfor %}
-    {% endif %}
-    {% if textOfPages %}
-        <p class="lead">Text:</p>
-        {% for text in textOfPages %}
-            <li>
-            <div class="btn btn-default btn-lg">
-                <a href="/" class="link-from-search">{{ text.text }}</a>
-            </div>
-            </li>
-        {% endfor %}
-    {% endif %}
-    {% if not users and not projects and not pagesProject and not textOfPages %}
+{#    {% if pagesProject %}#}
+{#        <p class="lead">Pages:</p>#}
+{#        {% for page in pagesProject %}#}
+{#            <li>#}
+{#            <div class="btn btn-default btn-lg">#}
+{#                <a href="/" class="link-from-search">{{ page.page_name }}</a>#}
+{#            </div>#}
+{#            </li>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{#    {% if textOfPages %}#}
+{#        <p class="lead">Text:</p>#}
+{#        {% for text in textOfPages %}#}
+{#            <li>#}
+{#            <div class="btn btn-default btn-lg">#}
+{#                <a href="/" class="link-from-search">{{ text.text }}</a>#}
+{#            </div>#}
+{#            </li>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+    {% if not users and not projects %}
        <p class="lead">No results</p>
     {% endif %}
     </ul>

@@ -26,7 +26,6 @@ cloudinary.config(
     api_secret='MQgCAff-steIYQ3cKyb8L3m7_mM'
 )
 
-
 def view_site(request, id_project):
     if request.method == 'POST':
         data = {'page': 'hui'}
@@ -85,9 +84,6 @@ def num_of_likes(id_rating):
 
 
 def main(request):
-    # search_results = watson.search("rq")
-    # for result in search_results:
-    #     print(result.object.page_name)
     total = Project.objects.filter().count()
     if total > 5:
         last_sites = Project.objects.filter()[total-5:total]
@@ -127,6 +123,7 @@ def valid_form(form, request):
     if form.is_valid():
         Project.objects.create(project_name=form.cleaned_data['project_name'],
                                project_user=request.user)
+        watson.update_index()
     form = CreateProjectForm()
 
 
@@ -214,6 +211,7 @@ def save_pages(request):
 def requests_editor(request, form, current_project):
     if form.is_valid():
         PageProject.objects.create(project=current_project, page_name=form.cleaned_data['page_name'])
+        #watson.update_index()
     form = CreateProjectForm()
 
 
@@ -224,15 +222,33 @@ def search_form(request):
 def search(request):
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
-        users = User.objects.filter(username__icontains=q)
-        projects = Project.objects.filter(project_name__icontains=q)
-        pagesProject = PageProject.objects.filter(page_name__icontains=q)
-        textOfPages = PageProject.objects.filter(text__icontains=q)
+        print(q)
+        search_results = watson.search(str(q), models=(User,))
+        projects = []
+        users = []
+        print(1)
+        for result in search_results:
+            print(result.object)
+            users.append(result.object)
+
+        print(2)
+        search_results = watson.search(q, models=(Project,))
+        for result in search_results:
+            print(result.object)
+            projects.append(result.object)
+
+        print(3)
+        search_results = watson.search(q, models=(PageProject,))
+        for result in search_results:
+            print(result.object)
+            if result.object.project not in projects:
+                projects.append(result.object.project)
+
         return render_to_response('search_form.html',
-                                  {'users': users, 'projects': projects, 'pagesProject': pagesProject,
-                                   'textOfPages': textOfPages, 'query': q, 'user': request.user})
+                                  {'query': q, 'user': request.user, 'users': users, 'projects': projects},
+                                  RequestContext(request))
     else:
-        return render_to_response('search_form.html', {'user': request.user})
+        return render_to_response('search_form.html', {'user': request.user}, RequestContext(request))
 
 
 def theme(request):

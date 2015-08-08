@@ -19,9 +19,6 @@
           }
           $('.page-select:first').addClass('curr_page');
           return load_page();
-        },
-        error: function() {
-          return alert('in remove page');
         }
       });
     });

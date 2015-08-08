@@ -11,8 +11,6 @@ $ ->
           location.reload()
         $('.page-select:first').addClass('curr_page')
         load_page()
-      error: ->
-        alert 'in remove page'
 
 load_page = ->
   id = $('.curr_page').attr("id_page")
