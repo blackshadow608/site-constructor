@@ -17,39 +17,39 @@
     <script src={% static "js/script/jquery.jcarousellite.js" %}></script>
 </head>
 <body>
-<div class="col-md-10 center form-group col-md-offset-1">
-<nav class="navbar navbar-default mynavbar">
+
+<nav class="navbar navbar-default ">
   <ul class="nav navbar-right">
       <li>
           {% if user.is_authenticated %}
-                <li><a href="/logout/" class="link-type"> {% trans "Logout"%} </a></li>
+                <li><a href="/logout/" class="link-type-dark"> {% trans "Logout"%} </a></li>
           {% else %}
-                <li><a href="/login/" class="link-type"> {% trans "Login" %} </a></li>
+                <li><a href="/login/" class="link-type-dark"> {% trans "Login" %} </a></li>
           {% endif %}
       </li>
   </ul>
     <ul class="nav navbar-right">
         {% if user.is_staff %}
             <li>
-                <a href="/admin/" class="link-type">{%trans "Administration"%}</a>
+                <a href="/admin/" class="link-type-dark">{%trans "Administration"%}</a>
             </li>
         {% endif %}
     </ul>
     <ul class="nav navbar-right">
         {% if user.username %}
             <li>
-                <a href="/my_projects/" class="link-type">{% trans "My Projects"%}</a>
+                <a href="/my_projects/" class="link-type-dark">{% trans "My Projects"%}</a>
             </li>
         {% endif %}
     </ul>
     <ul class="nav navbar-right">
             <li>
-                <a href="/" class="link-type">{%trans "Home"%}</a>
+                <a href="/" class="link-type-dark">{%trans "Home"%}</a>
             </li>
     </ul>
     <ul class="nav navbar-right">
             <li>
-                <a href="/search-form/" class="link-type">{%trans "Search"%}</a>
+                <a href="/search-form/" class="link-type-dark">{%trans "Search"%}</a>
             </li>
     </ul>
     <ul>
@@ -67,6 +67,7 @@
             </form>
     </ul>
 </nav>
+<div class="col-md-10 center form-group col-md-offset-1">
 
 <div class="row">
     <div class="col-md-6">

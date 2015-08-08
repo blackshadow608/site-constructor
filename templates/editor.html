@@ -51,8 +51,8 @@
                     <h1 style="opacity: 0.4; text-align: center;">{%trans "Create page"%}</h1>
                 </div>
             {% endif %}
-        <div style="text-align: center" class="img-click"></div>
-        <div id="" >
+            <div style="text-align: center" class="img-click"></div>
+            <div id="" >
                 <div class="custom-container mouseWheelButtons">
                     <div class="carousel">
                         <ul>
@@ -91,12 +91,12 @@
             </div>
             <div class="row work_space" style="padding-top: 17px;">
                 {%if project.project_menu_is_horizontal %}
-                    <div id="page_group" class="btn-group page_group_horizontal" role="group">
+                    <div class="col-md-12 btn-group" role="group" >
                         {% for page in pages%}
-                            <button class="btn btn-primary page-select" id_page="{{ page.id }}">
-                                {{ page.page_name }}
-                                <span class="btn btn-xs glyphicon glyphicon-remove navbar-right"></span>
-                            </button>
+                            <span class="btn  page-select" id_page="{{ page.id }}">
+                                {{ page.page_name }}<span class="btn btn-xs glyphicon glyphicon-remove navbar-right"></span>
+
+                            </span>
                         {% endfor %}
                     </div>
                 {% endif %}
@@ -117,12 +117,23 @@
                             </button>
                         {% endfor %}
                     </div>
+                    {#                    <div class="col-md-2 " style="overflow: hidden">#}
+                    {#                        <table class="table" >#}
+                    {#                            {% for page in pages%}#}
+                    {#                                <tr>#}
+                    {#                                    <td  style="cursor: pointer;" class="page-select" id_page="{{ page.id }}">#}
+                    {#                                        <div class="col-md-9" style="word-wrap: break-word" > {{ page.page_name }}</div>#}
+                    {#                                    </td>#}
+                    {#                                </tr>#}
+                    {#                            {% endfor %}#}
+                    {#                        </table>#}
+                    {#                    </div>#}
                 {% endif %}
             </div>
         </div>
     </div>
-<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
     <script src={% static "js/sort.js" %}></script>
     <script src={% static "js/dragndrop.js" %}></script>
     <script src={% static "js/save-markdown.js" %}></script>
@@ -151,11 +162,11 @@
         });
     </script>
     <script type="text/javascript">
-        $('form').submit(function(e) {
-        this.submit();
-        setTimeout(function() {
-            window.location.href = '/editor/'+ $('h2').attr("id_project");
-        }, 100);
+        $('').submit(function(e) {
+            this.submit();
+            setTimeout(function() {
+                window.location.href = '/editor/'+ $('h2').attr("id_project");
+            }, 100);
         });
     </script>
 

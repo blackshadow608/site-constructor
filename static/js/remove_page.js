@@ -7,6 +7,7 @@
       var id;
       id = $(this).parent().attr('id_page');
       $(this).parent().remove();
+      $('.for-padding').empty();
       load_page(id);
       $.each($('.for-padding').children('.draggable-raiting'), function(index, val) {
         return $.ajax({
@@ -17,6 +18,8 @@
           }
         });
       });
+      $('.for-padding').empty();
+      load_page($('.curr_page').attr("id_page"));
       return $.ajax({
         url: "/remove_page/",
         type: "GET",
@@ -24,7 +27,7 @@
           'page_id': id
         },
         success: function(data) {
-          if (!$('button').is('.page-select')) {
+          if (!$('.btn').is('.page-select')) {
             location.reload();
           }
           $('.page-select:first').addClass('curr_page');
