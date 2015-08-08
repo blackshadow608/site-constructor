@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "disable_submit.js",
+  "sourceRoot": "",
+  "sources": [
+    "disable_submit.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,EAAA,CAAA,CAAE,SAAA,GAAA;WACA,CAAA,CAAE,MAAF,CAAS,CAAC,MAAV,CAAiB,SAAA,GAAA;aACf,CAAA,CAAE,iBAAF,EAAqB,CAAA,CAAE,IAAF,CAArB,CAA6B,CAAC,IAA9B,CAAmC,UAAnC,EAA+C,UAA/C,EADe;IAAA,CAAjB,EADA;EAAA,CAAF,CAAA,CAAA;AAAA"
+}

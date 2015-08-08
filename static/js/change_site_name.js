@@ -6,7 +6,7 @@
     $('body').on('click', '#edit_site_name_button', function() {
       old_site_name = $('#name_not_edit_span').attr("name_project");
       $('#name_not_edit_span').remove();
-      $('#change_site_name_block').append('<span id="name_edit_span"> <input id="input_site_name" type="text" size=10 value=""> <button class="btn btn-xs" id="change_site_name_button">OK</button> </span>');
+      $('#change_site_name_block').append('<span id="name_edit_span"> <input id="input_site_name" type="text" maxlength="30" size=10 value=""> <button class="btn btn-xs" id="change_site_name_button">OK</button> </span>');
       return $('#input_site_name').val(old_site_name);
     });
     $('body').on('click', '#change_site_name_button', function() {
@@ -27,7 +27,7 @@
           'new_site_name': new_site_name
         },
         success: function(data) {
-          return end_change_name(data.newName);
+          return end_change_name(data.newName.replace(/\</gi, '&lt;'));
         },
         error: function() {
           return alert('in change site name');

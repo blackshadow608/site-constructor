@@ -1,7 +1,13 @@
 $ ->
   $('body').on 'click', '.glyphicon-remove', ->
     id = $(this).parent().attr('id_page')
-    $(this).parent('button').remove()
+    $(this).parent().remove()
+    load_page(id)
+    $.each $('.for-padding').children('.draggable-raiting'), (index, val) ->
+      $.ajax
+        url: "/rating/",
+        type:"GET",
+        data:{"id_delete_rating":$(val).attr('id_rating')},
     $.ajax
       url: "/remove_page/"
       type: "GET"
@@ -10,12 +16,12 @@ $ ->
         if not $('button').is('.page-select')
           location.reload()
         $('.page-select:first').addClass('curr_page')
-        load_page()
+        id = $('.curr_page').attr("id_page")
+        load_page(id)
       error: ->
         alert 'in remove page'
 
-load_page = ->
-  id = $('.curr_page').attr("id_page")
+load_page =(id) ->
   $.ajax
     url:"/editor/"+$('h2').attr("id_project")+'/'
     type:"POST"

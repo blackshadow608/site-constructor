@@ -31,7 +31,7 @@
             <h5 class="col-md-3" style="padding-top: 5px; " >{% trans "Author:"%} {{project.project_user.username }}</h5>
         </li>
         <li>
-            <h2 class="col-md-1" style="margin-top: 5px;">{{project.project_name}}</h2>
+            <h2 class="col-md-5" style="margin-top: 5px;">{{project.project_name}}</h2>
         </li>
 
     </ul>
@@ -50,9 +50,7 @@
             {% endfor %}
         </div>
 
-        <div class="col-md-6 col-md-offset-3  content"  style=" word-wrap: break-word; -moz-box-shadow: 0px 0px 20px #000000;
--webkit-box-shadow: 0px 0px 20px #000000;
-box-shadow: 0px 0px 20px #000000;">
+        <div class="col-md-6 col-md-offset-3  content">
         </div>
     {% else %}
         <div class="col-md-2  col-md-offset-1" style="overflow: hidden">
@@ -66,9 +64,7 @@ box-shadow: 0px 0px 20px #000000;">
                 {% endfor %}
             </table>
         </div>
-        <div class="col-md-6 content"  style=" word-wrap: break-word; -moz-box-shadow: 0px 0px 20px #000000;
--webkit-box-shadow: 0px 0px 20px #000000;
-box-shadow: 0px 0px 20px #000000;">
+        <div class="col-md-6 content">
         </div>
     {% endif %}
 </div>

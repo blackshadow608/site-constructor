@@ -292,6 +292,7 @@ def remove_page(request):
         idr = request.GET.get('page_id')
         if idr:
             p = PageProject.objects.get(id=idr)
-            p.delete()
+            if p.project.project_user == request.user:
+                p.delete()
             return HttpResponse(json.dumps({}), content_type="application/json")
 
