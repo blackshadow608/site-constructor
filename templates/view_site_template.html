@@ -27,15 +27,13 @@
         </li>
     </ul>
     <ul class="nav ">
-
         <li>
             <h5 class="col-md-3" style="padding-top: 5px; " >{% trans "Author:"%} {{project.project_user.username }}</h5>
         </li>
-
         <li>
-            <h2 class="col-md-5" style="margin-top: 5px;">{{project.project_name}}</h2>
-
+            <h2 class="col-md-1" style="margin-top: 5px;">{{project.project_name}}</h2>
         </li>
+
     </ul>
 </nav>
 <div >
@@ -44,16 +42,17 @@
 </div>
 <div class="row">
     {% if project.project_menu_is_horizontal %}
-        <div class="col-md-2 btn-group" role="group"
-             style="margin-left: 100px;  border: solid 0px black; width: 850px; height: auto">
+        <div class="col-md-6 col-md-offset-3 btn-group" role="group" >
             {% for page in pages%}
-                <button class="btn btn-primary page-select" id_page="{{ page.id }}">
+                <span class="btn  page-select" id_page="{{ page.id }}">
                     {{ page.page_name }}
-                </button>
+                </span>
             {% endfor %}
         </div>
-        <div class="col-md-8 col-md-offset-1  content"
-             style="margin-left: 114px;  height: auto; min-height: 450px" >
+
+        <div class="col-md-6 col-md-offset-3  content"  style=" word-wrap: break-word; -moz-box-shadow: 0px 0px 20px #000000;
+-webkit-box-shadow: 0px 0px 20px #000000;
+box-shadow: 0px 0px 20px #000000;">
         </div>
     {% else %}
         <div class="col-md-2  col-md-offset-1" style="overflow: hidden">
