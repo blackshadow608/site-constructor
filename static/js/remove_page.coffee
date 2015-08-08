@@ -2,18 +2,21 @@ $ ->
   $('body').on 'click', '.glyphicon-remove', ->
     id = $(this).parent().attr('id_page')
     $(this).parent().remove()
+    $('.for-padding').empty()
     load_page(id)
     $.each $('.for-padding').children('.draggable-raiting'), (index, val) ->
       $.ajax
-        url: "/rating/",
-        type:"GET",
-        data:{"id_delete_rating":$(val).attr('id_rating')},
+        url: "/rating/"
+        type:"GET"
+        data:{"id_delete_rating":$(val).attr('id_rating')}
+    $('.for-padding').empty()
+    load_page($('.curr_page').attr("id_page"))
     $.ajax
       url: "/remove_page/"
       type: "GET"
       data: {'page_id': id}
       success:(data) ->
-        if not $('button').is('.page-select')
+        if not $('.btn').is('.page-select')
           location.reload()
         $('.page-select:first').addClass('curr_page')
         id = $('.curr_page').attr("id_page")

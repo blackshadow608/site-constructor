@@ -26,7 +26,7 @@ currentPage = ""
 setHorizontalMenu = (id)->
   currentPage = $('.curr_page').attr('id_page')
   $('.page_group_vertical').remove()
-  $('.work_space').prepend('<div id="page_group" class="btn-group page_group_horizontal" role="group"></div>')
+  $('.work_space').prepend('<div class="col-md-12 btn-group" role="group" ></div>')
   setAllPages(id, '.page_group_horizontal', currentPage)
 
 setVerticalMenu = (id)->
