@@ -3,10 +3,14 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/static/js/img-click.js" />
+        <item url="file://$PROJECT_DIR$/static/js/view_mode.js" />
+        <item url="file://$PROJECT_DIR$/static/js/change_language.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/static/js/img-click.js" />
+      <root url="file://$PROJECT_DIR$/static/js/change_language.js" />
+      <root url="file://$PROJECT_DIR$/static/js/view_mode.js" />
     </CLASSES>
     <SOURCES />
   </library>

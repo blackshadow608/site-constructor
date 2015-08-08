@@ -140,8 +140,9 @@ def user_projects(request):
     if request.method == 'GET':
         idr = request.GET.get('proj_id')
         if idr:
-            p = Project.objects.filter(id=idr)
-            p.delete()
+            p = Project.objects.get(id=idr)
+            if p.project_user == request.user:
+                p.delete()
     form = CreateProjectForm(request.POST)
     form_image = GalleryImageForm(request.POST, request.FILES)
     add_images(request, form_image)

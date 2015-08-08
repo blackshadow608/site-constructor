@@ -12,19 +12,35 @@
     <script src={% static "js/jquery-ui-1.11.4/jquery-ui.min.js" %}></script>
     <script src={% static "bootstrap/js/dropdown.js" %}></script>
 </head>
-<body>
-<div class="row">
+<body class="{% if project.project_is_dark %}dark{% endif %}">
+<nav class="navbar navbar-default nav-view">
+    <ul class="nav navbar-right">
+        <li>
+            {% if user == project.project_user or user.is_staff  %}
+                <li><a href="/editor/{{ project.id }}" type="submit" class="link-type-dark">{%trans "editor"%} </a></li>
+            {% endif %}
+        </li>
+    </ul>
+    <ul class="nav navbar-right">
+        <li>
+        <li><a class="link-type-dark" href="/" type="submit" >{%trans "home"%}</a></li>
+        </li>
+    </ul>
+    <ul class="nav ">
+
+        <li>
+            <h5 class="col-md-3" style="padding-top: 5px; " >{% trans "Author:"%} {{project.project_user.username }}</h5>
+        </li>
+
+        <li>
+            <h2 class="col-md-5" style="margin-top: 5px;">{{project.project_name}}</h2>
+
+        </li>
+    </ul>
+</nav>
+<div >
     {% csrf_token %}
-    <h1 class="col-md-4 col-md-offset-1" >{% trans "Site name:"%} {{project.project_name}}</h1>
-    <h2 class="col-md-3" style="padding-top: 5px; " >{% trans "Author:"%} {{project.project_user.username }}</h2>
-    <div class="col-md-3" style="padding-top: 10px;">
-        {% if user == project.project_user or user.is_staff  %}
-        <a href="/editor/{{ project.id }}" type="submit" style="margin-top: 20px; margin-left: 20px;"
-           class="btn btn-primary navbar-right">{%trans "editor"%}</a>
-        {% endif %}
-         <a href="/" type="submit" style="margin-top: 20px;"
-               class="btn btn-primary navbar-right">{%trans "home"%}</a>
-    </div>
+
 </div>
 <div class="row">
     {% if project.project_menu_is_horizontal %}
@@ -36,18 +52,24 @@
                 </button>
             {% endfor %}
         </div>
-        <div class="col-md-8 col-md-offset-1 {% if project.project_is_dark %}dark{% endif %} content"
-             style="margin-left: 114px; border: solid 0px black; height: auto; min-height: 450px" >
+        <div class="col-md-8 col-md-offset-1  content"
+             style="margin-left: 114px;  height: auto; min-height: 450px" >
         </div>
     {% else %}
-        <div class="col-md-2 btn-group-vertical col-md-offset-1" role="group" style="width: 105px">
-            {% for page in pages%}
-                <button class="btn btn-primary page-select" id_page="{{ page.id }}">
-                    {{ page.page_name }}
-                </button>
-            {% endfor %}
+        <div class="col-md-2  col-md-offset-1" style="overflow: hidden">
+            <table class="table" >
+                {% for page in pages%}
+                    <tr>
+                        <td  style="cursor: pointer;" class="page-select" id_page="{{ page.id }}">
+                            <div class="col-md-9" style="word-wrap: break-word" > {{ page.page_name }}</div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
-        <div class="col-md-8 col-md-offset-1 {% if project.project_is_dark %}dark{% endif %} content" style="margin-left: 15px; border: solid 0px black; height: auto; min-height: 450px" >
+        <div class="col-md-6 content"  style=" word-wrap: break-word; -moz-box-shadow: 0px 0px 20px #000000;
+-webkit-box-shadow: 0px 0px 20px #000000;
+box-shadow: 0px 0px 20px #000000;">
         </div>
     {% endif %}
 </div>

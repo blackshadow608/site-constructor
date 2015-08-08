@@ -25,7 +25,7 @@
             <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">{% trans "Page name" %}</label>
             <div class="row">
                 <div class="col-md-9">
-                    <input class='form-control' style="margin-top: 1px" name="{{ page_form.page_name.name}}" />
+                    <input class='form-control' style="margin-top: 1px" name="{{ page_form.page_name.name}}" maxlength="30"/>
                 </div>
                 <div class="col-md-3">
                     <button type="submit" style="margin-right: 10px; margin-top: 1px;" class="btn btn-primary navbar-right">{% trans "create" %}</button>
