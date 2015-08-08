@@ -41,9 +41,6 @@ $ ->
     load_page()
 
 
-  $('#droppable').on('mousemove', ->
-    )
-
 load_page = ->
   id = $('.curr_page').attr("id_page")
   $.ajax

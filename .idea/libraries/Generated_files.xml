@@ -2,15 +2,11 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/static/js/change_site_name.js" />
         <item url="file://$PROJECT_DIR$/static/js/remove_page.js" />
-        <item url="file://$PROJECT_DIR$/static/js/change_language.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/static/js/change_site_name.js" />
       <root url="file://$PROJECT_DIR$/static/js/remove_page.js" />
-      <root url="file://$PROJECT_DIR$/static/js/change_language.js" />
     </CLASSES>
     <SOURCES />
   </library>

@@ -28,9 +28,21 @@ ul{
 }
 
 .curr_page{
-    background-color: #337ab7;
+    background-color: rgba(0, 0, 0, 0.16);
 }
 
+.nav-view{
+    color: #000;
+}
+
+.link-type-dark {
+    color: #000;
+}
+.content{
+     word-wrap: break-word; -moz-box-shadow: 0px 0px 20px #000000;
+-webkit-box-shadow: 0px 0px 20px #000000;
+box-shadow: 0px 0px 20px #000000;
+}
 
 .liquid .next {
     display: block;

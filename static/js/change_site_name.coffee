@@ -5,7 +5,7 @@ $ ->
     old_site_name = $('#name_not_edit_span').attr("name_project")
     $('#name_not_edit_span').remove()
     $('#change_site_name_block').append('<span id="name_edit_span">
-                          <input id="input_site_name" type="text" size=10 value="">
+                          <input id="input_site_name" type="text" maxlength="30" size=10 value="">
                           <button class="btn btn-xs" id="change_site_name_button">OK</button> </span>')
     $('#input_site_name').val(old_site_name)
 
@@ -16,6 +16,8 @@ $ ->
     new_site_name = $('#input_site_name').val()
     if not new_site_name
       new_site_name = old_site_name
+
+#    alert new_site_name
     id= $('h2').attr("id_project")
     $.ajax
       url: "/change_site_name/"
@@ -24,7 +26,7 @@ $ ->
         'proj_id': id
         'new_site_name': new_site_name
       success:(data) ->
-        end_change_name(data.newName)
+        end_change_name(data.newName.replace(/\</gi,'&lt;'))
       error: ->
         alert 'in change site name'
 

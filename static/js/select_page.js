@@ -32,7 +32,7 @@
         }
       });
     });
-    $('body').on('click', '.page-select', function() {
+    return $('body').on('click', '.page-select', function() {
       var content, id_curr_page;
       id_curr_page = $('.curr_page').attr("id_page");
       content = "";
@@ -58,7 +58,6 @@
       $(this).addClass('curr_page');
       return load_page();
     });
-    return $('#droppable').on('mousemove', function() {});
   });
 
   load_page = function() {
