@@ -85,7 +85,7 @@ def get_main_page(request):
     total = Project.objects.filter().count()
     last_sites = Project.objects.filter()[total-5:total] if total > 5 else Project.objects.filter()[0:5]
     top_sites = get_top_sites()
-    return render_to_response('base.html', {'user': request.user, 'last_sites': last_sites,
+    return render_to_response('index.html', {'user': request.user, 'last_sites': last_sites,
                                             'top_sites': top_sites},
                               RequestContext(request))
 def get_top_sites():

@@ -1,6 +1,6 @@
 .mynavbar{
-        background-color: #007095;
-    }
+    background-color: #007095;
+}
 .link-type {
     color: #FFFFFF;
 }
@@ -12,12 +12,12 @@
     color: #003f54;
 }
 .for-padding{
-        padding-top: 0px;
-        padding: 0px;
-        padding-bottom: 50px;
+    padding-top: 0px;
+    padding: 0px;
+    padding-bottom: 50px;
 
     list-style-type: none;
-    }
+}
 ul{
     margin-left: 0;
     padding-left: 0;
@@ -45,6 +45,11 @@ ul{
     -webkit-box-shadow: 0px 0px 20px #000000;
     box-shadow: 0px 0px 20px #000000;
     padding-top:20px;
+}
+
+.latest{
+    padding: 0;
+    border-radius: 5px;
 }
 
 .liquid .next {
@@ -92,8 +97,8 @@ ul{
 }
 
 .fileUpload {
-	position: relative;
-	overflow: hidden;
+    position: relative;
+    overflow: hidden;
     border:solid 1px gray;
     display:inline-block;
     vertical-align:top;
@@ -110,22 +115,44 @@ ul{
 }
 
 .fileUpload input.upload {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	padding: 0;
-	font-size: 20px;
-	cursor: pointer;
-	opacity: 0;
-	filter: alpha(opacity=0);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
 }
 
 .for-span{
     font-size: 25px;
 }
-  li{
+li{
     margin-left: 0;
     padding-left: 0;
     list-style-type: none;
-  }
+}
+.price {
+    font-size: 25px;
+    float: left;
+}
+.pricing_header {
+    background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.57);
+    border-radius: 5px 5px 0px 0px;
+    transition: background 0.4s ease-out 0s;
+}
+.pricing_header h2 {
+    text-align:center;
+    line-height: 25px;
+    padding: 15px 0px;
+    margin: 0px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 400;
+    color: #F5F5F5;
+}
+.list-group-item:first-child {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}

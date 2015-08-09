@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% load cloudinary %}
+{% block statistic %}
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1 content latest"id="home-box">
+            <div class="pricing_header">
+                {% if last_sites %}
+                    <h2> {% trans "5 last sites:" %}</h2>
+                {% endif %}
+                <div class="space"></div>
+            </div>
+            <ul class="list-group">
+                {% for site in last_sites %}
+                    <li class="list-group-item " style=" margin:0px;">
+                        <a style="font-size: 17px; margin:0px;padding:0px" class="label label-default thumbnail link-type-dark" href="/view_mode/{{ site.id }}">
+                            {{ site.project_name}}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4 content latest" id="home-box">
+            <div class="pricing_header">
+                {% if last_sites %}
+                    <h2> {% trans "top 5 sites:" %}</h2>
+                {% endif %}
+                <div class="space"></div>
+            </div>
+            <ul class="list-group">
+                {% for site in top_sites %}
+                    <li class="list-group-item " style=" margin:0px;">
+                        <a style="font-size: 17px; margin:0px;padding:0px" class="label label-default thumbnail link-type-dark" href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
