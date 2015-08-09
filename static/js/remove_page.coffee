@@ -1,6 +1,7 @@
 $ ->
   $('body').on 'click', '.glyphicon-remove', ->
     id = $(this).parent().attr('id_page')
+#    alert(id)
     $(this).parent().remove()
     $('.for-padding').empty()
     load_page(id)

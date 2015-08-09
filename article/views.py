@@ -206,7 +206,9 @@ def edit_view(request, ids):
 def save_pages(request):
     if request.method == 'POST':
         id_page = request.POST.get('id_page')
+        print("asdasdasd")
         if id_page:
+            print("-------")
             p = PageProject.objects.get(id=id_page)
             p.text = request.POST.get('content')
             p.save()

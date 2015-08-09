@@ -62,7 +62,7 @@ setVerticalPages = (id, oriented, local_page) ->
     success:(data) ->
       for page in data.pages
         $(oriented).append('<tr><td  style="cursor: pointer;" class="page-select" id_page="">
-<div class="col-md-5" style="word-wrap: break-word" ><span class="btn btn-xs glyphicon glyphicon-remove navbar-right"></span></div>
+<div class="col-md-2" style="word-wrap: break-word" ></div><span class="btn btn-xs glyphicon glyphicon-remove"></span>
                                     </td>
                                 </tr>')
 

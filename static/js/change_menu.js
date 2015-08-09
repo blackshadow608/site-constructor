@@ -92,7 +92,7 @@
         _results = [];
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           page = _ref[_i];
-          $(oriented).append('<tr><td  style="cursor: pointer;" class="page-select" id_page=""> <div class="col-md-5" style="word-wrap: break-word" ><span class="btn btn-xs glyphicon glyphicon-remove navbar-right"></span></div> </td> </tr>');
+          $(oriented).append('<tr><td  style="cursor: pointer;" class="page-select" id_page=""> <div class="col-md-2" style="word-wrap: break-word" ></div><span class="btn btn-xs glyphicon glyphicon-remove"></span> </td> </tr>');
           if (page.pageID.toString() === local_page.toString()) {
             $('[id_page = ""]').addClass('curr_page');
           }
