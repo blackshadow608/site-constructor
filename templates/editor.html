@@ -78,7 +78,12 @@
         </div>
         <div class="col-md-8">
             <div class="row">
-                <div class="col-md-4 col-md-offset-5">
+                <div class="col-md-4 col-md-offset-4">
+                <div class="">
+                        <a href="/view_mode/{{ project.id }}" type="submit" class="btn btn-default navbar-right">{% trans "view" %}</a>
+                        <button class="btn btn-default navbar-right">{% trans "save" %}</button>
+                        </div>
+                </div>
                     <div>
                         <input type="radio" class="dark {% if project.project_is_dark %}is_check{% endif %} view_theme" name="theme"
                                {% if project.project_is_dark %}checked{% endif %}/>
@@ -86,8 +91,7 @@
                         <input type="radio" class="{% if project.project_is_dark %}is_check{% endif %} view_theme" name="theme"
                                {% if not project.project_is_dark %}checked{% endif %}/>
                         <label>{% trans "light" %}</label>
-                                                        <a href="/view_mode/{{ project.id }}" type="submit" class="btn btn-default navbar-right">{% trans "view" %}</a>
-                    <button class="btn btn-default navbar-right">save</button>
+
                     </div>
                     <div>
                         <input type="radio" class="view_menu horizontal" name="menu"
@@ -96,10 +100,8 @@
                         <input type="radio" class="view_menu" name="menu"
                                {% if not project.project_menu_is_horizontal %}checked{% endif %}/>
                         <label>{% trans "vertical" %}</label>
-
                     </div>
 
-                </div>
 
             </div>
             <div class="row work_space" style="padding-top: 17px;">

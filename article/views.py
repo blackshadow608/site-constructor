@@ -25,7 +25,7 @@ cloudinary.config(
 )
 
 def view_site(request, id_project):
-    if len(Project.objects.filter(id=id_project))<1 or len(id_project) < 1:
+    if not id_project.isnumeric() or len(Project.objects.filter(id=id_project))<1 or len(id_project) < 1:
         return redirect("/my_projects/")
     if request.method == 'POST':
         data = {'page': 'hui'}
@@ -171,7 +171,7 @@ class LoginFormView(FormView):
 
 @login_required(login_url='/')
 def edit_view(request, ids):
-    if len(Project.objects.filter(id=ids))<1 or len(ids) < 1:
+    if not ids.isnumeric() or len(Project.objects.filter(id=ids))<1 or len(ids) < 1:
         return redirect("/my_projects/")
     current_project =Project.objects.get(id=ids)
     if current_project.project_user != request.user and not request.user.is_staff:
@@ -267,7 +267,7 @@ def get_all_pages(request):
 
 
 def change_site_name(request):
-    new_site_name=[]
+    new_site_name = []
     if request.method == 'GET':
         id_p = request.GET.get('proj_id')
         new_site_name = request.GET.get('new_site_name')
@@ -287,7 +287,7 @@ def remove_page(request):
     return HttpResponse(json.dumps({}), content_type="application/json")
 
 def view_another_user(request, id_user):
-    if len(id_user) < 1:
+    if not id_user.isnumeric() or len(User.objects.filter(id=id_user))<1 or len(id_user) < 1:
         return redirect("/")
     currrent_user = User.objects.get(id=id_user)
     projects = Project.objects.filter(project_user=currrent_user)

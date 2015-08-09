@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-09 18:48+0300\n"
+"POT-Creation-Date: 2015-08-09 20:28+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,8 +50,6 @@ msgid "Site name:"
 msgstr "Название:"
 
 #: templates/editor.html:16
-#, fuzzy
-#| msgid "editor"
 msgid "edit"
 msgstr "редактор"
 
@@ -95,27 +93,31 @@ msgstr "темный"
 msgid "light"
 msgstr "светлый"
 
-#: templates/editor.html:93
-msgid "horizontal"
-msgstr "строка"
-
-#: templates/editor.html:96
-msgid "vertical"
-msgstr "столбик"
-
-#: templates/editor.html:100
+#: templates/editor.html:89
 msgid "view"
 msgstr "просмотр"
 
-#: templates/index.html:11
+#: templates/editor.html:90
+msgid "save"
+msgstr "сохранить"
+
+#: templates/editor.html:95
+msgid "horizontal"
+msgstr "строка"
+
+#: templates/editor.html:98
+msgid "vertical"
+msgstr "столбик"
+
+#: templates/index.html:10
 msgid "5 last sites:"
 msgstr "5 последних"
 
-#: templates/index.html:28
+#: templates/index.html:27
 msgid "top 5 sites:"
 msgstr "5 лучших"
 
-#: templates/login.html:10
+#: templates/login.html:10 templates/registration.html:9
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -171,11 +173,11 @@ msgstr "назад"
 msgid "Author:"
 msgstr "Автор:"
 
-#: templates/view_user.html:6
+#: templates/view_user.html:8
 msgid "User: "
 msgstr "Пользователь: "
 
-#: templates/view_user.html:19
+#: templates/view_user.html:23
 msgid "User don't have projects"
 msgstr "Пользователь не имеет проектов"
 
