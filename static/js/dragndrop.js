@@ -21,8 +21,9 @@ $(function() {
                             if (match && match[2].length == 11) {
                                 url = match[2];
                                 $(ui.helper).empty();
-                                $(ui.helper).append('<iframe width="50%" height="auto"  src="https://www.youtube.com/embed/' + url + '" frameborder="0" allowfullscreen></iframe>');
-                                $(ui.helper).removeClass('btn-primary');
+                                $(ui.helper).addClass('embed-responsive embed-responsive-16by9');
+                                $(ui.helper).append('<iframe class="embed-responsive-item"  src="https://www.youtube.com/embed/' + url + '" frameborder="0" allowfullscreen></iframe>');
+                                $(ui.helper).removeClass('btn-default');
                                 $(ui.helper).css('height', 'auto');
                                 $(ui.helper).css('width', '100%');
                             } else {
@@ -47,7 +48,7 @@ $(function() {
         },
         stop: function (event, ui) {
             $(ui.helper).empty();
-            $(ui.helper).removeClass('btn-primary');
+            $(ui.helper).removeClass('btn-default');
             $(ui.helper).removeClass('btn');
             $(ui.helper).css('height', 'auto');
             $(ui.helper).css('width', '100%');
@@ -63,7 +64,7 @@ $(function() {
         },
         stop: function (event, ui) {
             $(ui.helper).empty();
-            $(ui.helper).removeClass('btn-primary');
+            $(ui.helper).removeClass('btn-default');
             $(ui.helper).removeClass('btn');
             $(ui.helper).css('height', '45px');
             $(ui.helper).css('width', '100%');
@@ -91,7 +92,7 @@ $(function() {
         },
         stop: function (event, ui) {
             $(ui.helper).empty();
-            $(ui.helper).removeClass('btn-primary');
+            $(ui.helper).removeClass('btn-default');
             $(ui.helper).removeClass('btn');
             $(ui.helper).addClass('container');
             //$(ui.helper).css('min-height', '200px');
@@ -139,6 +140,29 @@ $(function() {
         }
     );
     $("#droppable").sortable({
+        //stop: function(){
+        //    setTimeout(function() {
+        //        var conten;
+        //        $.each($('.for-padding').children(), function (index, val) {
+        //            conten += val.outerHTML;
+        //        });
+        //        alert(conten);
+        //        $.ajax({
+        //            url: "/editor/" + $('h2').attr("id_project") + '/',
+        //            type: "POST",
+        //            data: {
+        //                'id_page': id_curr_pag,
+        //                'content': conten,
+        //                'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
+        //            },
+        //            success: function () {
+        //            },
+        //            error: function () {
+        //                return alert('gyjudvasf');
+        //            }
+        //        });
+        //    },5000);
+        //},
         over: function () {
             removeIntent = false
         },

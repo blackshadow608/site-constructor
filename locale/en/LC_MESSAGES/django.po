@@ -73,47 +73,47 @@ msgstr ""
 msgid "create"
 msgstr ""
 
-#: templates/editor.html:39
+#: templates/editor.html:40
 msgid "Tools"
 msgstr ""
 
-#: templates/editor.html:43
+#: templates/editor.html:45
 msgid "Text block"
 msgstr ""
 
-#: templates/editor.html:44
+#: templates/editor.html:46
 msgid "Video"
 msgstr ""
 
-#: templates/editor.html:45
+#: templates/editor.html:47
 msgid "Galery"
 msgstr ""
 
-#: templates/editor.html:46
+#: templates/editor.html:48
 msgid "Raiting"
 msgstr ""
 
-#: templates/editor.html:51 templates/editor.html.py:108
+#: templates/editor.html:53 templates/editor.html.py:119
 msgid "Create page"
 msgstr ""
 
-#: templates/editor.html:74
+#: templates/editor.html:85
 msgid "dark"
 msgstr ""
 
-#: templates/editor.html:77
+#: templates/editor.html:88
 msgid "light"
 msgstr ""
 
-#: templates/editor.html:82
+#: templates/editor.html:93
 msgid "horizontal"
 msgstr ""
 
-#: templates/editor.html:85
+#: templates/editor.html:96
 msgid "vertical"
 msgstr ""
 
-#: templates/editor.html:89
+#: templates/editor.html:100
 msgid "view"
 msgstr ""
 
