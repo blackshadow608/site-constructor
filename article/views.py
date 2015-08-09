@@ -96,18 +96,24 @@ def get_top_sites():
         candidate = None
         for current_raiting in all_ratings:
             num = get_number_of_likes(current_raiting.id)
-            if num >= max and not current_raiting in top_rating:
+            if num >= max and not found_in_list_of_dictionaries(current_raiting,top_rating):
                 max = num
                 candidate = current_raiting
-            if candidate is None:
-                break
         if candidate is None:
             break
-        top_rating.append(candidate)
+        top_rating.append({'candidate': candidate, 'maximum': max})
     top_sites = []
     for raiting in top_rating:
-        top_sites.append(raiting.raiting_project)
+        print(raiting['candidate'].raiting_project)
+        top_sites.append({'top_project': raiting['candidate'].raiting_project,
+                          'number_of_likes': raiting['maximum']})
     return top_sites
+
+def found_in_list_of_dictionaries(element, list_of_dictionaries):
+    for current in list_of_dictionaries:
+        if element is current['candidate']:
+            return True
+    return False
 
 def logout(request):
     auth.logout(request)

@@ -36,7 +36,7 @@
     <div class="row">
 
         <div class="col-md-4" >
-            <div class="form-group" style="position: fixed">
+            <div class="form-group" style="">
                 <h1>{% trans "Tools" %}</h1>
 
                 {% if pages %}
@@ -163,14 +163,6 @@
             btnPrev: ".mouseWheelButtons .prev",
             mouseWheel: true,
             visible: 4
-        });
-    </script>
-    <script type="text/javascript">
-        $('').submit(function(e) {
-            this.submit();
-            setTimeout(function() {
-                window.location.href = '/editor/'+ $('h2').attr("id_project");
-            }, 100);
         });
     </script>
 

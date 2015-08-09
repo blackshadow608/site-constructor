@@ -22,7 +22,7 @@
     <ul class="nav navbar-right">
         <li>
             {% if user.is_authenticated %}
-                <li><a href="/logout/" class="link-type-dark"> {% trans "Logout"%} </a></li>
+                <li><a href="/logout/" class="link-type-dark"> {% trans "Logout"%} {{ user.username }} </a></li>
             {% else %}
                 <li><a href="/login/" class="link-type-dark"> {% trans "Login" %} </a></li>
             {% endif %}
@@ -94,7 +94,8 @@
                 {% for site in top_sites %}
                     <tr>
                         <td >
-                            <a style="font-size: 17px; margin:0px" class="label label-info thumbnail link-type-dark" href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
+                            <a style="font-size: 17px; margin:0px" class="label label-info thumbnail link-type-dark"
+                               href="/view_mode/{{ site.top_project.id }}"> {{ site.top_project.project_name}}</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -115,7 +116,7 @@
     {% endblock %}
     <script src={% static "js/change_language.js"%}></script>
     <script src={% static "js/disable_submit.js"%}></script>
-    <script src={% static "js/radirect_form.js"%}></script>
+
 </div>
 </body>
 </html>
