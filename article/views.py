@@ -284,4 +284,5 @@ def view_another_user(request, id_user):
     currrent_user = User.objects.get(id=id_user)
     projects = Project.objects.filter(project_user=currrent_user)
     return render_to_response('view_user.html',
-                              {'projects': projects, 'user': request.user}, RequestContext(request))
+                              {'user_of_projects': currrent_user,'projects': projects,
+                               'user': request.user}, RequestContext(request))

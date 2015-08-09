@@ -3,7 +3,6 @@
     <div class="col-md-3 col-md-offset-4">
     <form method="post" action="">
         {% csrf_token %}
-
      {% include "user_auth.html" %}
         <input name="submitter" class="btn btn-primary" type="submit" value="Registration"/>
     </form>

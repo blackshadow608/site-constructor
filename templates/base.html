@@ -19,15 +19,15 @@
 <body >
 
 <nav class="navbar navbar-default ">
-  <ul class="nav navbar-right">
-      <li>
-          {% if user.is_authenticated %}
+    <ul class="nav navbar-right">
+        <li>
+            {% if user.is_authenticated %}
                 <li><a href="/logout/" class="link-type-dark"> {% trans "Logout"%} </a></li>
-          {% else %}
+            {% else %}
                 <li><a href="/login/" class="link-type-dark"> {% trans "Login" %} </a></li>
-          {% endif %}
-      </li>
-  </ul>
+            {% endif %}
+        </li>
+    </ul>
     <ul class="nav navbar-right">
         {% if user.is_staff %}
             <li>
@@ -43,75 +43,76 @@
         {% endif %}
     </ul>
     <ul class="nav navbar-right">
-            <li>
-                <a href="/" class="link-type-dark">{%trans "Home"%}</a>
-            </li>
+        <li>
+            <a href="/" class="link-type-dark">{%trans "Home"%}</a>
+        </li>
     </ul>
     <ul class="nav navbar-right">
-            <li>
-                <a href="/search-form/" class="link-type-dark">{%trans "Search"%}</a>
-            </li>
+        <li>
+            <a href="/search-form/" class="link-type-dark">{%trans "Search"%}</a>
+        </li>
     </ul>
     <ul>
         {% get_available_languages as LANGUAGES %}
-            <form action="/i18n/setlang/" method="POST" class="navbar-form" id="select_lang_form">
+        <form action="/i18n/setlang/" method="POST" class="navbar-form" id="select_lang_form">
             {% csrf_token %}
             <select name="language" class="form-control" >
-            {% for lang in LANGUAGES %}
-                <li>
-                <option value="{{ lang.0 }}">{{ lang.1 }}</option>
-                </li>
-            {% endfor %}
+                {% for lang in LANGUAGES %}
+                    <li>
+                        <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+                    </li>
+                {% endfor %}
             </select>
-{#            <input class="btn btn-sm" type="submit" value="{% trans 'change' %}" />#}
-            </form>
+            {#            <input class="btn btn-sm" type="submit" value="{% trans 'change' %}" />#}
+        </form>
     </ul>
 </nav>
 <div class="col-md-10 center form-group col-md-offset-1">
 
-<div class="row">
-    <div class="col-md-6">
-        <table class="table">
-            {% if last_sites %}
-                <h2> {% trans "5 last sites:" %}</h2>
-            {% endif %}
-            {% for site in last_sites %}
-            <tr>
-                <td>
-                    <a href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
-                </td>
-            </tr>
-            {% endfor %}
-            {{ form.error }}
-        </table>
+    <div class="row">
+        <div class="col-md-3">
+            <table class="table" >
+                {% if last_sites %}
+                    <h2> {% trans "5 last sites:" %}</h2>
+                {% endif %}
+                {% for site in last_sites %}
+                    <tr >
+                        <td style="border: 0;">
+                            <a style="font-size: 17px; margin:0px" class="label label-info thumbnail link-type-dark" href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                {{ form.error }}
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table col-md-6">
+                {% if last_sites %}
+                    <h2> {% trans "top 5 sites:" %}</h2>
+                {% endif %}
+                {% for site in top_sites %}
+                    <tr>
+                        <td >
+                            <a style="font-size: 17px; margin:0px" class="label label-info thumbnail link-type-dark" href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                {{ form.error }}
+            </table>
+        </div>
     </div>
-    <div class="col-md-6">
-        <table class="table col-md-6">
-            {% if last_sites %}
-                <h2> {% trans "top 5 sites:" %}</h2>
-            {% endif %}
-            {% for site in top_sites %}
-            <tr>
-                <td>
-                    <a href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
-                </td>
-            </tr>
-            {% endfor %}
-            {{ form.error }}
-        </table>
-    </div>
-</div>
-{% block login %}
-{% endblock %}
+    {% block login %}
+    {% endblock %}
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-{% block search_form %}
-{% endblock %}
+    {% block search_form %}
+    {% endblock %}
 
-{% block another_user %}
-{% endblock %}
+    {% block another_user %}
+    {% endblock %}
     <script src={% static "js/change_language.js"%}></script>
     <script src={% static "js/disable_submit.js"%}></script>
     <script src={% static "js/radirect_form.js"%}></script>

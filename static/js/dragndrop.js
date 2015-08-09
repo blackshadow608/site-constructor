@@ -183,6 +183,6 @@ $(function() {
                 }
                 ui.item.remove()
             }
-        }
+        },
     });
 });
