@@ -213,7 +213,7 @@ def search(request):
         for result in search_results:
             if type(result.object) is User:
                 users.append(result.object)
-            elif type(result.object) is Project and result.object.project not in projects:
+            elif type(result.object) is Project and result.object not in projects:
                 projects.append(result.object)
             elif type(result.object) is PageProject and result.object.project not in projects:
                 projects.append(result.object.project)
@@ -284,4 +284,4 @@ def view_another_user(request, id_user):
     currrent_user = User.objects.get(id=id_user)
     projects = Project.objects.filter(project_user=currrent_user)
     return render_to_response('view_user.html',
-                              {'projects': projects, 'user': request.user}, RequestContext(request))
+                              {'user_of_projects': currrent_user,'projects': projects, 'user': request.user}, RequestContext(request))

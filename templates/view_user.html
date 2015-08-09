@@ -3,7 +3,9 @@
 {% load i18n %}
 {% load l10n %}
 {% block another_user %}
-<table class="">
+<h2>{% trans "User: "%} {{ user_of_projects.username }}</h2>
+{% if projects %}
+<table class="table">
     {% for project in projects %}
     <tr>
         <td>
@@ -13,4 +15,7 @@
     {% endfor %}
     {{ form.error }}
 </table>
+{% else %}
+    <h3>{% trans "User don't have projects" %}</h3>
+{% endif %}
 {% endblock %}
