@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-09 20:28+0300\n"
+"POT-Creation-Date: 2015-08-09 21:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:27
+#: templates/base.html:27 templates/login.html:9
 msgid "Login"
 msgstr ""
 
@@ -85,31 +85,31 @@ msgstr ""
 msgid "Raiting"
 msgstr ""
 
-#: templates/editor.html:53 templates/editor.html.py:119
+#: templates/editor.html:53 templates/editor.html.py:123
 msgid "Create page"
 msgstr ""
 
-#: templates/editor.html:85
-msgid "dark"
-msgstr ""
-
-#: templates/editor.html:88
-msgid "light"
-msgstr ""
-
-#: templates/editor.html:89
+#: templates/editor.html:83
 msgid "view"
 msgstr ""
 
-#: templates/editor.html:90
+#: templates/editor.html:84
 msgid "save"
 msgstr ""
 
-#: templates/editor.html:95
+#: templates/editor.html:90
+msgid "dark"
+msgstr ""
+
+#: templates/editor.html:93
+msgid "light"
+msgstr ""
+
+#: templates/editor.html:99
 msgid "horizontal"
 msgstr ""
 
-#: templates/editor.html:98
+#: templates/editor.html:102
 msgid "vertical"
 msgstr ""
 

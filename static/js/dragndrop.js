@@ -23,7 +23,8 @@ $(function() {
                                     url = match[2];
                                     $(ui.helper).empty();
                                     $(ui.helper).addClass('embed-responsive embed-responsive-16by9');
-                                    $(ui.helper).append('<iframe class="embed-responsive-item"  src="https://www.youtube.com/embed/' + url + '" frameborder="0" allowfullscreen></iframe>');
+                                    $(ui.helper).append('<iframe class="embed-responsive-item" width="496px" height="400px"' +
+                                        ' src="https://www.youtube.com/embed/' + url + '" frameborder="0" allowfullscreen></iframe>');
                                     $(ui.helper).removeClass('btn-default');
                                     $(ui.helper).css('height', 'auto');
                                     $(ui.helper).css('width', '100%');

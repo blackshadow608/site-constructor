@@ -6,7 +6,7 @@
     <form method="post" action="">
         {% csrf_token %}
         {% include "user_auth.html" %}
-        <input name="submitter" class="btn btn-primary" type="submit" value="Login"/>
+        <input name="submitter" class="btn btn-primary" type="submit" value="{% trans 'Login' %}"/>
         <a href="/register/">{% trans "Registration"%} </a>
     </form>
     </div>
