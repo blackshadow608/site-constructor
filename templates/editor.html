@@ -145,7 +145,7 @@
     <script src={% static "js/jquery-impromptu.js" %}></script>
     <script src={% static "js/change_theme.js" %}></script>
     <script src={% static "js/img-click.js" %}></script>
-
+        <script src={% static "js/radirect_form.js"%}></script>
 
     <script src={% static "js/change_menu.js" %}></script>
     <script src={% static "js/change_site_name.js" %}></script>
@@ -165,14 +165,5 @@
             visible: 4
         });
     </script>
-    <script type="text/javascript">
-        $('').submit(function(e) {
-            this.submit();
-            setTimeout(function() {
-                window.location.href = '/editor/'+ $('h2').attr("id_project");
-            }, 100);
-        });
-    </script>
-
 {% endblock %}
 

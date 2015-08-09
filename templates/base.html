@@ -63,45 +63,13 @@
                     </li>
                 {% endfor %}
             </select>
-            {#            <input class="btn btn-sm" type="submit" value="{% trans 'change' %}" />#}
         </form>
     </ul>
 </nav>
 <div class="col-md-10 center form-group col-md-offset-1">
+    {% block statistic %}
+    {% endblock %}
 
-    <div class="row">
-        <div class="col-md-3">
-            <table class="table" >
-                {% if last_sites %}
-                    <h2> {% trans "5 last sites:" %}</h2>
-                {% endif %}
-                {% for site in last_sites %}
-                    <tr >
-                        <td style="border: 0;">
-                            <a style="font-size: 17px; margin:0px" class="label label-info thumbnail link-type-dark" href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
-
-                        </td>
-                    </tr>
-                {% endfor %}
-                {{ form.error }}
-            </table>
-        </div>
-        <div class="col-md-6">
-            <table class="table col-md-6">
-                {% if last_sites %}
-                    <h2> {% trans "top 5 sites:" %}</h2>
-                {% endif %}
-                {% for site in top_sites %}
-                    <tr>
-                        <td >
-                            <a style="font-size: 17px; margin:0px" class="label label-info thumbnail link-type-dark" href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                {{ form.error }}
-            </table>
-        </div>
-    </div>
     {% block login %}
     {% endblock %}
 
@@ -115,7 +83,6 @@
     {% endblock %}
     <script src={% static "js/change_language.js"%}></script>
     <script src={% static "js/disable_submit.js"%}></script>
-    <script src={% static "js/radirect_form.js"%}></script>
 </div>
 </body>
 </html>
