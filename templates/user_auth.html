@@ -1,10 +1,17 @@
+{% load i18n %}
+{% load l10n %}
 <table class="table" style="margin-left: -10px">
     {% for s in form %}
         <tr>
             <td><input class='form-control'name="{{ s.name}}" placeholder="{{  s.label}}"
-            {% if 'password' in s.name %}type="password"{% endif %}  />
+                       {% if 'password' in s.name %}type="password"{% endif %}  />
             </td>
         </tr>
     {% endfor %}
-    {{ form.error }}
+
+
 </table>
+{% if form.errors %}<ul class="errorlist" style="color: red">
+        <li>{% trans 'Sender is required, invalid data.'%}</li>
+        </ul>
+    {% endif %}
