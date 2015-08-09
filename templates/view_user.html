@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% block another_user %}
+<table class="">
+    {% for project in projects %}
+    <tr>
+        <td>
+            <a href="/view_mode/{{ project.id }}"> {{ project.project_name}}</a>
+        </td>
+    </tr>
+    {% endfor %}
+    {{ form.error }}
+</table>
+{% endblock %}

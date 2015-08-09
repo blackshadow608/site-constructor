@@ -2,20 +2,18 @@ import json
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+import watson
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
-# Create your views here.
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView
 from registration.backends.default.views import RegistrationView
 from django.shortcuts import render_to_response
 from django.contrib import auth
-import watson
-from watson.models import SearchEntry
 from article.forms import CreateProjectForm, CreatePageForm, GalleryImageForm
 from article.models import Project, PageProject, Raitng, Like, Gallery
 from django.template import RequestContext
@@ -42,7 +40,7 @@ def view_site(request, id_project):
                               {'project': project, 'pages': pages, 'user': request.user}, RequestContext(request))
 
 
-def rating(request):
+def create_delete_rating(request):
     if request.method == 'GET':
         data = {'response': 'hui'}
         id_rating = request.GET.get('id_delete_rating')
@@ -61,7 +59,7 @@ def rating(request):
             return HttpResponse(json.dumps(data), content_type="application/json")
 
 
-def likes(request):
+def set_likes(request):
     data = {'response': 'hui'}
     if request.method == 'GET':
         id_rating = request.GET.get('id_rating')
@@ -71,32 +69,33 @@ def likes(request):
                 like.delete()
             else:
                 Like.objects.create(raiting=Raitng.objects.get(id=id_rating), user=request.user)
-            data['response'] = num_of_likes(id_rating)
+            data['response'] = get_number_of_likes(id_rating)
         id_rating_get_likes = request.GET.get('id_rating_get_likes')
         if id_rating_get_likes:
-            data['response'] = num_of_likes(id_rating_get_likes)
+            data['response'] = get_number_of_likes(id_rating_get_likes)
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 
-def num_of_likes(id_rating):
+def get_number_of_likes(id_rating):
     likes = Like.objects.filter(raiting=Raitng.objects.get(id=id_rating))
     return len(likes)
 
 
-def main(request):
+def get_main_page(request):
     total = Project.objects.filter().count()
-    if total > 5:
-        last_sites = Project.objects.filter()[total-5:total]
-    else:
-        last_sites = Project.objects.filter()[0:5]
-
+    last_sites = Project.objects.filter()[total-5:total] if total > 5 else Project.objects.filter()[0:5]
+    top_sites = get_top_sites()
+    return render_to_response('base.html', {'user': request.user, 'last_sites': last_sites,
+                                            'top_sites': top_sites},
+                              RequestContext(request))
+def get_top_sites():
     top_rating = []
-    all_ratings = Raitng.objects.filter()
+    all_ratings = Raitng.objects.all()
     while len(top_rating) < 5:
         max = -1
         candidate = None
         for current_raiting in all_ratings:
-            num = num_of_likes(current_raiting.id)
+            num = get_number_of_likes(current_raiting.id)
             if num >= max and not current_raiting in top_rating:
                 max = num
                 candidate = current_raiting
@@ -106,34 +105,28 @@ def main(request):
             break
         top_rating.append(candidate)
     top_sites = []
-    for rait in top_rating:
-        top_sites.append(rait.raiting_project)
-
-    return render_to_response('base.html', {'user': request.user, 'last_sites': last_sites,
-                                            'top_sites': top_sites},
-                              RequestContext(request))
-
+    for raiting in top_rating:
+        top_sites.append(raiting.raiting_project)
+    return top_sites
 
 def logout(request):
     auth.logout(request)
     return redirect('/')
 
 
-def valid_form(form, request):
+def create_project(form, request):
     if form.is_valid():
         Project.objects.create(project_name=form.cleaned_data['project_name'],
                                project_user=request.user)
         watson.update_index()
     form = CreateProjectForm()
 
-
 def add_images(request, form):
     if form.is_valid():
         Gallery.objects.create(user=request.user, image=form.cleaned_data['image'])
 
-
 @login_required(login_url="/")
-def user_projects(request):
+def get_user_projects(request):
     if request.method == 'GET':
         idr = request.GET.get('proj_id')
         if idr:
@@ -143,7 +136,7 @@ def user_projects(request):
     form = CreateProjectForm(request.POST)
     form_image = GalleryImageForm(request.POST, request.FILES)
     add_images(request, form_image)
-    valid_form(form, request)
+    create_project(form, request)
     projects = Project.objects.filter(project_user=request.user)
     return render_to_response("user_projects.html", {'user': request.user,
                                                      'projects': projects,
@@ -151,16 +144,13 @@ def user_projects(request):
                                                      'img_form': form_image,
                                                      'form': form}, RequestContext(request))
 
-
-class UsrCrateProj(FormView):
+class UserCreateProject(FormView):
     form_class = CreateProjectForm
     template_name = 'user_projects.html'
     success_url = '/'
 
-
 class RegisterFormView(RegistrationView):
     template_name = "registration.html"
-
 
 class LoginFormView(FormView):
     form_class = AuthenticationForm
@@ -171,7 +161,6 @@ class LoginFormView(FormView):
         self.user = form.get_user()
         login(self.request, self.user)
         return super(LoginFormView, self).form_valid(form)
-
 
 @login_required(login_url='/')
 def edit_view(request, ids):
@@ -199,7 +188,6 @@ def edit_view(request, ids):
                                               'images': Gallery.objects.filter(user=request.user)},
                               RequestContext(request))
 
-
 def save_pages(request):
     if request.method == 'POST':
         id_page = request.POST.get('id_page')
@@ -208,41 +196,26 @@ def save_pages(request):
             p.text = request.POST.get('content')
             p.save()
 
-
 def requests_editor(request, form, current_project):
     if form.is_valid():
         PageProject.objects.create(project=current_project, page_name=form.cleaned_data['page_name'])
-        #watson.update_index()
     form = CreateProjectForm()
-
 
 def search_form(request):
     return render_to_response('search_form.html', {'user': request.user})
 
-
 def search(request):
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
-        print(q)
-        search_results = watson.search(str(q), models=(User,))
+        search_results = watson.search(str(q))
         projects = []
         users = []
-        print(1)
         for result in search_results:
-            print(result.object)
-            users.append(result.object)
-
-        print(2)
-        search_results = watson.search(q, models=(Project,))
-        for result in search_results:
-            print(result.object)
-            projects.append(result.object)
-
-        print(3)
-        search_results = watson.search(q, models=(PageProject,))
-        for result in search_results:
-            print(result.object)
-            if result.object.project not in projects:
+            if type(result.object) is User:
+                users.append(result.object)
+            elif type(result.object) is Project and result.object.project not in projects:
+                projects.append(result.object)
+            elif type(result.object) is PageProject and result.object.project not in projects:
                 projects.append(result.object.project)
 
         return render_to_response('search_form.html',
@@ -251,33 +224,26 @@ def search(request):
     else:
         return render_to_response('search_form.html', {'user': request.user}, RequestContext(request))
 
-
-def theme(request):
+def change_theme(request):
     if request.method == 'GET':
-        data = {'page': 'hui'}
+        data = {}
         id_p = request.GET.get('proj_id')
         value = request.GET.get('is_dark')
         if id_p:
             p = Project.objects.get(id=id_p)
-            if value == 'True':
-                p.project_is_dark = True
-            else:
-                p.project_is_dark = False
+            p.project_is_dark = True if value == 'True' else False
             p.save()
             return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 def change_menu(request):
     if request.method == 'GET':
-        data = {'page': 'hui'}
+        data = {}
         id_p = request.GET.get('proj_id')
         value = request.GET.get('is_horizontal')
         if id_p:
             p = Project.objects.get(id=id_p)
-            if value == 'True':
-                p.project_menu_is_horizontal = True
-            else:
-                p.project_menu_is_horizontal = False
+            p.project_menu_is_horizontal = True if value == 'True' else False
             p.save()
             return HttpResponse(json.dumps(data), content_type="application/json")
 
@@ -312,3 +278,10 @@ def remove_page(request):
                 p.delete()
             return HttpResponse(json.dumps({}), content_type="application/json")
 
+def view_another_user(request, id_user):
+    if len(id_user) < 1:
+        return redirect("/")
+    currrent_user = User.objects.get(id=id_user)
+    projects = Project.objects.filter(project_user=currrent_user)
+    return render_to_response('view_user.html',
+                              {'projects': projects, 'user': request.user}, RequestContext(request))

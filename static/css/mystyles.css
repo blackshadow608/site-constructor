@@ -49,7 +49,7 @@ ul{
     display: block;
     height: 126px;
     width: 64px;
-    background-image: url('../next.png');
+    background-image: url('../img/next.png');
     float: right;
     margin: 0px;
     padding: 0px;
@@ -59,7 +59,7 @@ ul{
     display: block;
     height: 126px;
     width: 64px;
-    background-image: url('../previous.png');
+    background-image: url('../img/previous.png');
     float: left;
     margin: 0px;
     padding: 0px;

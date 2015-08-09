@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-05 15:41+0300\n"
+"POT-Creation-Date: 2015-08-08 19:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: blog/settings.py:123
+#: blog/settings.py:125
 msgid "English"
 msgstr ""
 
-#: blog/settings.py:124
+#: blog/settings.py:126
 msgid "Russian"
 msgstr ""
 
@@ -49,11 +49,15 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: templates/base.html:66
-msgid "change"
+#: templates/base.html:76
+msgid "5 last sites:"
 msgstr ""
 
-#: templates/editor.html:11 templates/view_site_template.html:18
+#: templates/base.html:91
+msgid "top 5 sites:"
+msgstr ""
+
+#: templates/editor.html:11
 msgid "Site name:"
 msgstr ""
 
@@ -65,7 +69,7 @@ msgstr ""
 msgid "Page name"
 msgstr ""
 
-#: templates/editor.html:31 templates/user_projects.html:31
+#: templates/editor.html:31 templates/user_projects.html:54
 msgid "create"
 msgstr ""
 
@@ -89,27 +93,27 @@ msgstr ""
 msgid "Raiting"
 msgstr ""
 
-#: templates/editor.html:51 templates/editor.html.py:94
+#: templates/editor.html:51 templates/editor.html.py:108
 msgid "Create page"
 msgstr ""
 
-#: templates/editor.html:61
+#: templates/editor.html:74
 msgid "dark"
 msgstr ""
 
-#: templates/editor.html:64
+#: templates/editor.html:77
 msgid "light"
 msgstr ""
 
-#: templates/editor.html:69
+#: templates/editor.html:82
 msgid "horizontal"
 msgstr ""
 
-#: templates/editor.html:72
+#: templates/editor.html:85
 msgid "vertical"
 msgstr ""
 
-#: templates/editor.html:76
+#: templates/editor.html:89
 msgid "view"
 msgstr ""
 
@@ -117,18 +121,38 @@ msgstr ""
 msgid "Registration"
 msgstr ""
 
-#: templates/user_projects.html:26
+#: templates/search_form.html:10
+msgid "You searched for: "
+msgstr ""
+
+#: templates/search_form.html:15
+msgid "Users:"
+msgstr ""
+
+#: templates/search_form.html:25
+msgid "Sites:"
+msgstr ""
+
+#: templates/search_form.html:35
+msgid "No results"
+msgstr ""
+
+#: templates/user_projects.html:49
 msgid "New project"
 msgstr ""
 
-#: templates/user_projects.html:29
+#: templates/user_projects.html:52
 msgid "Project name"
 msgstr ""
 
-#: templates/view_site_template.html:19
-msgid "Author:"
+#: templates/view_site_template.html:20
+msgid "editor"
 msgstr ""
 
-#: templates/view_site_template.html:22
-msgid "editor"
+#: templates/view_site_template.html:26
+msgid "back"
+msgstr ""
+
+#: templates/view_site_template.html:31
+msgid "Author:"
 msgstr ""
