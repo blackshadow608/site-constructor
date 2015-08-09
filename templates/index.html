@@ -33,7 +33,9 @@
             <ul class="list-group">
                 {% for site in top_sites %}
                     <li class="list-group-item " style=" margin:0px;">
-                        <a style="font-size: 17px; margin:0px;padding:0px" class="label label-default thumbnail link-type-dark" href="/view_mode/{{ site.id }}"> {{ site.project_name}}</a>
+                        <a style="font-size: 17px; margin:0px;padding:0px" class="label label-default thumbnail link-type-dark" href="/view_mode/{{ site.top_project.id }}">
+                            {{ site.top_project.project_name}}<span class="navbar-right glyphicon glyphicon-thumbs-up">{{ site.number_of_likes }}</span>
+                        </a>
                     </li>
                 {% endfor %}
             </ul>

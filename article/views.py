@@ -92,11 +92,11 @@ def get_top_sites():
     top_rating = []
     all_ratings = Raitng.objects.all()
     while len(top_rating) < 5:
-        max = -1
+        max = 0
         candidate = None
         for current_raiting in all_ratings:
             num = get_number_of_likes(current_raiting.id)
-            if num >= max and not found_in_list_of_dictionaries(current_raiting,top_rating):
+            if num > max and not found_in_list_of_dictionaries(current_raiting,top_rating):
                 max = num
                 candidate = current_raiting
         if candidate is None:

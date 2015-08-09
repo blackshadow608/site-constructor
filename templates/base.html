@@ -54,12 +54,14 @@
     </ul>
     <ul>
         {% get_available_languages as LANGUAGES %}
+        {% get_current_language as CURRENT_LANGUAGE %}
         <form action="/i18n/setlang/" method="POST" class="navbar-form" id="select_lang_form">
             {% csrf_token %}
             <select name="language" class="form-control" >
                 {% for lang in LANGUAGES %}
                     <li>
-                        <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+                        <option {% if lang.0 == CURRENT_LANGUAGE  %}selected="selected"{% endif %}
+                                value="{{ lang.0 }}">{{ lang.1 }}</option>
                     </li>
                 {% endfor %}
             </select>
