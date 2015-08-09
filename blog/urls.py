@@ -36,7 +36,7 @@ urlpatterns = [
     url(r'^my_projects/', 'article.views.get_user_projects'),
     url(r'^search-form/', 'article.views.search_form'),
     url(r'^search/$', 'article.views.search'),
-    url(r'^user/(?P<id_user>\w{0,50})/', 'article.views.view_another_user'),
+    #url(r'^user/(?P<id_user>\w{0,50})/', 'article.views.view_another_user'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^view_mode/(?P<id_project>\w{0,50})/', 'article.views.view_site'),
 ]

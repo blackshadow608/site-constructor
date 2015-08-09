@@ -22,7 +22,7 @@
     <ul class="nav navbar-right">
         <li>
             {% if user.is_authenticated %}
-                <li><a href="/logout/" class="link-type-dark"> {% trans "Logout"%} </a></li>
+                <li><a href="/logout/" class="link-type-dark"> {% trans "Logout"%} {{ user.username }} </a></li>
             {% else %}
                 <li><a href="/login/" class="link-type-dark"> {% trans "Login" %} </a></li>
             {% endif %}
@@ -54,12 +54,14 @@
     </ul>
     <ul>
         {% get_available_languages as LANGUAGES %}
+        {% get_current_language as CURRENT_LANGUAGE %}
         <form action="/i18n/setlang/" method="POST" class="navbar-form" id="select_lang_form">
             {% csrf_token %}
             <select name="language" class="form-control" >
                 {% for lang in LANGUAGES %}
                     <li>
-                        <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+                        <option {% if lang.0 == CURRENT_LANGUAGE  %}selected="selected"{% endif %}
+                                value="{{ lang.0 }}">{{ lang.1 }}</option>
                     </li>
                 {% endfor %}
             </select>
@@ -69,7 +71,6 @@
 <div class="col-md-10 center form-group col-md-offset-1">
     {% block statistic %}
     {% endblock %}
-
     {% block login %}
     {% endblock %}
 
