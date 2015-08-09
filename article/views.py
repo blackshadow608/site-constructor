@@ -191,9 +191,7 @@ def edit_view(request, ids):
 def save_pages(request):
     if request.method == 'POST':
         id_page = request.POST.get('id_page')
-        print("asdasdasd")
         if id_page:
-            print("-------")
             p = PageProject.objects.get(id=id_page)
             p.text = request.POST.get('content')
             p.save()
@@ -215,7 +213,7 @@ def search(request):
         for result in search_results:
             if type(result.object) is User:
                 users.append(result.object)
-            elif type(result.object) is Project and result.object.project not in projects:
+            elif type(result.object) is Project and result.object not in projects:
                 projects.append(result.object)
             elif type(result.object) is PageProject and result.object.project not in projects:
                 projects.append(result.object.project)
