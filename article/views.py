@@ -25,7 +25,7 @@ cloudinary.config(
 )
 
 def view_site(request, id_project):
-    if not id_project.isnumeric() or len(Project.objects.filter(id=id_project))<1 or len(id_project) < 1:
+    if not valid_project(id_project):
         return redirect("/my_projects/")
     if request.method == 'POST':
         data = {'page': 'hui'}
@@ -34,12 +34,17 @@ def view_site(request, id_project):
             p = PageProject.objects.get(id=id_p)
             data['page'] = p.text
             return HttpResponse(json.dumps(data), content_type="application/json")
-    if len(id_project) < 1:
-        return redirect("/my_projects/")
     pages = PageProject.objects.filter(project=Project.objects.get(id=id_project))
     project = Project.objects.get(id=id_project)
     return render_to_response('view_site_template.html',
                               {'project': project, 'pages': pages, 'user': request.user}, RequestContext(request))
+
+def valid_project(id_project):
+    if not id_project.isnumeric() or len(Project.objects.filter(id=id_project))<1 or len(id_project) < 1:
+        return False
+    return True
+
+
 
 
 def create_delete_rating(request):
@@ -105,7 +110,6 @@ def get_top_sites():
         top_rating.append({'candidate': candidate, 'maximum': max})
     top_sites = []
     for raiting in top_rating:
-        print(raiting['candidate'].raiting_project)
         top_sites.append({'top_project': raiting['candidate'].raiting_project,
                           'number_of_likes': raiting['maximum']})
     return top_sites
@@ -126,7 +130,6 @@ def create_project(form, request):
         Project.objects.create(project_name=form.cleaned_data['project_name'],
                                project_user=request.user)
         watson.update_index()
-    form = CreateProjectForm()
 
 def add_images(request, form):
     if form.is_valid():
@@ -134,8 +137,8 @@ def add_images(request, form):
 
 @login_required(login_url="/")
 def get_user_projects(request):
-    if request.method == 'GET':
-        idr = request.GET.get('proj_id')
+    if request.method == 'POST':
+        idr = request.POST.get('proj_id')
         if idr:
             p = Project.objects.get(id=idr)
             if p.project_user == request.user:
@@ -171,12 +174,11 @@ class LoginFormView(FormView):
 
 @login_required(login_url='/')
 def edit_view(request, ids):
-    if not ids.isnumeric() or len(Project.objects.filter(id=ids))<1 or len(ids) < 1:
+    if not valid_project(ids):
         return redirect("/my_projects/")
     current_project =Project.objects.get(id=ids)
     if current_project.project_user != request.user and not request.user.is_staff:
         return redirect("/my_projects")
-
     page_form = CreatePageForm(request.POST)
     requests_editor(request, page_form, current_project)
     save_pages(request)
@@ -206,7 +208,6 @@ def save_pages(request):
 def requests_editor(request, form, current_project):
     if form.is_valid():
         PageProject.objects.create(project=current_project, page_name=form.cleaned_data['page_name'])
-    form = CreateProjectForm()
 
 def search_form(request):
     return render_to_response('search_form.html', {'user': request.user})
@@ -224,7 +225,6 @@ def search(request):
                 projects.append(result.object)
             elif type(result.object) is PageProject and result.object.project not in projects:
                 projects.append(result.object.project)
-
         return render_to_response('search_form.html',
                                   {'query': q, 'user': request.user, 'users': users, 'projects': projects},
                                   RequestContext(request))
@@ -232,16 +232,14 @@ def search(request):
         return render_to_response('search_form.html', {'user': request.user}, RequestContext(request))
 
 def change_theme(request):
-    data = {'idi':'naxui'}
     if request.method == 'GET':
-
         id_p = request.GET.get('proj_id')
         value = request.GET.get('is_dark')
         if id_p:
             p = Project.objects.get(id=id_p)
             p.project_is_dark = True if value == 'True' else False
             p.save()
-    return HttpResponse(json.dumps(data), content_type="application/json")
+    return HttpResponse(json.dumps({}), content_type="application/json")
 
 
 def change_menu(request):
@@ -250,8 +248,9 @@ def change_menu(request):
         value = request.GET.get('is_horizontal')
         if id_p:
             p = Project.objects.get(id=id_p)
-            p.project_menu_is_horizontal = True if value == 'True' else False
-            p.save()
+            if request.user == p.project_user:
+                p.project_menu_is_horizontal = True if value == 'True' else False
+                p.save()
     return HttpResponse(json.dumps({}), content_type="application/json")
 
 
@@ -273,13 +272,14 @@ def change_site_name(request):
         new_site_name = request.GET.get('new_site_name')
         if id_p:
             p = Project.objects.get(id=id_p)
-            p.project_name = new_site_name
-            p.save()
+            if request.user == p.project_user:
+                p.project_name = new_site_name
+                p.save()
     return HttpResponse(json.dumps({'newName': new_site_name}), content_type="application/json")
 
 def remove_page(request):
-    if request.method == 'GET':
-        idr = request.GET.get('page_id')
+    if request.method == 'POST':
+        idr = request.POST.get('page_id')
         if idr:
             p = PageProject.objects.get(id=idr)
             if p.project.project_user == request.user:

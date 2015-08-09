@@ -2,24 +2,23 @@
 (function() {
   var request;
 
-  $(function() {
-    if ($('.dark').hasClass('is_check')) {
-      $('.for-padding').addClass('dark');
+  if ($('.dark').hasClass('is_check')) {
+    $('.for-padding').addClass('dark');
+  }
+
+  $('input.view_theme[type=radio]').click(function() {
+    var id, site;
+    $('input.view_theme[type=radio]').removeClass('is_check');
+    $(this).addClass('is_check');
+    site = $('.for-padding');
+    id = $('h2').attr("id_project");
+    if ($(this).hasClass('dark')) {
+      site.addClass('dark');
+      return request(id, 'True');
+    } else {
+      site.removeClass('dark');
+      return request(id, 'False');
     }
-    return $('input.view_theme[type=radio]').click(function() {
-      var id, site;
-      $('input.view_theme[type=radio]').removeClass('is_check');
-      $(this).addClass('is_check');
-      site = $('.for-padding');
-      id = $('h2').attr("id_project");
-      if ($(this).hasClass('dark')) {
-        site.addClass('dark');
-        return request(id, 'True');
-      } else {
-        site.removeClass('dark');
-        return request(id, 'False');
-      }
-    });
   });
 
   request = function(id, is_dark) {

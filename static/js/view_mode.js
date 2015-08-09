@@ -9,13 +9,11 @@
     }
   };
 
-  $(function() {
-    return $('.page-select').click(function() {
-      $('.page-select').removeClass('curr_page');
-      $('.content').children().remove();
-      $(this).addClass('curr_page');
-      return load_page();
-    });
+  $('.page-select').click(function() {
+    $('.page-select').removeClass('curr_page');
+    $('.content').children().remove();
+    $(this).addClass('curr_page');
+    return load_page();
   });
 
   load_page = function() {

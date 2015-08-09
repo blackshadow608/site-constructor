@@ -1,14 +1,14 @@
-$ ->
-  $('input.view_menu[type=radio]').click ->
-    id= $('h2').attr("id_project")
-    if $(this).hasClass('horizontal')
-      if not $('div').is('.page_group_horizontal')
-        setHorizontalMenu(id)
-        request(id,'True')
-    else
-      if not $('div').is('.page_group_vertical')
-        setVerticalMenu(id)
-        request(id,'False')
+
+$('input.view_menu[type=radio]').click ->
+  id= $('h2').attr("id_project")
+  if $(this).hasClass('horizontal')
+    if not $('div').is('.page_group_horizontal')
+      setHorizontalMenu(id)
+      request(id,'True')
+  else
+    if not $('div').is('.page_group_vertical')
+      setVerticalMenu(id)
+      request(id,'False')
 
 request = (id, is_horizontal)->
   $.ajax
