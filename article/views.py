@@ -25,6 +25,8 @@ cloudinary.config(
 )
 
 def view_site(request, id_project):
+    if not id_project.isnumeric() or len(Project.objects.filter(id=id_project))<1 or len(id_project) < 1:
+        return redirect("/my_projects/")
     if request.method == 'POST':
         data = {'page': 'hui'}
         id_p = request.POST.get('id_return_page')
@@ -41,8 +43,8 @@ def view_site(request, id_project):
 
 
 def create_delete_rating(request):
+    data = {}
     if request.method == 'GET':
-        data = {'response': 'hui'}
         id_rating = request.GET.get('id_delete_rating')
         if id_rating:
             rating = Raitng.objects.filter(id=id_rating)
@@ -50,13 +52,12 @@ def create_delete_rating(request):
             data['response'] = 'success'
             return HttpResponse(json.dumps(data), content_type="application/json")
     if request.method == 'GET':
-        data = {'response': 'hui'}
         id_project = request.GET.get('id_project_create_rating')
         if id_project:
             p = Raitng.objects.create(raiting_project=Project.objects.get(id=id_project))
             data['response'] = 'success'
             data['id_rating'] = p.id
-            return HttpResponse(json.dumps(data), content_type="application/json")
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 def set_likes(request):
@@ -170,9 +171,9 @@ class LoginFormView(FormView):
 
 @login_required(login_url='/')
 def edit_view(request, ids):
-    if len(ids) < 1:
+    if not ids.isnumeric() or len(Project.objects.filter(id=ids))<1 or len(ids) < 1:
         return redirect("/my_projects/")
-    current_project = Project.objects.get(id=ids)
+    current_project =Project.objects.get(id=ids)
     if current_project.project_user != request.user and not request.user.is_staff:
         return redirect("/my_projects")
 
@@ -231,41 +232,42 @@ def search(request):
         return render_to_response('search_form.html', {'user': request.user}, RequestContext(request))
 
 def change_theme(request):
+    data = {'idi':'naxui'}
     if request.method == 'GET':
-        data = {}
+
         id_p = request.GET.get('proj_id')
         value = request.GET.get('is_dark')
         if id_p:
             p = Project.objects.get(id=id_p)
             p.project_is_dark = True if value == 'True' else False
             p.save()
-            return HttpResponse(json.dumps(data), content_type="application/json")
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 def change_menu(request):
     if request.method == 'GET':
-        data = {}
         id_p = request.GET.get('proj_id')
         value = request.GET.get('is_horizontal')
         if id_p:
             p = Project.objects.get(id=id_p)
             p.project_menu_is_horizontal = True if value == 'True' else False
             p.save()
-            return HttpResponse(json.dumps(data), content_type="application/json")
+    return HttpResponse(json.dumps({}), content_type="application/json")
 
 
 def get_all_pages(request):
+    all_page = []
     if request.method == 'GET':
         id_p = request.GET.get('proj_id')
         if id_p:
             pages = PageProject.objects.filter(project=Project.objects.get(id=id_p))
-            all_page = []
             for page in pages:
                 all_page.append({'pageID': page.id, 'pageName': page.page_name})
-            return HttpResponse(json.dumps({'pages': all_page}), content_type="application/json")
+    return HttpResponse(json.dumps({'pages': all_page}), content_type="application/json")
 
 
 def change_site_name(request):
+    new_site_name = []
     if request.method == 'GET':
         id_p = request.GET.get('proj_id')
         new_site_name = request.GET.get('new_site_name')
@@ -273,7 +275,7 @@ def change_site_name(request):
             p = Project.objects.get(id=id_p)
             p.project_name = new_site_name
             p.save()
-            return HttpResponse(json.dumps({'newName': new_site_name}), content_type="application/json")
+    return HttpResponse(json.dumps({'newName': new_site_name}), content_type="application/json")
 
 def remove_page(request):
     if request.method == 'GET':
@@ -282,10 +284,10 @@ def remove_page(request):
             p = PageProject.objects.get(id=idr)
             if p.project.project_user == request.user:
                 p.delete()
-            return HttpResponse(json.dumps({}), content_type="application/json")
+    return HttpResponse(json.dumps({}), content_type="application/json")
 
 def view_another_user(request, id_user):
-    if len(id_user) < 1:
+    if not id_user.isnumeric() or len(User.objects.filter(id=id_user))<1 or len(id_user) < 1:
         return redirect("/")
     currrent_user = User.objects.get(id=id_user)
     projects = Project.objects.filter(project_user=currrent_user)

@@ -7,37 +7,41 @@ $(function() {
             clone.addClass("xyi");
         },
         stop: function (event, ui) {
-            var statesdemo = {
-                state0: {
-                    title: 'Video block',
-                    html:'<label>Youtube link <input class="form-control" type="text" name="link" value=""></label><br />',
-                    buttons: {OK: 1, Cancel:false },
+            if ($('#droppable').children().is($(ui.helper))){
+                var statesdemo = {
+                    state0: {
+                        title: 'Video block',
+                        html: '<label>Youtube link <input class="form-control" type="text" name="link" value=""></label><br />',
+                        buttons: {OK: 1, Cancel: false},
 
-                    submit:function(e,v,m,f){
-                        var url=(f.link);
-                        if(url) {
-                            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-                            var match = url.match(regExp);
-                            if (match && match[2].length == 11) {
-                                url = match[2];
-                                $(ui.helper).empty();
-                                $(ui.helper).addClass('embed-responsive embed-responsive-16by9');
-                                $(ui.helper).append('<iframe class="embed-responsive-item"  src="https://www.youtube.com/embed/' + url + '" frameborder="0" allowfullscreen></iframe>');
-                                $(ui.helper).removeClass('btn-default');
-                                $(ui.helper).css('height', 'auto');
-                                $(ui.helper).css('width', '100%');
+                        submit: function (e, v, m, f) {
+                            var url = (f.link);
+                            if (url) {
+                                var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                                var match = url.match(regExp);
+                                if (match && match[2].length == 11) {
+                                    url = match[2];
+                                    $(ui.helper).empty();
+                                    $(ui.helper).addClass('embed-responsive embed-responsive-16by9');
+                                    $(ui.helper).append('<iframe class="embed-responsive-item"  src="https://www.youtube.com/embed/' + url + '" frameborder="0" allowfullscreen></iframe>');
+                                    $(ui.helper).removeClass('btn-default');
+                                    $(ui.helper).css('height', 'auto');
+                                    $(ui.helper).css('width', '100%');
+                                } else {
+                                    $(ui.helper).remove();
+                                }
                             } else {
                                 $(ui.helper).remove();
                             }
-                        }else{
-                            $(ui.helper).remove();
+                        },
+                        close: function (e, v, m, f) {
+                            $(ui.helper).remove()
                         }
-                    },
-                    close: function(e,v,m,f){$(ui.helper).remove()}
-                }
-            };
-            $.prompt( statesdemo);
+                    }
+                };
+            $.prompt(statesdemo);
         }
+    }
     });
 
     $(".draggable-text").draggable({
@@ -70,7 +74,9 @@ $(function() {
             $(ui.helper).css('width', '100%');
             $(ui.helper).append('    <div class="navbar-right" style="font-size: 17px;"><span class="btn glyphicon glyphicon-thumbs-up"style="font-size: 20px;">'+
                 '</span><text>0</text></div>');
-            $.ajax({
+            if($('#droppable').children().is($(ui.helper)))
+            {
+                 $.ajax({
                 url: "/rating/",
                 type:"GET",
                 data:{"id_project_create_rating":$('h2').attr("id_project")},
@@ -80,7 +86,10 @@ $(function() {
                     }
                 }
 
-            })
+            });
+
+            }
+
         }
     });
 
@@ -140,29 +149,29 @@ $(function() {
         }
     );
     $("#droppable").sortable({
-        //stop: function(){
-        //    setTimeout(function() {
-        //        var conten;
-        //        $.each($('.for-padding').children(), function (index, val) {
-        //            conten += val.outerHTML;
-        //        });
-        //        alert(conten);
-        //        $.ajax({
-        //            url: "/editor/" + $('h2').attr("id_project") + '/',
-        //            type: "POST",
-        //            data: {
-        //                'id_page': id_curr_pag,
-        //                'content': conten,
-        //                'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
-        //            },
-        //            success: function () {
-        //            },
-        //            error: function () {
-        //                return alert('gyjudvasf');
-        //            }
-        //        });
-        //    },5000);
-        //},
+        stop: function(){
+            setTimeout(function() {
+                var conten="";
+                $.each($('.for-padding').children(), function (index, val) {
+                    conten += val.outerHTML;
+                });
+                var id_curr_page = $('.curr_page').attr("id_page");
+                $.ajax({
+                    url: "/editor/" + $('h2').attr("id_project") + '/',
+                    type: "POST",
+                    data: {
+                        'id_page': id_curr_page,
+                        'content': conten,
+                        'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
+                    },
+                    success: function () {
+                    },
+                    error: function () {
+                        return alert('gyjudvasf');
+                    }
+                });
+            },700);
+        },
         over: function () {
             removeIntent = false
         },
@@ -183,6 +192,6 @@ $(function() {
                 }
                 ui.item.remove()
             }
-        },
+        }
     });
 });

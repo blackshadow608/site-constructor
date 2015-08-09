@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-09 14:09+0300\n"
+"POT-Creation-Date: 2015-08-09 20:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,21 +45,11 @@ msgstr "Домашняя страница"
 msgid "Search"
 msgstr "Поиск"
 
-#: templates/base.html:76
-msgid "5 last sites:"
-msgstr "5 последних"
-
-#: templates/base.html:91
-msgid "top 5 sites:"
-msgstr "5 лучших"
-
 #: templates/editor.html:11
 msgid "Site name:"
 msgstr "Название:"
 
 #: templates/editor.html:16
-#, fuzzy
-#| msgid "editor"
 msgid "edit"
 msgstr "редактор"
 
@@ -91,7 +81,7 @@ msgstr "Галерея"
 msgid "Raiting"
 msgstr "Рейтинг"
 
-#: templates/editor.html:53 templates/editor.html.py:119
+#: templates/editor.html:53 templates/editor.html.py:120
 msgid "Create page"
 msgstr "Создать страницу"
 
@@ -115,7 +105,19 @@ msgstr "столбик"
 msgid "view"
 msgstr "просмотр"
 
-#: templates/login.html:10
+#: templates/editor.html:101
+msgid "save"
+msgstr "сохранить"
+
+#: templates/index.html:11
+msgid "5 last sites:"
+msgstr "5 последних"
+
+#: templates/index.html:28
+msgid "top 5 sites:"
+msgstr "5 лучших"
+
+#: templates/login.html:10 templates/registration.html:9
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -134,6 +136,22 @@ msgstr "Сайты:"
 #: templates/search_form.html:35
 msgid "No results"
 msgstr "Ничего не найдено"
+
+#: templates/user_auth.html:15
+msgid "Sender is required, invalid data."
+msgstr "Неверные данные, отправка невозможна"
+
+#: templates/user_projects.html:37
+msgid "Choose File"
+msgstr "Выберите файл"
+
+#: templates/user_projects.html:40
+msgid "Add image"
+msgstr "добавить картинку"
+
+#: templates/user_projects.html:44
+msgid "Upload"
+msgstr "Загрузить"
 
 #: templates/user_projects.html:49
 msgid "New project"
