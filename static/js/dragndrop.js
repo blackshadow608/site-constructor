@@ -108,10 +108,10 @@ $(function() {
             $(ui.helper).css('height', 'auto');
             $(ui.helper).css('padding-bottom', '20px');
             $(ui.helper).css('width', '100%');
-            $(ui.helper).append('<div class="col-md-12 btn-group sortable-img well well-sm"></div>');
+            $(ui.helper).append('<div class="col-md-12 btn-group sortable-img well well-sm" min-height="200"></div>');
 
             $('.sortable-img').sortable({
-                connectWith:'img',
+                connectWith:'.draggable-img',
                 over: function () {
                     removeIntent = false
                 },
@@ -128,11 +128,13 @@ $(function() {
         helper: "clone", connectToSortable: ".sortable-img",
         start: function (event, ui) {
             var clone = $(ui.helper);
+            $(ui.helper).addClass('TEST');
+
         },
+        drag:function(){alert();},
         stop: function (event, ui) {
-            //$(ui.helper).empty();
-
-
+             $(ui.helper).addClass('TEST');
+            alert();
         }
     });
 
@@ -142,10 +144,8 @@ $(function() {
             },
             out: function () {
                 removeIntent = true
-            },
-            beforeStop: function (event, ui) {
-                ui.item.remove()
             }
+
         }
     );
     $("#droppable").sortable({

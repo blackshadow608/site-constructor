@@ -1,4 +1,4 @@
-$('img').click ->
+$('body').on 'click','img', ->
   src_img=$(this).attr('src')
   target=$(".img-click")
   target.empty()
@@ -6,3 +6,5 @@ $('img').click ->
   $(".draggable-img").draggable
     helper: "clone"
     connectToSortable: ".sortable-img"
+    stop:(event, ui) ->
+      $(ui.helper).removeClass('draggable-img')
