@@ -34,14 +34,14 @@
                 {#        {{ img_form.image }}#}
 
                 <div class="inputBtnSection">
-                    <input id="uploadFile" class="disableInputField" placeholder="Choose File" disabled="disabled" />
+                    <input id="uploadFile" class="disableInputField" placeholder={% trans "Choose File"%} disabled="disabled" />
                     <label class="fileUpload">
                         <input id="uploadBtn" type="file" name="{{ img_form.image.name }}" class="upload" />
-                        <span class="uploadBtn">Add image</span>
+                        <span class="uploadBtn">{% trans "Add image"%}</span>
                     </label>
                 </div>
 
-                <input type="submit" class="btn btn-default" value="Upload">
+                <input type="submit" class="btn btn-default" value="{% trans "Upload" %}">
             </form>
         </div>
     </div>

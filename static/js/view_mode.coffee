@@ -14,7 +14,7 @@ $ ->
 load_page = ->
   id = $('.curr_page').attr("id_page")
   $.ajax
-      url:"/view_mode/"+148+'/'
+      url:"/view_mode/"+$('h2').attr("id_project")+'/'
       type:"POST"
       data:
         'id_return_page':id
