@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-05 15:41+0300\n"
+"POT-Creation-Date: 2015-08-09 13:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,11 +13,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: blog/settings.py:123
+#: blog/settings.py:125
 msgid "English"
 msgstr "Английский"
 
-#: blog/settings.py:124
+#: blog/settings.py:126
 msgid "Russian"
 msgstr "Русский"
 
@@ -45,11 +45,15 @@ msgstr "Домашняя страница"
 msgid "Search"
 msgstr "Поиск"
 
-#: templates/base.html:66
-msgid "change"
-msgstr "сменить"
+#: templates/base.html:76
+msgid "5 last sites:"
+msgstr "5 последних"
 
-#: templates/editor.html:11 templates/view_site_template.html:18
+#: templates/base.html:91
+msgid "top 5 sites:"
+msgstr "5 лучших"
+
+#: templates/editor.html:11
 msgid "Site name:"
 msgstr "Название:"
 
@@ -63,51 +67,51 @@ msgstr "редактор"
 msgid "Page name"
 msgstr "Название страницы"
 
-#: templates/editor.html:31 templates/user_projects.html:31
+#: templates/editor.html:31 templates/user_projects.html:54
 msgid "create"
 msgstr "создать"
 
-#: templates/editor.html:39
+#: templates/editor.html:40
 msgid "Tools"
 msgstr "Инструменты"
 
-#: templates/editor.html:43
+#: templates/editor.html:45
 msgid "Text block"
 msgstr "Текст"
 
-#: templates/editor.html:44
+#: templates/editor.html:46
 msgid "Video"
 msgstr "Видео"
 
-#: templates/editor.html:45
+#: templates/editor.html:47
 msgid "Galery"
 msgstr "Галерея"
 
-#: templates/editor.html:46
+#: templates/editor.html:48
 msgid "Raiting"
 msgstr "Рейтинг"
 
-#: templates/editor.html:51 templates/editor.html.py:94
+#: templates/editor.html:53 templates/editor.html.py:119
 msgid "Create page"
 msgstr "Создать страницу"
 
-#: templates/editor.html:61
+#: templates/editor.html:85
 msgid "dark"
 msgstr "темный"
 
-#: templates/editor.html:64
+#: templates/editor.html:88
 msgid "light"
 msgstr "светлый"
 
-#: templates/editor.html:69
+#: templates/editor.html:93
 msgid "horizontal"
 msgstr "строка"
 
-#: templates/editor.html:72
+#: templates/editor.html:96
 msgid "vertical"
 msgstr "столбик"
 
-#: templates/editor.html:76
+#: templates/editor.html:100
 msgid "view"
 msgstr "просмотр"
 
@@ -115,21 +119,47 @@ msgstr "просмотр"
 msgid "Registration"
 msgstr "Регистрация"
 
-#: templates/user_projects.html:26
+#: templates/search_form.html:10
+msgid "You searched for: "
+msgstr "Вы ищете: "
+
+#: templates/search_form.html:15
+msgid "Users:"
+msgstr "Пользователи:"
+
+#: templates/search_form.html:25
+msgid "Sites:"
+msgstr "Сайты:"
+
+#: templates/search_form.html:35
+msgid "No results"
+msgstr "Ничего не найдено"
+
+#: templates/user_projects.html:49
 msgid "New project"
 msgstr "Новый проект"
 
-#: templates/user_projects.html:29
+#: templates/user_projects.html:52
 msgid "Project name"
 msgstr "Название"
 
-#: templates/view_site_template.html:19
+#: templates/view_site_template.html:20
+msgid "editor"
+msgstr "редактор"
+
+#: templates/view_site_template.html:26
+msgid "back"
+msgstr "назад"
+
+#: templates/view_site_template.html:31
 msgid "Author:"
 msgstr "Автор:"
 
-#: templates/view_site_template.html:22
-msgid "editor"
-msgstr "редактор"
+#~ msgid "home"
+#~ msgstr "назад"
+
+#~ msgid "change"
+#~ msgstr "сменить"
 
 #~ msgid "Change your locale"
 #~ msgstr "Сменить язык"

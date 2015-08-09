@@ -1,9 +1,6 @@
-import datetime
 from django.contrib.auth.models import User
 from django.db import models
-import cloudinary
 from cloudinary.models import CloudinaryField
-
 
 class Project(models.Model):
     project_user = models.ForeignKey(User, default='')
@@ -28,5 +25,6 @@ class Like(models.Model):
 
 
 class Gallery(models.Model):
-    user = models.ForeignKey(User,default='')
+    user = models.ForeignKey(User, default='')
     image = CloudinaryField('image')
+

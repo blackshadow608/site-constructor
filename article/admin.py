@@ -1,9 +1,8 @@
 from django.contrib.auth.admin import UserAdmin
+import watson
 from article.models import Project, PageProject, Gallery
 from django.contrib import admin
 from django.contrib.auth.models import User
-import watson
-
 
 # Register your models here.
 admin.site.disable_action('delete_selected')
@@ -38,6 +37,6 @@ admin.site.register(Gallery, GalleryAdmin)
 admin.site.unregister(User)
 admin.site.register(User, UserProfileAdmin)
 
-
-watson.register(Project, fields=("project_name",'project_user'))
-watson.register(PageProject, fields=('page_name', 'text'))
+watson.register(Project, )
+watson.register(PageProject, exclude=("page_name",))
+watson.register(User, exclude=("username",))

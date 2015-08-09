@@ -2,25 +2,29 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/static/js/img-click.js" />
         <item url="file://$PROJECT_DIR$/static/js/remove_page.js" />
+<<<<<<< HEAD
+=======
         <item url="file://$PROJECT_DIR$/static/js/view_mode.js" />
         <item url="file://$PROJECT_DIR$/static/js/change_language.js" />
         <item url="file://$PROJECT_DIR$/static/js/select_page.js" />
         <item url="file://$PROJECT_DIR$/static/js/disable_submit.js" />
         <item url="file://$PROJECT_DIR$/static/js/change_menu.js" />
         <item url="file://$PROJECT_DIR$/static/js/change_site_name.js" />
+>>>>>>> 966d1f4d5956f7cc9503a7ea84dab58e5dbe7f12
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/static/js/img-click.js" />
       <root url="file://$PROJECT_DIR$/static/js/remove_page.js" />
+<<<<<<< HEAD
+=======
       <root url="file://$PROJECT_DIR$/static/js/change_language.js" />
       <root url="file://$PROJECT_DIR$/static/js/view_mode.js" />
       <root url="file://$PROJECT_DIR$/static/js/select_page.js" />
       <root url="file://$PROJECT_DIR$/static/js/disable_submit.js" />
       <root url="file://$PROJECT_DIR$/static/js/change_menu.js" />
       <root url="file://$PROJECT_DIR$/static/js/change_site_name.js" />
+>>>>>>> 966d1f4d5956f7cc9503a7ea84dab58e5dbe7f12
     </CLASSES>
     <SOURCES />
   </library>

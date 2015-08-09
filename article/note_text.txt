@@ -1,0 +1,3 @@
+{{ object.project_name }}
+{{ object.project_user.username }}
+{{ object.id }}
