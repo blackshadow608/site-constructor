@@ -24,7 +24,7 @@
             <div  style="visibility: hidden;width: 0px;height: 0px">{{ page_form.project }}</div>
             <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">{% trans "Page name" %}</label>
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <input class='form-control' name="{{ page_form.page_name.name}}" maxlength="30"/>
                 </div>
                 <div class="col-md-2">
@@ -78,7 +78,7 @@
         </div>
         <div class="col-md-8">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-5 col-md-offset-2">
                 <div class="">
                         <a href="/view_mode/{{ project.id }}" type="submit" class="btn btn-default navbar-right">{% trans "view" %}</a>
                         <button class="btn btn-default navbar-right">{% trans "save" %}</button>
@@ -116,7 +116,7 @@
                     </div>
 {#                {% endif %}#}
                 {% if pages %}
-                    <div id="droppable"   class="col-md-10  jumbotron for-padding" style="border: solid 1px black; height: auto; min-height: 450px">
+                    <div id="droppable"   class="col-md-11  jumbotron for-padding" style="border: solid 1px black; height: auto; min-height: 450px">
                     </div>
                 {% else %}
                     <div class="col-md-10 "style="background-color: #FAFAFA; border: solid 1px black; height: auto; min-height: 450px">
