@@ -14,6 +14,7 @@ request = (id, is_horizontal)->
       'proj_id': id
       'is_horizontal': is_horizontal
     success:(data) ->
+
     error: ->
       alert 'gyjudvasf'
 

@@ -37,7 +37,10 @@ def view_site(request, id_project):
     pages = PageProject.objects.filter(project=Project.objects.get(id=id_project))
     project = Project.objects.get(id=id_project)
     return render_to_response('view_site_template.html',
-                              {'project': project, 'pages': pages, 'user': request.user}, RequestContext(request))
+                              {'project': project,
+                               'pages': pages,
+                               'user': request.user,
+                               'url':request.META['HTTP_REFERER']}, RequestContext(request))
 
 def valid_project(id_project):
     if not id_project.isnumeric() or len(Project.objects.filter(id=id_project))<1 or len(id_project) < 1:
@@ -116,7 +119,7 @@ def get_top_sites():
 
 def found_in_list_of_dictionaries(element, list_of_dictionaries):
     for current in list_of_dictionaries:
-        if element is current['candidate']:
+        if element.raiting_project.id is current['candidate'].raiting_project.id:
             return True
     return False
 
@@ -248,21 +251,11 @@ def change_menu(request):
         value = request.GET.get('is_horizontal')
         if id_p:
             p = Project.objects.get(id=id_p)
-            if request.user == p.project_user:
+            if request.user == p.project_user or request.user.is_staff:
                 p.project_menu_is_horizontal = True if value == 'True' else False
                 p.save()
     return HttpResponse(json.dumps({}), content_type="application/json")
 
-
-def get_all_pages(request):
-    all_page = []
-    if request.method == 'GET':
-        id_p = request.GET.get('proj_id')
-        if id_p:
-            pages = PageProject.objects.filter(project=Project.objects.get(id=id_p))
-            for page in pages:
-                all_page.append({'pageID': page.id, 'pageName': page.page_name})
-    return HttpResponse(json.dumps({'pages': all_page}), content_type="application/json")
 
 
 def change_site_name(request):
@@ -272,7 +265,7 @@ def change_site_name(request):
         new_site_name = request.GET.get('new_site_name')
         if id_p:
             p = Project.objects.get(id=id_p)
-            if request.user == p.project_user:
+            if request.user == p.project_user or request.user.is_staff:
                 p.project_name = new_site_name
                 p.save()
     return HttpResponse(json.dumps({'newName': new_site_name}), content_type="application/json")

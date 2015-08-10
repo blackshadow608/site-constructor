@@ -23,7 +23,6 @@ urlpatterns = [
     url(r'^rating/', 'article.views.create_delete_rating'),
     url(r'^theme/', 'article.views.change_theme'),
     url(r'^menu/', 'article.views.change_menu'),
-    url(r'^get_all_pages/', 'article.views.get_all_pages'),
     url(r'^change_site_name/', 'article.views.change_site_name'),
     url(r'^remove_page/', 'article.views.remove_page'),
     url(r'^like/', 'article.views.set_likes'),
