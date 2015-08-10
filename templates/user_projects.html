@@ -28,12 +28,12 @@
                     <img src="{{ image.image.build_url }}">
                 {% endfor %}
             </div>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form class="img-form" action="" method="post" enctype="multipart/form-data">
                 {% csrf_token%}
                 <div style="opacity: 0">{{ img_form.user }}</div>
                 {#        {{ img_form.image }}#}
 
-                <div class="inputBtnSection">
+                <div class="col-md-offset-2 inputBtnSection">
                     <input id="uploadFile" class="disableInputField" placeholder={% trans "Choose File"%} disabled="disabled" />
                     <label class="fileUpload">
                         <input id="uploadBtn" type="file" name="{{ img_form.image.name }}" class="upload" />
@@ -47,7 +47,7 @@
     </div>
     <div class="col-md-3">
         <h1>{% trans "New project"%}</h1>
-        <form action='' method='post' xmlns="http://www.w3.org/1999/html">
+        <form class="myform" action='' method='post' xmlns="http://www.w3.org/1999/html">
             {% csrf_token %}
             <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">{% trans "Project name"%}</label>
             <input maxlength="30" class='form-control' style="margin-top: 4px" name="{{ form.project_name.name}}" />

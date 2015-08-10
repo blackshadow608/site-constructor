@@ -9,13 +9,11 @@
     }
   };
 
-  $(function() {
-    return $('.page-select').click(function() {
-      $('.page-select').removeClass('curr_page');
-      $('.content').children().remove();
-      $(this).addClass('curr_page');
-      return load_page();
-    });
+  $('.page-select').click(function() {
+    $('.page-select').removeClass('curr_page');
+    $('.content').children().remove();
+    $(this).addClass('curr_page');
+    return load_page();
   });
 
   load_page = function() {
@@ -61,7 +59,7 @@
       $.each($(this).children(), function(num, valli) {
         return src_arr.push($(valli).attr('src'));
       });
-      $(val).replaceWith('<div class="fotorama" data-fit="cover" style="margin-left:25%" data-allowfullscreen="true"  data-nav="thumbs"  data-width="75%"  data-ratio="16/9">' + fotorama_img(src_arr) + '<div>');
+      $(val).replaceWith('<div class="fotorama" data-fit="cover" style="margin-left:21%" data-allowfullscreen="true" data-arrows="true" data-autoplay="true" data-nav="thumbs" data-trackpad="true" data-width="73%"  data-ratio="16/9">' + fotorama_img(src_arr) + '<div>');
       return $('.fotorama').fotorama();
     });
   };

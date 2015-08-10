@@ -3,19 +3,26 @@
 {% load i18n %}
 {% load l10n %}
 {% block another_user %}
-<h2>{% trans "User: "%} {{ user_of_projects.username }}</h2>
-{% if projects %}
-<table class="table">
-    {% for project in projects %}
-    <tr>
-        <td>
-            <a href="/view_mode/{{ project.id }}"> {{ project.project_name}}</a>
-        </td>
-    </tr>
-    {% endfor %}
-    {{ form.error }}
-</table>
-{% else %}
-    <h3>{% trans "User don't have projects" %}</h3>
-{% endif %}
+    <div class="col-md-4  content latest"id="home-box">
+        <div class="pricing_header">
+            <h2>{% trans "User: "%} {{ user_of_projects.username }}</h2>
+            <div class="space"></div>
+        </div>
+        {% if projects %}
+
+            <ul class="list-group">
+                {% for project in projects %}
+                    <li class="list-group-item " style=" margin:0px;">
+                        <a style="font-size: 17px; margin:0px;padding:0px" class="label label-default thumbnail link-type-dark" href="/view_mode/{{ project.id }}">
+                            {{ project.project_name}}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3>{% trans "User don't have projects" %}</h3>
+        {% endif %}
+    </div>
+
+
 {% endblock %}

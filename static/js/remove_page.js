@@ -2,42 +2,45 @@
 (function() {
   var load_page;
 
-  $(function() {
-    return $('body').on('click', '.glyphicon-remove', function() {
-      var id;
-      id = $(this).parent().attr('id_page');
-      $(this).parent().remove();
-      $('.for-padding').empty();
-      load_page(id);
-      $.each($('.for-padding').children('.draggable-raiting'), function(index, val) {
-        return $.ajax({
-          url: "/rating/",
-          type: "GET",
-          data: {
-            "id_delete_rating": $(val).attr('id_rating')
-          }
-        });
-      });
-      $('.for-padding').empty();
-      load_page($('.curr_page').attr("id_page"));
+  $('body').on('click', '.glyphicon-remove', function() {
+    var current_page, id;
+    id = $(this).parent().attr('id_page');
+    $(this).parent().remove();
+    $('.for-padding').empty();
+    load_page(id);
+    $.each($('.for-padding').children('.draggable-raiting'), function(index, val) {
       return $.ajax({
-        url: "/remove_page/",
+        url: "/rating/",
         type: "GET",
         data: {
-          'page_id': id
-        },
-        success: function(data) {
-          if (!$('.btn').is('.page-select')) {
-            location.reload();
-          }
-          $('.page-select:first').addClass('curr_page');
-          id = $('.curr_page').attr("id_page");
-          return load_page(id);
-        },
-        error: function() {
-          return alert('in remove page');
+          "id_delete_rating": $(val).attr('id_rating')
         }
       });
+    });
+    $('.for-padding').empty();
+    load_page($('.curr_page').attr("id_page"));
+    current_page = $(".curr_page");
+    return $.ajax({
+      url: "/remove_page/",
+      type: "POST",
+      data: {
+        'page_id': id,
+        'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val()
+      },
+      success: function(data) {
+        current_page.addClass('curr_page');
+        if (!$('.page-select').is('.curr_page')) {
+          $('.page-select:first').addClass('curr_page');
+        }
+        id = $('.curr_page').attr("id_page");
+        load_page(id);
+        if (!$('.btn').is('.page-select')) {
+          return location.reload();
+        }
+      },
+      error: function() {
+        return alert('in remove page');
+      }
     });
   });
 
