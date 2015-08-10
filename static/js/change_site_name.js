@@ -6,7 +6,7 @@
     $('body').on('click', '#edit_site_name_button', function() {
       old_site_name = $('#name_not_edit_span').attr("name_project");
       $('#name_not_edit_span').remove();
-      $('#change_site_name_block').append('<span id="name_edit_span"> <input id="input_site_name" type="text" maxlength="30" size=10 value=""> <button class="btn btn-xs" id="change_site_name_button">OK</button> </span>');
+      $('#change_site_name_block').append('<span id="name_edit_span"> <input id="input_site_name" type="text" maxlength="30" size=10 value=""> <button class="btn btn-xs glyphicon glyphicon-check"  style="font-size: 20px;" id="change_site_name_button"></button> </span>');
       return $('#input_site_name').val(old_site_name);
     });
     $('body').on('click', '#change_site_name_button', function() {
@@ -36,7 +36,7 @@
     };
     return end_change_name = function(site_name) {
       $('#name_edit_span').remove();
-      $('#change_site_name_block').append('<span id="name_not_edit_span" name_project = ""> <button type="button" class="btn btn-link" id="edit_site_name_button"> edit</button> </span>');
+      $('#change_site_name_block').append('<span id="name_not_edit_span" name_project = ""> <button type="button" class="btn btn-link glyphicon glyphicon-edit" style="font-size: 20px;" id="edit_site_name_button"> </button> </span>');
       $('#name_not_edit_span').prepend(site_name);
       return $('#name_not_edit_span').attr('name_project', site_name);
     };
