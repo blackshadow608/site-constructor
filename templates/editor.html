@@ -12,10 +12,12 @@
                 <span id="change_site_name_block">
                     <span id="name_not_edit_span" name_project = '{{ project.project_name }}'>
                         {{ project.project_name }}
-                        <button type="button" class="btn btn-link glyphicon glyphicon-edit" style="font-size: 20px;" id="edit_site_name_button">
-                        </button>
+                        <span type="button" class="btn for-span btn-xs glyphicon glyphicon-edit" id="edit_site_name_button">
+
+                        </span>
                     </span>
                 </span>
+
             </h2>
         </div>
         <form class="myform col-md-5" action="" method="post" id="myform">
@@ -35,7 +37,7 @@
     <div class="row">
 
         <div class="col-md-4" >
-            <div class="form-group" style="">
+            <div class="form-group" style="position: fixed">
                 <h1>{% trans "Tools" %}</h1>
 
                 {% if pages %}

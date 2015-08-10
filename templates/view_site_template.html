@@ -8,6 +8,9 @@
     <title></title>
     <link rel="stylesheet" href={% static "bootstrap/dist/css/bootstrap.css"%}>
     <link rel="stylesheet" href={% static "css/mystyles.css"%}>
+    <script src={% static "js/jquery-2.1.4.js"%}></script>
+    <script src={% static "js/jquery-ui-1.11.4/jquery-ui.min.js" %}></script>
+    <script src={% static "bootstrap/js/dropdown.js" %}></script>
 </head>
 <body class="{% if project.project_is_dark %}dark{% endif %}">
 <nav class="navbar navbar-default nav-view">
@@ -73,8 +76,5 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 <script src={% static "js/view_mode.js" %}></script>
 <script src={% static "js/likes.js" %}></script>
-<script src={% static "js/jquery-2.1.4.js"%}></script>
-<script src={% static "js/jquery-ui-1.11.4/jquery-ui.min.js" %}></script>
-<script src={% static "bootstrap/js/dropdown.js" %}></script>
 </body>
 </html>

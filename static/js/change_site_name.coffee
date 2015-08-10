@@ -5,7 +5,7 @@ $('body').on 'click','#edit_site_name_button', ->
   $('#name_not_edit_span').remove()
   $('#change_site_name_block').append('<span id="name_edit_span">
                           <input id="input_site_name" type="text" maxlength="30" size=10 value="">
-                          <button class="btn btn-xs glyphicon glyphicon-check"  style="font-size: 20px;" id="change_site_name_button"></button> </span>')
+                          <span class="btn for-span btn-xs glyphicon glyphicon-check" id="change_site_name_button"></span> </span>')
   $('#input_site_name').val(old_site_name)
 
 $('body').on 'click','#change_site_name_button', ->
@@ -29,10 +29,11 @@ set_new_name = ()->
     error: ->
       alert 'in change site name'
 
-  end_change_name = (site_name)->
-    $('#name_edit_span').remove()
-    $('#change_site_name_block').append('<span id="name_not_edit_span" name_project = "">
-                        <button type="button" class="btn btn-link glyphicon glyphicon-edit" style="font-size: 20px;" id="edit_site_name_button">
-                        </button> </span>')
+end_change_name = (site_name)->
+  $('#name_edit_span').remove()
+  $('#change_site_name_block').append('<span id="name_not_edit_span" name_project = "">
+                        <span  class="btn for-span glyphicon glyphicon-edit" id="edit_site_name_button">
+                        </span>
+                    </span>')
   $('#name_not_edit_span').prepend(site_name)
   $('#name_not_edit_span').attr('name_project', site_name)
