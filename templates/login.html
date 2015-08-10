@@ -3,7 +3,7 @@
 {% load l10n %}
 {% block login %}
     <div class="col-md-3 col-md-offset-4">
-    <form method="post" action="">
+    <form class="myform" method="post" action="">
         {% csrf_token %}
         {% include "user_auth.html" %}
         <input name="submitter" class="btn btn-primary" type="submit" value="{% trans 'Login' %}"/>

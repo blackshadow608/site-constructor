@@ -19,7 +19,7 @@
                 </span>
             </h2>
         </div>
-        <form class="col-md-5" action="" method="post" id="myform">
+        <form class="myform col-md-5" action="" method="post" id="myform">
             {% csrf_token %}
             <div  style="visibility: hidden;width: 0px;height: 0px">{{ page_form.project }}</div>
             <label class="label label-info" style="font-size: 15px; margin-bottom: 5px">{% trans "Page name" %}</label>

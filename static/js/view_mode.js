@@ -59,7 +59,7 @@
       $.each($(this).children(), function(num, valli) {
         return src_arr.push($(valli).attr('src'));
       });
-      $(val).replaceWith('<div class="fotorama" data-fit="cover" style="margin-left:21%" data-allowfullscreen="true"  data-nav="thumbs"  data-width="73%"  data-ratio="16/9">' + fotorama_img(src_arr) + '<div>');
+      $(val).replaceWith('<div class="fotorama" data-fit="cover" style="margin-left:21%" data-allowfullscreen="true" data-arrows="true" data-autoplay="true" data-nav="thumbs" data-trackpad="true" data-width="73%"  data-ratio="16/9">' + fotorama_img(src_arr) + '<div>');
       return $('.fotorama').fotorama();
     });
   };
