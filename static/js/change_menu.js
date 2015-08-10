@@ -6,15 +6,9 @@
     var id;
     id = $('h2').attr("id_project");
     if ($(this).hasClass('horizontal')) {
-      if (!$('div').is('.page_group_horizontal')) {
-        setHorizontalMenu(id);
-        return request(id, 'True');
-      }
+      return request(id, 'True');
     } else {
-      if (!$('div').is('.page_group_vertical')) {
-        setVerticalMenu(id);
-        return request(id, 'False');
-      }
+      return request(id, 'False');
     }
   });
 
