@@ -57,7 +57,6 @@ $(".draggable-text").draggable({
         $(ui.helper).css('height', 'auto');
         $(ui.helper).css('width', '100%');
         $(ui.helper).append('<textarea style="resize:vertical; width:95%" class="form-control markdown-field"></textarea>');
-        stop()
     }
 });
 
